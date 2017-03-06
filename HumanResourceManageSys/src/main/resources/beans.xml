@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	 xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        ">
+
+	<!-- xml与注解混合配置 -->
+
+	<!-- 加入包的扫描，以实例化bean -->
+	<context:component-scan base-package="com.yc" />
+
+	<aop:aspectj-autoproxy />
+
+	<!-- 读取数据库联接配置 -->
+	<context:property-placeholder location="classpath*:jdbc.properties" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	
+	<!-- 创建 mybatis的  sqlSessionFactory bean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 去掉mybatis的配置文件   ,在 spring中完成mybatis的配置  -->
+		
+		<!-- 加入mybatis的一些属性配置 -->
+		<property name="configurationProperties">
+			<props>
+				<prop key="logImpl">LOG4j</prop>
+			</props>
+		</property>
+		
+		<!-- 别名包的配置 -->
+		<property name="typeAliasesPackage" value="com.yc.bean" />
+		
+		<!-- mybatis映射文件 -->
+		<property name="mapperLocations" value="classpath*:com/yc/mapper/*.xml"></property>
+		
+	</bean>
+	
+	
+	<!-- 事物配置 -->
+	<tx:annotation-driven transaction-manager="txManager"/>
+   
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <!-- 由spring提供的事物增强 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="retrieve*" read-only="true"/>
+			<tx:method name="*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+<!-- 	<aop:config> -->
+	
+<!-- 		<aop:pointcut id="abc" expression="execution(* com.yc.biz.impl.*.(..))"/> -->
+<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="abc"/> -->
+<!-- 	</aop:config> -->
+
+
+</beans>
