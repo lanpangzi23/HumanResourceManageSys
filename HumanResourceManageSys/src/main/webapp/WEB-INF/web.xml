@@ -12,17 +12,9 @@
 			<param-value>utf-8</param-value>
 		</init-param>
 	</filter>
-    <filter>
-    	<filter-name>RightFilter1</filter-name>
-    	<filter-class>com.yc.web.filters.RightFilter1</filter-class>
-    </filter>
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>RightFilter1</filter-name>
-		<url-pattern>/admin/*</url-pattern>
 	</filter-mapping>
   
   <servlet>
