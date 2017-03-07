@@ -11,4 +11,20 @@ public class PageController {
 	public String toHumanResourceRegistrationPage(){
 		return "humanResourceRegistration";
 	}
+	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")
+	public String tohumanResourceFileRegistrationReviewPage(){
+		return "humanResourceFileRegistrationReview";
+	}
+	@RequestMapping(value="/admin/humanResourceFileQuery")
+	public String tohumanResourceFileQueryPage(){
+		return "humanResourceFileQuery";
+	}
+	@RequestMapping(value="/admin/humanResourceFileUpdate")
+	public String tohumanResourceFileUpdatePage(){
+		return "humanResourceFileUpdate";
+	}
+	@RequestMapping(value="/admin/humanResourceFileDelete")
+	public String tohumanResourceFileDeletePage(){
+		return "humanResourceFileDelete";
+	}
 }
