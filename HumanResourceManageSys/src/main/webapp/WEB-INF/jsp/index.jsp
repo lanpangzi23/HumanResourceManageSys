@@ -59,24 +59,22 @@
                         
             </div>
             <div title="薪酬管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="StandardSalarySet.html" data-options="plain:true">薪酬标准登记</a></li>
-                <li><a class="easyui-linkbutton" href="CompensationStandardRegistrationReview.html" data-options="plain:true">薪酬标准登记复核</a></li>
-                <li><a class="easyui-linkbutton" href="salarySandardQuery.html" data-options="plain:true">薪酬标准查寻</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/StandardSalarySet" data-options="plain:true">薪酬标准登记</a></li>
+                <li><a class="easyui-linkbutton" href="admin/CompensationStandardRegistrationReview" data-options="plain:true">薪酬标准登记复核</a></li>
+                <li><a class="easyui-linkbutton" href="admin/salarySandardQuery" data-options="plain:true">薪酬标准查寻</a></li>
            
-        		<li><a class="easyui-linkbutton" href="paymentRegistrationReview.html" data-options="plain:true">薪酬发放登记</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/paymentRegistrationReview" data-options="plain:true">薪酬发放登记</a></li>
            
                 
 
             </div>
             <div title="调动管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-            	<li><a class="easyui-linkbutton" href="transferRegistration.html" data-options="plain:true">调动登记</a></li>
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
+            	<li><a class="easyui-linkbutton" href="admin/transferRegistration" data-options="plain:true">调动登记</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/transferAudit" data-options="plain:true">调动审核</a></li>
             </div>
              <div title="培训管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
             </div>
              <div title="激励管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
             </div>
              <div title="招聘管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
         		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">职位发布管理</a></li>

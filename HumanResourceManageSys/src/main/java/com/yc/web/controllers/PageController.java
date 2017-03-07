@@ -27,4 +27,28 @@ public class PageController {
 	public String tohumanResourceFileDeletePage(){
 		return "humanResourceFileDelete";
 	}
+	@RequestMapping(value="/admin/StandardSalarySet")
+	public String toStandardSalarySetPage(){
+		return "StandardSalarySet";
+	}
+	@RequestMapping(value="/admin/CompensationStandardRegistrationReview")
+	public String toCompensationStandardRegistrationReviewPage(){
+		return "CompensationStandardRegistrationReview";
+	}
+	@RequestMapping(value="/admin/salarySandardQuery")
+	public String tosalarySandardQueryPage(){
+		return "salarySandardQuery";
+	}
+	@RequestMapping(value="/admin/paymentRegistrationReview")
+	public String topaymentRegistrationReviewPage(){
+		return "paymentRegistrationReview";
+	}
+	@RequestMapping(value="/admin/transferRegistration")
+	public String totransferRegistrationPage(){
+		return "transferRegistration";
+	}
+	@RequestMapping(value="/admin/transferAudit")
+	public String totransferAuditPage(){
+		return "transferAudit";
+	}
 }
