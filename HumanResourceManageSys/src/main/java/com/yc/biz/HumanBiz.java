@@ -4,15 +4,18 @@ import java.util.List;
 
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
+import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.HumanFile;
 
 public interface HumanBiz {
 	//员工档案登记
 	HumanFile save(HumanFile book);
 	//一级机构查寻
-	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
+	List<ConfigFileFirstKind> getAllConfigFileFirstKinds();
 	//二级机构查寻
+	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
 	//三级机构查寻
+	List<ConfigFileThirdKind> getAllConfigFileThirdKinds();
 	//职位分类查寻
 	//职位名称查寻
 	//职称查寻

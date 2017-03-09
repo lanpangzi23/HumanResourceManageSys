@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.yc.bean.ConfigFileFirstKind;
+import com.yc.bean.ConfigFileSecondKind;
+import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.HumanFile;
 import com.yc.biz.HumanBiz;
 import com.yc.dao.BaseDao;
@@ -30,6 +32,18 @@ public class HumanBizImpl implements HumanBiz {
 	@Override
 	public List<ConfigFileFirstKind> getAllConfigFileFirstKinds() {
 		List<ConfigFileFirstKind> list=this.baseDao.findAll(new ConfigFileFirstKind(), "selectAllFirstKinds");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileSecondKind> getAllConfigFileSecondKinds() {
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(new ConfigFileSecondKind(), "selectAllSecondKinds");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> getAllConfigFileThirdKinds() {
+		List<ConfigFileThirdKind> list=this.baseDao.findAll(new ConfigFileThirdKind(), "selectAllThirdKinds");
 		return list;
 	}
 
