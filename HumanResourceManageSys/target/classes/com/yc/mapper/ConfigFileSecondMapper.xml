@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.ConfigFileSecondMapper">
+	<select id="selectAllSecondKinds" resultType="ConfigFileSecondKind" >
+		select first_kind_id,first_kind_name,second_kind_id,second_kind_name,
+		second_salary_id,second_sale_id from config_file_second_kind 
+	</select>
+</mapper>
