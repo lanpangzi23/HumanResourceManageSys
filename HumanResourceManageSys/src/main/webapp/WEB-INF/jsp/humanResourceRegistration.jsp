@@ -24,7 +24,7 @@
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
-			<td ><input class="easyui-combobox" type="text" id="I" name="Ijjg"></td>
+			<td ><input class="easyui-combobox" type="text" id="I" name="Ijjg" value="集团"></td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
 			<td><input class="easyui-combobox" type="text" id="I" name="Ijjg"></td>
 			<td style="text-align:center" class="backcolor">III级机构</td>

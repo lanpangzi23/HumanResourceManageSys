@@ -18,6 +18,12 @@ public class ConfigFileFirstKind implements Serializable {
 	private String first_kind_id;
 	private String first_kind_name;
 	private String first_kind_salary_id;
+	@Override
+	public String toString() {
+		return "ConfigFileFirstKind [ffk_id=" + ffk_id + ", first_kind_id=" + first_kind_id + ", first_kind_name="
+				+ first_kind_name + ", first_kind_salary_id=" + first_kind_salary_id + ", first_kind_sale_id="
+				+ first_kind_sale_id + "]";
+	}
 	private String first_kind_sale_id;
 	public int getFfk_id() {
 		return ffk_id;
