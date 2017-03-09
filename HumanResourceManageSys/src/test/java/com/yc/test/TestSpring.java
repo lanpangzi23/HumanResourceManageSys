@@ -24,7 +24,7 @@ public class TestSpring extends TestCase {
 		DataSource ds=(DataSource) ac.getBean("dataSource");
 		System.out.println(   ds );
 	}
-	
+
 	@Test
 	public void testSpring3() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
@@ -76,7 +76,7 @@ public class TestSpring extends TestCase {
 		hf.setHuman_educated_major("本科网络工程");
 		hf=bb.save(hf);
 		System.out.println(hf);
-		
+
 	}
 	//测试查寻一级机构
 	@Test
@@ -88,8 +88,18 @@ public class TestSpring extends TestCase {
 			System.out.println(c);
 		}
 	}
+	//测试查寻二级机构
+	@Test
+	public void test2() {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+		List<ConfigFileFirstKind> list=bb.getAllConfigFileFirstKinds();
+		for(ConfigFileFirstKind c:list){
+			System.out.println(c);
+		}
+	}
 }
-	
-	
-	
+
+
+
 
