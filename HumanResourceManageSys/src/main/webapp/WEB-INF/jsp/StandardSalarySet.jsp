@@ -89,7 +89,7 @@
 			<td  colspan="3" style="text-align:center" class="backcolor">车补</td>
 			<td colspan="2"><input class="easyui" type="text" id="I" name="Ijjg"></td>
 			
-		</tr>
+		</tr></table>
 </body>
 </html>
     

@@ -51,4 +51,8 @@ public class PageController {
 	public String totransferAuditPage(){
 		return "transferAudit";
 	}
+	@RequestMapping(value="/admin/salaryManagementSetting")
+	public String tosalaryManagementSettingPage(){
+		return "salaryManagementSetting";
+	}
 }
