@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yc.mapper.PersonnerTransferMapper">
+
+	<!-- 根据员工所在机构和建档时间查询状态为正常的员工 -->
+	<select id="selectPersonInfo" parameterType="HumanFile" resultType="HumanFile">
+		select huf_id,first_kind_name,second_kind_name,third_kind_name,human_name,human_major_kind_name,hunma_major_name,salary_standard_name,regist_time from human_file
+	</select>
+	<!-- 添加标签  -->
+	<insert id="addTag" parameterType="String">
+		insert into tag values(tag_seq_tid.nextval,#{_parameter},1)
+	</insert>
+	<!-- 数量加1 -->
+	<update id="updateTag" parameterType="String">
+		update tag set t_count=t_count+1
+		where t_name=#{_parameter}
+	</update>
+</mapper>
+ 
