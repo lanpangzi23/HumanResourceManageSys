@@ -1,8 +1,18 @@
 package com.yc.web.controllers;
+import java.util.List;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import com.yc.bean.ConfigPublicChar;
+import com.yc.biz.SystemManagementBiz;
 @Controller
 public class PageController {
+	private SystemManagementBiz systemManagementBizImpl;
+	@Resource
+	public void setSystemManagementBizImpl(SystemManagementBiz systemManagementBizImpl) {
+		this.systemManagementBizImpl = systemManagementBizImpl;
+	}
 	@RequestMapping(value="/admin/index")
 	public String toIndexPage(){
 		return "index";
@@ -52,7 +62,10 @@ public class PageController {
 		return "transferAudit";
 	}
 	@RequestMapping(value="/admin/salaryManagementSetting")
-	public String tosalaryManagementSettingPage(){
-		return "salaryManagementSetting";
+	public ModelAndView tosalaryManagementSettingPage(){//转到薪酬管理设置界面
+		ModelAndView mv=new ModelAndView("salaryManagementSetting");
+		List<ConfigPublicChar> list=systemManagementBizImpl.findSalaryProjectName();
+		mv.addObject("salaryName", list);
+		return mv;
 	}
 }
