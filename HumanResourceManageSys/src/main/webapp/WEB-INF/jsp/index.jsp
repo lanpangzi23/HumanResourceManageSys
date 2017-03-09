@@ -37,46 +37,38 @@
 
 </style>
 </head>
-
 <body class="easyui-layout">
-
     <div data-options="region:'north',title:'North Title',split:true" style="height:130px;">
     	<div class="header"><p>人力资源管理中心</p></div>
-    
     </div>  
-  
-    
     <div data-options="region:'west',title:'West',href:'',split:true" style="width:200px;">
     	<div id="menu" class="easyui-accordion" fit="true" border="false">
         	<div title="系统管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
+        		<li><a class="easyui-linkbutton" href="admin/humanResourceRegistration" data-options="plain:true">人力资源档案管理设置</a></li>
+                <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">题库管理设置</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileUpdate" data-options="plain:true">其他设置</a></li>
         	</div>
             <div title="人力资源档案管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px; height:30px;">
         		<li><a class="easyui-linkbutton" href="admin/humanResourceRegistration" data-options="plain:true">人力资源档案登记</a></li>
-                 <li><a class="easyui-linkbutton" href="humanResourceFileRegistrationReview.html" data-options="plain:true">人力资源档案登记复核</a></li>
-                 <li><a class="easyui-linkbutton" href="humanResourceFileQuery.html" data-options="plain:true">人力资源档案查询</a></li>
-                 <li><a class="easyui-linkbutton" href="humanResourceFileUpdate.html" data-options="plain:true">人力资源档案变更</a></li>
-                 <li><a class="easyui-linkbutton" href="humanResourceFileDelete.html" data-options="plain:true">人力资源档案删除</a></li>
-                        
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileRegistrationReview" data-options="plain:true">人力资源档案登记复核</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">人力资源档案查询</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileUpdate" data-options="plain:true">人力资源档案变更</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileDelete" data-options="plain:true">人力资源档案删除</a></li>
             </div>
             <div title="薪酬管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="StandardSalarySet.html" data-options="plain:true">薪酬标准登记</a></li>
-                <li><a class="easyui-linkbutton" href="CompensationStandardRegistrationReview.html" data-options="plain:true">薪酬标准登记复核</a></li>
-                <li><a class="easyui-linkbutton" href="salarySandardQuery.html" data-options="plain:true">薪酬标准查寻</a></li>
-           
-        		<li><a class="easyui-linkbutton" href="paymentRegistrationReview.html" data-options="plain:true">薪酬发放登记</a></li>
-           
-                
-
+        		<li><a class="easyui-linkbutton" href="admin/StandardSalarySet" data-options="plain:true">薪酬标准登记</a></li>
+                <li><a class="easyui-linkbutton" href="admin/CompensationStandardRegistrationReview" data-options="plain:true">薪酬标准登记复核</a></li>
+                <li><a class="easyui-linkbutton" href="admin/salarySandardQuery" data-options="plain:true">薪酬标准查寻</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/paymentRegistrationReview" data-options="plain:true">薪酬发放登记</a></li>
             </div>
             <div title="调动管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-            	<li><a class="easyui-linkbutton" href="transferRegistration.html" data-options="plain:true">调动登记</a></li>
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
+            	<li><a class="easyui-linkbutton" href="admin/transferRegistration" data-options="plain:true">调动登记</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/transferAudit" data-options="plain:true">调动审核</a></li>
             </div>
              <div title="培训管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
             </div>
              <div title="激励管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
             </div>
              <div title="招聘管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
         		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">职位发布管理</a></li>
@@ -85,21 +77,6 @@
         		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>
             </div>
         </div></div>
-    
-    
-    	
-       		 
-        
-
-                       
-                        
-                        
-                        
-                 
-                    
-                    
-              
-
      <div data-options="region:'center'">
 				<div id="main_panel" class="easyui-panel" title="主界面" data-options="fit:true,border:false"><div>
 </div>
