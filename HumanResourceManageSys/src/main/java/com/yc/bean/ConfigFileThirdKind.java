@@ -13,9 +13,20 @@ import java.io.Serializable;
 /* 	"third_kind_sale_id" : 三级机构销售责任人编号                                                        */
 /* 	"third_kind_is_retail" : 三级机构是否为零售店                                                       */  
 public class ConfigFileThirdKind implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int ftk_id;
 	private String first_kind_id;
 	private String first_kind_name;
+	@Override
+	public String toString() {
+		return "ConfigFileThirdKind [ftk_id=" + ftk_id + ", first_kind_id=" + first_kind_id + ", first_kind_name="
+				+ first_kind_name + ", second_kind_id=" + second_kind_id + ", second_kind_name=" + second_kind_name
+				+ ", third_kind_id=" + third_kind_id + ", third_kind_name=" + third_kind_name + ", third_sale_id="
+				+ third_sale_id + ", third_kind_is_retail=" + third_kind_is_retail + "]";
+	}
 	private String second_kind_id;
 	private String second_kind_name;
 	private String third_kind_id;

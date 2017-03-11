@@ -11,6 +11,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mysql.fabric.xmlrpc.base.Data;
 import com.yc.bean.ConfigFileFirstKind;
+import com.yc.bean.ConfigFileSecondKind;
+import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.HumanFile;
 import com.yc.biz.HumanBiz;
 
@@ -93,11 +95,21 @@ public class TestSpring extends TestCase {
 	public void test2() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
-		List<ConfigFileFirstKind> list=bb.getAllConfigFileFirstKinds();
-		for(ConfigFileFirstKind c:list){
+		List<ConfigFileSecondKind> list=bb.getAllConfigFileSecondKinds();
+		for(ConfigFileSecondKind c:list){
 			System.out.println(c);
 		}
 	}
+	//测试查寻三级机构
+		@Test
+		public void test3() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigFileThirdKind> list=bb.getAllConfigFileThirdKinds();
+			for(ConfigFileThirdKind c:list){
+				System.out.println(c);
+			}
+		}
 }
 
 

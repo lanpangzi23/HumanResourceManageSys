@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <%
 	String path=request.getContextPath();//项目名
 						//http					localhost						8080
@@ -24,11 +26,24 @@
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
-			<td ><input class="easyui-combobox" type="text" id="I" name="Ijjg" value="集团"></td>
+			<td ><select class="easyui-combobox" type="text" id="primaryMechanism">
+					<c:forEach items="${configFileFirstKinds}" var="s" varStatus="ss">
+						<option value="${s.first_kind_id }">${s.first_kind_name }</option>
+					</c:forEach>
+			</select></td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
-			<td><input class="easyui-combobox" type="text" id="I" name="Ijjg"></td>
+			<td><select class="easyui-combobox" type="text" id="secondaryInstitutions">
+					<c:forEach items="${configFileSecondKind}" var="s" varStatus="ss">
+						<option value="${s.second_kind_id }">${s.second_kind_name }</option>
+					</c:forEach>
+			</select></td>
 			<td style="text-align:center" class="backcolor">III级机构</td>
-			<td><input class="easyui-combobox" type="text" id="I" name="Ijjg"></td>
+			<td><select class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${configFileThirdKind}" var="s" varStatus="ss">
+						<option value="${s.second_kind_id }">${s.third_kind_name }</option>
+					</c:forEach>
+					
+			</select></td>
 			<td rowspan="5" colspan="2"><input class="easyui"  type="image" ><input class="easyui"  type="file" ></td>
 		</tr>
 		<tr style="height:35px;">

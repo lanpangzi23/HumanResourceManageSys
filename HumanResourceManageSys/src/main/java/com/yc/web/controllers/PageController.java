@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.bean.ConfigFileFirstKind;
+import com.yc.bean.ConfigFileSecondKind;
+import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.SystemManagementBiz;
@@ -39,6 +41,10 @@ public class PageController {
 	public String toHumanResourceRegistrationPage(Model model){
 		List<ConfigFileFirstKind> configFileFirstKinds=this.humanBiz.getAllConfigFileFirstKinds();
 		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
+		List<ConfigFileSecondKind> configFileSecondKind=this.humanBiz.getAllConfigFileSecondKinds();
+		model.addAttribute("configFileSecondKind",configFileSecondKind);
+		List<ConfigFileThirdKind> configFileThirdKind=this.humanBiz.getAllConfigFileThirdKinds();
+		model.addAttribute("configFileThirdKind",configFileThirdKind);
 		return "humanResourceRegistration";
 	}
 	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")
