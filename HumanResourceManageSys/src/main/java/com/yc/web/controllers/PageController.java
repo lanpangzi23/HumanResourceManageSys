@@ -56,6 +56,8 @@ private static final Log logger=LogFactory.getLog(PageController.class);
 	public String toCompensationStandardRegistrationReviewPage(){
 		return "CompensationStandardRegistrationReview";
 	}
+	
+	
 	@RequestMapping(value="/admin/salarySandardQuery")
 	public String tosalarySandardQueryPage(){
 		return "salarySandardQuery";
