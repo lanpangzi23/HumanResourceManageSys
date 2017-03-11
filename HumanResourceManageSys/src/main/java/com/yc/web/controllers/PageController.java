@@ -24,7 +24,7 @@ private static final Log logger=LogFactory.getLog(PageController.class);
 	public String toIndexPage(){
 		return "index";
 	}
-	//人力资源档案登记
+	//人力资源档案登记 ss
 	@RequestMapping(value="/admin/humanResourceRegistration")
 	public String toHumanResourceRegistrationPage(Model model){
 		logger.info("toStudentBookListForm called..........");
