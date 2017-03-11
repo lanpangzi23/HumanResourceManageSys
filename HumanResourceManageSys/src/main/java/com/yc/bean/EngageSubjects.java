@@ -23,7 +23,11 @@ import java.util.Date;
 /* 	"changer" : 变更人                                                                           */
 /* 	"change_time" : 变更时间                                                                      */  
 public class EngageSubjects implements Serializable {
-	private int sub_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer sub_id;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
@@ -40,10 +44,10 @@ public class EngageSubjects implements Serializable {
 	private String correct_key;
 	private String changer;
 	private Date change_time;
-	public int getSub_id() {
+	public Integer getSub_id() {
 		return sub_id;
 	}
-	public void setSub_id(int sub_id) {
+	public void setSub_id(Integer sub_id) {
 		this.sub_id = sub_id;
 	}
 	public String getFirst_kind_id() {

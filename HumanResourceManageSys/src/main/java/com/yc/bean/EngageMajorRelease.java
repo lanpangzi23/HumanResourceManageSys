@@ -29,7 +29,7 @@ public class EngageMajorRelease implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3892774565169109271L;
-	private int mre_id;
+	private Integer mre_id;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
@@ -40,7 +40,7 @@ public class EngageMajorRelease implements Serializable {
 	private String major_kind_name;
 	private String major_id;
 	private String major_name;
-	private int human_amount;
+	private Integer human_amount;
 	private String engage_type;
 	private Date deadline;
 	private String register;
@@ -49,10 +49,10 @@ public class EngageMajorRelease implements Serializable {
 	private Date change_time;
 	private String major_describe;
 	private String engage_required;
-	public int getMre_id() {
+	public Integer getMre_id() {
 		return mre_id;
 	}
-	public void setMre_id(int mre_id) {
+	public void setMre_id(Integer mre_id) {
 		this.mre_id = mre_id;
 	}
 	public String getFirst_kind_id() {
@@ -115,10 +115,10 @@ public class EngageMajorRelease implements Serializable {
 	public void setMajor_name(String major_name) {
 		this.major_name = major_name;
 	}
-	public int getHuman_amount() {
+	public Integer getHuman_amount() {
 		return human_amount;
 	}
-	public void setHuman_amount(int human_amount) {
+	public void setHuman_amount(Integer human_amount) {
 		this.human_amount = human_amount;
 	}
 	public String getEngage_type() {

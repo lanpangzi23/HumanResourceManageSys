@@ -23,7 +23,11 @@ import java.util.Date;
 /* 	"check_time" : 复核时间                                                                       */
 /* 	"check_status" : 复核状态                                                                     */  
 public class SalaryGrant implements Serializable {
-	private int sgr_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer sgr_id;
 	private String salary_grant_id;
 	private String salary_standard_id;
 	private String first_kind_id;
@@ -32,18 +36,18 @@ public class SalaryGrant implements Serializable {
 	private String second_kind_name;
 	private String third_kind_id;
 	private String third_kind_name;
-	private int human_amount;
-	private double salary_standard_sum;
-	private double salary_paid_sum;
+	private Integer human_amount;
+	private Double salary_standard_sum;
+	private Double salary_paid_sum;
 	private String register;
 	private Date regist_time;
 	private String checker;
 	private Date check_time;
-	private int check_status;
-	public int getSgr_id() {
+	private Integer check_status;
+	public Integer getSgr_id() {
 		return sgr_id;
 	}
-	public void setSgr_id(int sgr_id) {
+	public void setSgr_id(Integer sgr_id) {
 		this.sgr_id = sgr_id;
 	}
 	public String getSalary_grant_id() {
@@ -94,22 +98,22 @@ public class SalaryGrant implements Serializable {
 	public void setThird_kind_name(String third_kind_name) {
 		this.third_kind_name = third_kind_name;
 	}
-	public int getHuman_amount() {
+	public Integer getHuman_amount() {
 		return human_amount;
 	}
-	public void setHuman_amount(int human_amount) {
+	public void setHuman_amount(Integer human_amount) {
 		this.human_amount = human_amount;
 	}
-	public double getSalary_standard_sum() {
+	public Double getSalary_standard_sum() {
 		return salary_standard_sum;
 	}
-	public void setSalary_standard_sum(double salary_standard_sum) {
+	public void setSalary_standard_sum(Double salary_standard_sum) {
 		this.salary_standard_sum = salary_standard_sum;
 	}
-	public double getSalary_paid_sum() {
+	public Double getSalary_paid_sum() {
 		return salary_paid_sum;
 	}
-	public void setSalary_paid_sum(double salary_paid_sum) {
+	public void setSalary_paid_sum(Double salary_paid_sum) {
 		this.salary_paid_sum = salary_paid_sum;
 	}
 	public String getRegister() {
@@ -136,10 +140,10 @@ public class SalaryGrant implements Serializable {
 	public void setCheck_time(Date check_time) {
 		this.check_time = check_time;
 	}
-	public int getCheck_status() {
+	public Integer getCheck_status() {
 		return check_status;
 	}
-	public void setCheck_status(int check_status) {
+	public void setCheck_status(Integer check_status) {
 		this.check_status = check_status;
 	}
 }

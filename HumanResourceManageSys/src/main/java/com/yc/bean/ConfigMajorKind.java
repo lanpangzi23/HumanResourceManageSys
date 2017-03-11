@@ -8,13 +8,17 @@ import java.io.Serializable;
 /* 	"major_kind_id" : 职位分类编号                                                                  */
 /* 	"major_kind_name" : 职分类位名称                                                                */ 
 public class ConfigMajorKind implements Serializable{
-	private int mfk_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer mfk_id;
 	private String major_kind_id;
 	private String major_kind_name;
-	public int getMfk_id() {
+	public Integer getMfk_id() {
 		return mfk_id;
 	}
-	public void setMfk_id(int mfk_id) {
+	public void setMfk_id(Integer mfk_id) {
 		this.mfk_id = mfk_id;
 	}
 	public String getMajor_kind_id() {

@@ -7,13 +7,14 @@ import java.io.Serializable;
 /* 	"first_kind_id" : 试题一级分类编号                                                                */
 /* 	"first_kind_name" : 试题一级分类名称                                                              */  
 public class ConfigQuestionFirstKind implements Serializable {
-	private int qfk_id;
+	private static final long serialVersionUID = 1L;
+	private Integer qfk_id;
 	private String first_kind_id;
 	private String first_kind_name;
-	public int getQfk_id() {
+	public Integer getQfk_id() {
 		return qfk_id;
 	}
-	public void setQfk_id(int qfk_id) {
+	public void setQfk_id(Integer qfk_id) {
 		this.qfk_id = qfk_id;
 	}
 	public String getFirst_kind_id() {

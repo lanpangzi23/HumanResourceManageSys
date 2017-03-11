@@ -6,6 +6,7 @@
 	<select id="selectConfigPublicChar" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
 		select * from config_public_char where attribute_kind=#{attribute_kind}
 	</select>
+<<<<<<< HEAD
 	<!-- 查询职称 -->
 	<!-- 查询国籍 -->
 	<!-- 查询民族 -->
@@ -17,5 +18,16 @@
 	<!-- 查询政治面貌 -->
 	<!-- 查询政治面貌 -->
 	
+=======
+	<update id="updateConfigPublicChar" parameterType="ConfigPublicChar">
+		update config_public_char set attribute_name=#{attribute_name} where pbc_id=#{pbc_id}
+	</update>
+	<delete id="deleteConfigPublicChar" parameterType="ConfigPublicChar">
+		delete from config_public_char where pbc_id=#{pbc_id}
+	</delete>
+	<insert id="addConfigPublicChar" parameterType="ConfigPublicChar">
+		insert into config_public_char(attribute_kind,attribute_name) values(#{attribute_kind},#{attribute_name})
+	</insert>
+>>>>>>> 323b5286acda221453763907ca7dcbc6e6b48e25
 </mapper>
  
