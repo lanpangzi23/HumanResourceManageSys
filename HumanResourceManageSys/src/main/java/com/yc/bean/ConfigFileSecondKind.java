@@ -17,6 +17,12 @@ public class ConfigFileSecondKind implements Serializable {
 	private static final long serialVersionUID = 5723635721181684913L;
 	private Integer fsk_id;
 	private String first_kind_id;
+	@Override
+	public String toString() {
+		return "ConfigFileSecondKind [fsk_id=" + fsk_id + ", first_kind_id=" + first_kind_id + ", first_kind_name="
+				+ first_kind_name + ", second_kind_id=" + second_kind_id + ", second_kind_name=" + second_kind_name
+				+ ", second_salary_id=" + second_salary_id + ", second_sale_id=" + second_sale_id + "]";
+	}
 	private String first_kind_name;
 	private String second_kind_id;
 	private String second_kind_name;

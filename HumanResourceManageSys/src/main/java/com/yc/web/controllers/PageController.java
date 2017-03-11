@@ -1,14 +1,33 @@
 package com.yc.web.controllers;
 import java.util.List;
+
+
 import javax.annotation.Resource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.yc.bean.ConfigFileFirstKind;
+import com.yc.bean.ConfigFileSecondKind;
+import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigPublicChar;
+import com.yc.biz.HumanBiz;
 import com.yc.biz.SystemManagementBiz;
 @Controller
 public class PageController {
 	private SystemManagementBiz systemManagementBizImpl;
+	private HumanBiz humanBiz;
+	@Resource(name="humanBizImpl")
+	public void setHumanBiz(HumanBiz humanBiz) {
+		this.humanBiz = humanBiz;
+	}
 	@Resource
 	public void setSystemManagementBizImpl(SystemManagementBiz systemManagementBizImpl) {
 		this.systemManagementBizImpl = systemManagementBizImpl;
@@ -17,8 +36,15 @@ public class PageController {
 	public String toIndexPage(){
 		return "index";
 	}
+	//人力资源档案登记 ss
 	@RequestMapping(value="/admin/humanResourceRegistration")
-	public String toHumanResourceRegistrationPage(){
+	public String toHumanResourceRegistrationPage(Model model){
+		List<ConfigFileFirstKind> configFileFirstKinds=this.humanBiz.getAllConfigFileFirstKinds();
+		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
+		List<ConfigFileSecondKind> configFileSecondKind=this.humanBiz.getAllConfigFileSecondKinds();
+		model.addAttribute("configFileSecondKind",configFileSecondKind);
+		List<ConfigFileThirdKind> configFileThirdKind=this.humanBiz.getAllConfigFileThirdKinds();
+		model.addAttribute("configFileThirdKind",configFileThirdKind);
 		return "humanResourceRegistration";
 	}
 	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")
@@ -45,6 +71,8 @@ public class PageController {
 	public String toCompensationStandardRegistrationReviewPage(){
 		return "CompensationStandardRegistrationReview";
 	}
+	
+	
 	@RequestMapping(value="/admin/salarySandardQuery")
 	public String tosalarySandardQueryPage(){
 		return "salarySandardQuery";
