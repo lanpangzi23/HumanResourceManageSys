@@ -14,23 +14,42 @@
     		<tr>
     			<td>薪酬项目名称</td>
     		</tr>
-    		<c:forEach items="${salaryName }" var="s">
+    		<c:forEach items="${salaryName }" var="s" varStatus="ss">
     		<tr>
-    			<td>${s.attribute_name}</td>
-    			<td><a href="">删除</a>&nbsp;&nbsp;&nbsp;<a href="">重命名</a></td>
+    			<td><input type="text" name="attribute_name" value="${s.attribute_name }"/></td>
+    			<td><a href="deleteSalaryProjectName/${s.pbc_id }">删除</a>&nbsp;&nbsp;&nbsp;<a href="javascript:reName(${s.pbc_id },${ss.index })">重命名</a></td>
     		</tr>
     		</c:forEach>
-    		<tr>
-    			<td><input type="button" onClick="addSalaryName()" value="添加"></td>
+    		<tr id="addSalaryName">
+    			<td><input type="button" onClick="addSalaryName()" value="+"></td>
     		</tr>
     	</table> 
     </div>   
 </div>
-</body>
 <script type="text/javascript">
+function reName(id,i){
+	var name=$('input[name="attribute_name"]').eq(i).val();
+	$.post("updateSalaryProjectName/"+id+"/"+name,function(data){
+		if(data=="error"){
+			alert("修改失敗");
+		}else{
+			alert("修改成功");
+		}
+	},"text");
+}
 function addSalaryName(){
-	alert("fcdv");
-	$("#salaryNameTable").append("<tr><td><input type='text'/></td></tr>");
+	$("#addSalaryName").before("<tr><td><input name='name' type='text'/></td><td><a href='javascript:addName()'>提交</a></td></tr>");
+}
+function addName(){
+	var name=$('input[name="name"]').val();
+	$.post("addSalaryProjectName/"+name,function(data){
+		if(data=="error"){
+			alert("添加失敗");
+		}else{
+			alert("添加成功");
+		}
+	},"text");
 }
 </script>
+</body>
 </html>

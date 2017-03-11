@@ -15,17 +15,17 @@ public class ConfigFileSecondKind implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5723635721181684913L;
-	private int fsk_id;
+	private Integer fsk_id;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
 	private String second_kind_name;
 	private String second_salary_id;
 	private String second_sale_id;
-	public int getFsk_id() {
+	public Integer getFsk_id() {
 		return fsk_id;
 	}
-	public void setFsk_id(int fsk_id) {
+	public void setFsk_id(Integer fsk_id) {
 		this.fsk_id = fsk_id;
 	}
 	public String getFirst_kind_id() {

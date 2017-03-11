@@ -14,15 +14,15 @@ public class ConfigFileFirstKind implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6502933049514913098L;
-	private int ffk_id;
+	private Integer ffk_id;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String first_kind_salary_id;
 	private String first_kind_sale_id;
-	public int getFfk_id() {
+	public Integer getFfk_id() {
 		return ffk_id;
 	}
-	public void setFfk_id(int ffk_id) {
+	public void setFfk_id(Integer ffk_id) {
 		this.ffk_id = ffk_id;
 	}
 	public String getFirst_kind_id() {

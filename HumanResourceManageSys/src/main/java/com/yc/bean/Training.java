@@ -27,7 +27,7 @@ public class Training implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4882180306821337618L;
-	private int tra_id;
+	private Integer tra_id;
 	private String major_kind_id;
 	private String major_kind_name;
 	private String major_id;
@@ -36,18 +36,18 @@ public class Training implements Serializable {
 	private String human_name;
 	private String training_item;
 	private Date training_time;
-	private int training_hour;
+	private Integer training_hour;
 	private String training_degree;
 	private String register;
 	private String checker;
 	private Date regist_time;
 	private Date check_time;
-	private int checkstatus;
+	private Integer checkstatus;
 	private String remark;
-	public int getTra_id() {
+	public Integer getTra_id() {
 		return tra_id;
 	}
-	public void setTra_id(int tra_id) {
+	public void setTra_id(Integer tra_id) {
 		this.tra_id = tra_id;
 	}
 	public String getMajor_kind_id() {
@@ -98,10 +98,10 @@ public class Training implements Serializable {
 	public void setTraining_time(Date training_time) {
 		this.training_time = training_time;
 	}
-	public int getTraining_hour() {
+	public Integer getTraining_hour() {
 		return training_hour;
 	}
-	public void setTraining_hour(int training_hour) {
+	public void setTraining_hour(Integer training_hour) {
 		this.training_hour = training_hour;
 	}
 	public String getTraining_degree() {
@@ -134,10 +134,10 @@ public class Training implements Serializable {
 	public void setCheck_time(Date check_time) {
 		this.check_time = check_time;
 	}
-	public int getCheckstatus() {
+	public Integer getCheckstatus() {
 		return checkstatus;
 	}
-	public void setCheckstatus(int checkstatus) {
+	public void setCheckstatus(Integer checkstatus) {
 		this.checkstatus = checkstatus;
 	}
 	public String getRemark() {

@@ -8,16 +8,20 @@ import java.io.Serializable;
 /* 	"user_true_name" : 真实姓名                                                                   */
 /* 	"user_password" : 密码                                                                      */  
 public class Users implements Serializable {
-	private int u_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer u_id;
 	private String u_name;
 	private String u_true_name;
 	private String u_password;
 	
 	
-	public int getU_id() {
+	public Integer getU_id() {
 		return u_id;
 	}
-	public void setU_id(int u_id) {
+	public void setU_id(Integer u_id) {
 		this.u_id = u_id;
 	}
 	public String getU_name() {

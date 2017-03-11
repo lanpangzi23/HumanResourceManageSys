@@ -34,7 +34,7 @@ public class Bouns implements Serializable {
 	private String human_id;
 	private String human_name;
 	private String bonus_item;
-	private double bonus_worth;
+	private Double bonus_worth;
 	private String bouns_degree;
 	public Integer getBon_id() {
 		return bon_id;
@@ -84,10 +84,10 @@ public class Bouns implements Serializable {
 	public void setBonus_item(String bonus_item) {
 		this.bonus_item = bonus_item;
 	}
-	public double getBonus_worth() {
+	public Double getBonus_worth() {
 		return bonus_worth;
 	}
-	public void setBonus_worth(double bonus_worth) {
+	public void setBonus_worth(Double bonus_worth) {
 		this.bonus_worth = bonus_worth;
 	}
 	public String getBouns_degree() {

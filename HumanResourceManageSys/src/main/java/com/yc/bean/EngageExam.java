@@ -19,7 +19,7 @@ public class EngageExam implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3087774253567136752L;
-	private int exa_id;
+	private Integer exa_id;
 	private String exam_number;
 	private String major_kind_id;
 	private String major_kind_name;
@@ -27,11 +27,11 @@ public class EngageExam implements Serializable {
 	private String major_name;
 	private String register;
 	private Date regist_time;
-	private int limite_time;
-	public int getExa_id() {
+	private Integer limite_time;
+	public Integer getExa_id() {
 		return exa_id;
 	}
-	public void setExa_id(int exa_id) {
+	public void setExa_id(Integer exa_id) {
 		this.exa_id = exa_id;
 	}
 	public String getExam_number() {
@@ -76,10 +76,10 @@ public class EngageExam implements Serializable {
 	public void setRegist_time(Date regist_time) {
 		this.regist_time = regist_time;
 	}
-	public int getLimite_time() {
+	public Integer getLimite_time() {
 		return limite_time;
 	}
-	public void setLimite_time(int limite_time) {
+	public void setLimite_time(Integer limite_time) {
 		this.limite_time = limite_time;
 	}
 }	

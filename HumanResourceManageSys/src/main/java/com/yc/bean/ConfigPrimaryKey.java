@@ -15,15 +15,15 @@ public class ConfigPrimaryKey implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2713601071169420032L;
-	private int prk_id;
+	private Integer prk_id;
 	private String primary_key_table;
 	private String primary_key;
 	private String key_name;
 	private String primary_key_status;
-	public int getPrk_id() {
+	public Integer getPrk_id() {
 		return prk_id;
 	}
-	public void setPrk_id(int prk_id) {
+	public void setPrk_id(Integer prk_id) {
 		this.prk_id = prk_id;
 	}
 	public String getPrimary_key_table() {

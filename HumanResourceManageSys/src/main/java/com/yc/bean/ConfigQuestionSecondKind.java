@@ -13,15 +13,15 @@ public class ConfigQuestionSecondKind implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8369045590576266236L;
-	private int qsk_id;
+	private Integer qsk_id;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
 	private String second_kind_name;
-	public int getQsk_id() {
+	public Integer getQsk_id() {
 		return qsk_id;
 	}
-	public void setQsk_id(int qsk_id) {
+	public void setQsk_id(Integer qsk_id) {
 		this.qsk_id = qsk_id;
 	}
 	public String getFirst_kind_id() {
