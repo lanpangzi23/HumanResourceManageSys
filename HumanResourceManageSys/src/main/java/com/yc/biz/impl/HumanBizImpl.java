@@ -37,38 +37,7 @@ public class HumanBizImpl implements HumanBiz {
 		List<ConfigFileFirstKind> list=this.baseDao.findAll(new ConfigFileFirstKind(), "selectAllFirstKinds");
 		return list;
 	}
-	/*//二级机构查寻
-	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
 	
-	List<ConfigFileThirdKind> getAllConfigFileThirdKinds();
-	
-	List<ConfigMajorKind> getAllConfigMajorKinds();
-	//职位名称查寻
-	List<ConfigMajor> getAllConfigMajors();
-	//职称查寻
-
-	List<ConfigPublicChar> getAllTechnicalTitles();
-	//国籍查寻
-	List<ConfigPublicChar> getAllNationalitys();
-	//民族查寻
-	List<ConfigPublicChar> getAllNations();
-	//宗教信仰查寻
-	List<ConfigPublicChar> getAllReligiousBeliefs();
-	//政治面貌查寻
-	List<ConfigPublicChar> getAllPoliticalStatus();
-	//学历查寻
-	List<ConfigPublicChar> getAllSchooling();
-	//学历专业查寻
-	List<ConfigPublicChar> getAllEducations();
-	//薪酬标准查寻
-	List<ConfigPublicChar> getAllSalarys();
-	//特长查寻
-	List<ConfigPublicChar> getAllStrongPoints();
-	//爱好查寻
-	List<ConfigPublicChar> getAllHobbys();
-	
-	//人力资源档案登记
-	*/
 	//二级机构查寻
 	@Override
 	public List<ConfigFileSecondKind> getAllConfigFileSecondKinds() {
@@ -87,67 +56,68 @@ public class HumanBizImpl implements HumanBiz {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//职位名称查寻
 	@Override
 	public List<ConfigMajor> getAllConfigMajors() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//职称查寻
 	@Override
 	public List<ConfigPublicChar> getAllTechnicalTitles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//国籍查寻
 	@Override
 	public List<ConfigPublicChar> getAllNationalitys() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//民族查寻
 	@Override
 	public List<ConfigPublicChar> getAllNations() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//宗教信仰查寻
 	@Override
 	public List<ConfigPublicChar> getAllReligiousBeliefs() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//政治面貌查寻
 	@Override
 	public List<ConfigPublicChar> getAllPoliticalStatus() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//学历查寻
 	@Override
 	public List<ConfigPublicChar> getAllSchooling() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//学历专业查寻
 	@Override
 	public List<ConfigPublicChar> getAllEducations() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//薪酬标准查寻
 	@Override
 	public List<ConfigPublicChar> getAllSalarys() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//特长查寻
 	@Override
 	public List<ConfigPublicChar> getAllStrongPoints() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//爱好查寻
 	@Override
 	public List<ConfigPublicChar> getAllHobbys() {
 		// TODO Auto-generated method stub
