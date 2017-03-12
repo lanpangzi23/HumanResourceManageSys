@@ -31,7 +31,7 @@ public class SalaryStandard implements Serializable {
 	private String register;
 	private String checker;
 	private String changer;
-	private Date register_time;
+	private Date regist_time;
 	private Date check_time;
 	private Date change_time;
 	private Double salary_sum;
@@ -39,6 +39,12 @@ public class SalaryStandard implements Serializable {
 	private Integer change_status;
 	private String check_comment;
 	private String remark;
+	public Date getRegist_time() {
+		return regist_time;
+	}
+	public void setRegist_time(Date regist_time) {
+		this.regist_time = regist_time;
+	}
 	public Integer getSsd_id() {
 		return ssd_id;
 	}
@@ -80,12 +86,6 @@ public class SalaryStandard implements Serializable {
 	}
 	public void setChanger(String changer) {
 		this.changer = changer;
-	}
-	public Date getRegister_time() {
-		return register_time;
-	}
-	public void setRegister_time(Date register_time) {
-		this.register_time = register_time;
 	}
 	public Date getCheck_time() {
 		return check_time;

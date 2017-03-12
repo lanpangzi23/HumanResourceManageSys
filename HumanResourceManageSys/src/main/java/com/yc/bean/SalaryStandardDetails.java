@@ -1,6 +1,7 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.List;
 /* 创建新表 "salary_standard_details"。                                                            */
 /* "salary_standard_details" : 薪酬标准单详细信息                                                      */
 /* 	"sdt_id" : 主键，自动增长列                                                                       */
@@ -20,6 +21,27 @@ public class SalaryStandardDetails implements Serializable {
 	private Integer item_id;
 	private String item_name;
 	private Double salary;
+	private List<Integer> item_idList;
+	private List<String> item_nameList;
+	private List<Double> salaryList;
+	public List<Integer> getItem_idList() {
+		return item_idList;
+	}
+	public void setItem_idList(List<Integer> item_idList) {
+		this.item_idList = item_idList;
+	}
+	public List<String> getItem_nameList() {
+		return item_nameList;
+	}
+	public void setItem_nameList(List<String> item_nameList) {
+		this.item_nameList = item_nameList;
+	}
+	public List<Double> getSalaryList() {
+		return salaryList;
+	}
+	public void setSalaryList(List<Double> salaryList) {
+		this.salaryList = salaryList;
+	}
 	public Integer getSdt_id() {
 		return sdt_id;
 	}
