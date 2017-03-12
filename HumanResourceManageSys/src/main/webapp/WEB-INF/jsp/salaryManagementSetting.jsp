@@ -17,11 +17,14 @@
     		<c:forEach items="${salaryName }" var="s" varStatus="ss">
     		<tr>
     			<td><input type="text" name="attribute_name" value="${s.attribute_name }"/></td>
-    			<td><a href="javascript:delName(${s.pbc_id })">删除</a>&nbsp;&nbsp;&nbsp;<a href="javascript:reName(${s.pbc_id },${ss.index })">重命名</a></td>
+    			<td>
+    				<a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" href="javascript:delName(${s.pbc_id })">Remove</a>&nbsp;&nbsp;&nbsp;
+    				<a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" href="javascript:reName(${s.pbc_id },${ss.index })">Rename</a>
+    			</td>
     		</tr>
     		</c:forEach>
     		<tr id="addSalaryName">
-    			<td><input type="button" onClick="addSalaryName()" value="+"></td>
+    			<td><a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="javascript:addSalaryName()">Add</a></td>
     		</tr>
     	</table> 
     </div>   

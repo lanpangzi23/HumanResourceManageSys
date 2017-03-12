@@ -7,6 +7,6 @@
 <title>未经过复核的薪酬标准</title>
 </head>
 <body>
-
+<div id="pp" class="easyui-pagination" data-options="total:2000,pageSize:10" style="background:#efefef;boder:1px solid #ccc;"></div>
 </body>
 </html>
