@@ -369,12 +369,12 @@ public class HumanFile implements Serializable {
 			return list;
 		}
 	//  界面用
-	private List<MultipartFile> pdfsUrl;
-	public List<MultipartFile> getPdfsUrl() {
-		return pdfsUrl;
+	private List<MultipartFile> picUrl;
+	public List<MultipartFile> getPicUrl() {
+		return picUrl;
 	}
-	public void setPdfsUrl(List<MultipartFile> pdfsUrl) {
-		this.pdfsUrl = pdfsUrl;
+	public void setPicUrl(List<MultipartFile> picUrl) {
+		this.picUrl = picUrl;
 	}
 	public Integer getHuf_id() {
 		return huf_id;
