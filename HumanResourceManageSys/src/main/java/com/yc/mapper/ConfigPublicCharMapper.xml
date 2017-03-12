@@ -43,7 +43,10 @@
 	<select id="selectAllHobbys" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
 		select * from config_public_char where attribute_kind='爱好'
 	</select>
-	
+	<!-- 查询教育年限 -->
+	<select id="selectAllEducationsYears" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='教育年限'
+	</select>
 	
 	
 	<update id="updateConfigPublicChar" parameterType="ConfigPublicChar">

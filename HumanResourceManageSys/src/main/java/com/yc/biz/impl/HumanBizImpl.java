@@ -124,6 +124,12 @@ public class HumanBizImpl implements HumanBiz {
 		List<ConfigPublicChar> list=this.baseDao.findAll(new ConfigPublicChar(), "selectAllHobbys");
 		return list;
 	}
+	//教育年限
+	@Override
+	public List<ConfigPublicChar> getAllEducationsYears() {
+		List<ConfigPublicChar> list=this.baseDao.findAll(new ConfigPublicChar(), "selectAllEducationsYears");
+		return list;
+	}
 
 
 }

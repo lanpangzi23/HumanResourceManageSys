@@ -45,7 +45,8 @@ public interface HumanBiz {
 	List<ConfigPublicChar> getAllStrongPoints();
 	//爱好查寻
 	List<ConfigPublicChar> getAllHobbys();
-	
+	//教育年限查询
+	List<ConfigPublicChar> getAllEducationsYears();
 	//人力资源档案登记
 	
 
