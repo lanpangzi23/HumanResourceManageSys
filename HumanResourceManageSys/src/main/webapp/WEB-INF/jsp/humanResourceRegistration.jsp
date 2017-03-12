@@ -20,11 +20,12 @@
 
 <body>
 <p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记</p><br/>
-	<input class="easyui" type="button" style="margin-left:899px;; background:#CFC;" value="提交"/>
-    <input class="easyui" type="button" style="background:#F33;;" value="删除"/>
-
+	
+<form id="upload_form" enctype="multipart/form-data" action="upload_deal.do" method="post">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
-	<form id="upload_form" enctype="multipart/form-data" action="upload_deal.do" method="post">
+	
+	<input class="easyui" type="submit" style="margin-left:899px;; background:#CFC;" value="提交"/>
+    <input class="easyui" type="reset" style="background:#F33;"  value="删除"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
 			<td ><select class="easyui-combobox" type="text" id="primaryMechanism">
@@ -238,9 +239,12 @@
 			
 		</tr>
 
- </form>
-</table>
+ 
+</table></form>
 <script>
+function clear(){
+	
+}
 function change_photo(){
     PreviewImage($("input[name='file_upload2']")[0], 'Img', 'Imgdiv');
 }

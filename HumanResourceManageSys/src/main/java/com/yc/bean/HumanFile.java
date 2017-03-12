@@ -1,7 +1,11 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /* 创建新表 "human_file"。                                                                         */
 /* "human_file" : 人力资源档案                                                                      */
@@ -353,6 +357,25 @@ public class HumanFile implements Serializable {
 	private String human_pro_desgination;
 	private String human_major_name;
 	private String human_mobliephone;
+	//标准javabean方法在页面上，可以利用  ${book.pdfsStringList}
+		public List<String> getPdfsStringList(){
+			List<String> list=new ArrayList<String>();
+			if(human_picture!=null&&human_picture.length()>0){
+				String [] strs=human_picture.split(",");
+				for(String s:strs){
+					list.add(s);
+				}
+			}
+			return list;
+		}
+	//  界面用
+	private List<MultipartFile> pdfsUrl;
+	public List<MultipartFile> getPdfsUrl() {
+		return pdfsUrl;
+	}
+	public void setPdfsUrl(List<MultipartFile> pdfsUrl) {
+		this.pdfsUrl = pdfsUrl;
+	}
 	public Integer getHuf_id() {
 		return huf_id;
 	}
