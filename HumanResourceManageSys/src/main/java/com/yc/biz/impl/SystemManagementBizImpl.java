@@ -14,7 +14,7 @@ public class SystemManagementBizImpl implements SystemManagementBiz{
 		this.baseDaoMybatisImpl = baseDaoMybatisImpl;
 	}
 	public List<ConfigPublicChar> findSalaryProjectName() {
-		cpc.setAttribute_kind("薪酬设置");
+		cpc.setAttribute_kind("薪酬設置");
 		return baseDaoMybatisImpl.findAll(cpc, "selectConfigPublicChar");
 	}
 	public boolean updateSalaryProjectName(int pbc_id,String attribute_name) {

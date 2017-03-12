@@ -17,7 +17,7 @@
     		<c:forEach items="${salaryName }" var="s" varStatus="ss">
     		<tr>
     			<td><input type="text" name="attribute_name" value="${s.attribute_name }"/></td>
-    			<td><a href="deleteSalaryProjectName/${s.pbc_id }">删除</a>&nbsp;&nbsp;&nbsp;<a href="javascript:reName(${s.pbc_id },${ss.index })">重命名</a></td>
+    			<td><a href="javascript:delName(${s.pbc_id })">删除</a>&nbsp;&nbsp;&nbsp;<a href="javascript:reName(${s.pbc_id },${ss.index })">重命名</a></td>
     		</tr>
     		</c:forEach>
     		<tr id="addSalaryName">
@@ -27,6 +27,12 @@
     </div>   
 </div>
 <script type="text/javascript">
+var j=0
+function delName(id){
+	$.post("deleteSalaryProjectName/"+ id,function(data){
+		$("#salaryNameTable").load("admin/salaryManagementSetting");
+	})
+}
 function reName(id,i){
 	var name=$('input[name="attribute_name"]').eq(i).val();
 	$.post("updateSalaryProjectName/"+id+"/"+name,function(data){
@@ -38,15 +44,17 @@ function reName(id,i){
 	},"text");
 }
 function addSalaryName(){
-	$("#addSalaryName").before("<tr><td><input name='name' type='text'/></td><td><a href='javascript:addName()'>提交</a></td></tr>");
+	$("#addSalaryName").before("<tr><td><input name='name' type='text'/></td><td><a class='commit' href='javascript:addName("+j+")'>未提交</a></td></tr>");
+	j++;
 }
-function addName(){
-	var name=$('input[name="name"]').val();
+function addName(j){
+	var name=$('input[name="name"]').eq(j).val();
 	$.post("addSalaryProjectName/"+name,function(data){
 		if(data=="error"){
 			alert("添加失敗");
 		}else{
 			alert("添加成功");
+			$('.commit').eq(j).text("已提交");
 		}
 	},"text");
 }

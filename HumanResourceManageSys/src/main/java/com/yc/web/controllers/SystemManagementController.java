@@ -22,7 +22,7 @@ public class SystemManagementController {
 	@RequestMapping("/deleteSalaryProjectName/{id}")
 	public String deleteSalaryProjectName(@PathVariable int id){
 		systemManagementBizImpl.deleteSalaryProjectName(id);
-		return "redirect:salaryManagementSetting";
+		return "redirect:/admin/index";
 	}
 	@RequestMapping("/addSalaryProjectName/{attribute_name}")
 	public @ResponseBody String addSalaryProjectName(@PathVariable String attribute_name){
