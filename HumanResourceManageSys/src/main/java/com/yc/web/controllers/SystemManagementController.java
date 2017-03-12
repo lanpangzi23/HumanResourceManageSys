@@ -20,9 +20,9 @@ public class SystemManagementController {
 		return "error";
 	}
 	@RequestMapping("/deleteSalaryProjectName/{id}")
-	public String deleteSalaryProjectName(@PathVariable int id){
+	public @ResponseBody String deleteSalaryProjectName(@PathVariable int id){
 		systemManagementBizImpl.deleteSalaryProjectName(id);
-		return "redirect:/admin/index";
+		return "success";
 	}
 	@RequestMapping("/addSalaryProjectName/{attribute_name}")
 	public @ResponseBody String addSalaryProjectName(@PathVariable String attribute_name){
