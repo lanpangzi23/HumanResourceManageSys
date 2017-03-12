@@ -88,7 +88,7 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("StandardSalarySet");
 		SalaryStandard ss=new SalaryStandard();
 		List<ConfigPublicChar> list=systemManagementBizImpl.findSalaryProjectName();
-		ss.setRegister_time(new Date());
+		ss.setRegist_time(new Date());
 		ss.setRegister("admin");
 		ss.setStandard_id(RandomNumberUtil.getTenByteNumber());
 		mv.addObject("salaryStandard", ss);

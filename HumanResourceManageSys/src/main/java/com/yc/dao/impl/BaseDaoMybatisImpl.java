@@ -21,7 +21,6 @@ public class BaseDaoMybatisImpl<T> extends SqlSessionDaoSupport implements BaseD
 	@Override
 	@Resource( name="sqlSessionFactory"  )   //di
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-		
 		super.setSqlSessionFactory(  sqlSessionFactory  );
 	}
 	
