@@ -8,7 +8,8 @@ import java.io.Serializable;
 /* 	"first_kind_id" : 一级机构编号                                                                  */
 /* 	"first_kind_name" : 一级机构名称                                                                */
 /* 	"first_kind_salary_id" : 一级机构薪酬发放责任人编号                                                    */
-/* 	"first_kind_sale_id" : 一级机构销售责任人编号                                                        */ 
+/* 	"first_kind_sale_id" : 一级机构销售责任人编号  
+                                                      */ 
 public class ConfigFileFirstKind implements Serializable {
 	/**
 	 * 
