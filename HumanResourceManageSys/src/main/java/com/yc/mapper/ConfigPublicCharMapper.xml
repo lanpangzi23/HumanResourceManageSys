@@ -7,15 +7,47 @@
 		select * from config_public_char where attribute_kind=#{attribute_kind}
 	</select>
 	<!-- 查询职称 -->
+	<select id="selectAllTechnicalTitles" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='职称'
+	</select>
 	<!-- 查询国籍 -->
+	<select id="selectAllNationalitys" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='国籍'
+	</select>
 	<!-- 查询民族 -->
+	<select id="selectAllNations" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='民族'
+	</select>
 	<!-- 查询宗教 -->
+	<select id="selectAllReligiousBeliefs" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='宗教信仰'
+	</select>
 	
 	<!-- 查询政治面貌 -->
+	<select id="selectAllPoliticalStatus" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='政治面貌'
+	</select>
 	<!-- 查询学历 -->
+	<select id="selectAllSchooling" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='学历'
+	</select>
 	<!-- 查询学历专业 -->
-	<!-- 查询政治面貌 -->
-	<!-- 查询政治面貌 -->
+	<select id="selectAllEducations" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='专业'
+	</select>
+	<!-- 查询特长 -->
+	<select id="selectAllStrongPoints" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='特长'
+	</select>
+	<!-- 查询爱好 -->
+	<select id="selectAllHobbys" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='爱好'
+	</select>
+	<!-- 查询教育年限 -->
+	<select id="selectAllEducationsYears" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+		select * from config_public_char where attribute_kind='教育年限'
+	</select>
+	
 	
 	<update id="updateConfigPublicChar" parameterType="ConfigPublicChar">
 		update config_public_char set attribute_name=#{attribute_name} where pbc_id=#{pbc_id}

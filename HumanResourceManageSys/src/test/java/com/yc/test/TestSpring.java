@@ -13,7 +13,11 @@ import com.mysql.fabric.xmlrpc.base.Data;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.ConfigMajor;
+import com.yc.bean.ConfigMajorKind;
+import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.HumanBiz;
 
 import junit.framework.TestCase;
@@ -110,6 +114,129 @@ public class TestSpring extends TestCase {
 				System.out.println(c);
 			}
 		}
+		
+		//职位分类查寻
+		@Test
+		public void test4() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigMajorKind> list=bb.getAllConfigMajorKinds();
+			for(ConfigMajorKind c:list){
+				System.out.println(c);
+			}
+		}
+		//职位名称查寻
+		@Test
+		public void test5() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigMajor> list=bb.getAllConfigMajors();
+			System.out.println(list);
+			for(ConfigMajor c:list){
+				System.out.println(c);
+			}
+		}
+		//职称查寻
+		@Test
+		public void test6() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllTechnicalTitles();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//国籍查寻
+		@Test
+		public void test7() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllNationalitys();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//民族查寻
+		@Test
+		public void test8() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllNations();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//宗教信仰查寻
+		@Test
+		public void test9() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllReligiousBeliefs();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//政治面貌查寻
+		@Test
+		public void test10() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllPoliticalStatus();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//学历查寻
+		@Test
+		public void test11() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllSchooling();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//学历专业查寻
+		@Test
+		public void test12() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllEducations();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//薪酬标准查寻
+		@Test
+		public void test13() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigFileThirdKind> list=bb.getAllConfigFileThirdKinds();
+			for(ConfigFileThirdKind c:list){
+				System.out.println(c);
+			}
+		}
+		//特长查寻
+		@Test
+		public void test14() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllStrongPoints();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+		//爱好查寻
+		@Test
+		public void test15() {
+			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+			List<ConfigPublicChar> list=bb.getAllHobbys();
+			for(ConfigPublicChar c:list){
+				System.out.println(c);
+			}
+		}
+
 }
 
 

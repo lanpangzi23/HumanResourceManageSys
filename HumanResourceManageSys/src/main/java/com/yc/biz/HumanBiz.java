@@ -9,6 +9,7 @@ import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.SalaryStandardDetails;
 
 public interface HumanBiz {
 	//员工档案登记
@@ -39,12 +40,13 @@ public interface HumanBiz {
 	//学历专业查寻
 	List<ConfigPublicChar> getAllEducations();
 	//薪酬标准查寻
-	List<ConfigPublicChar> getAllSalarys();
+	List<SalaryStandardDetails> getAllSalarys();
 	//特长查寻
 	List<ConfigPublicChar> getAllStrongPoints();
 	//爱好查寻
 	List<ConfigPublicChar> getAllHobbys();
-	
+	//教育年限查询
+	List<ConfigPublicChar> getAllEducationsYears();
 	//人力资源档案登记
 	
 
