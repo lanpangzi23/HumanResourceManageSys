@@ -63,21 +63,14 @@
     </bean>
     
     <!-- 由spring提供的事物增强 -->
-	<tx:advice id="txAdvice" transaction-manager="txManager">
+	<!-- <tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
 			<tx:method name="find*" read-only="true"/>
 			<tx:method name="retrieve*" read-only="true"/>
 			<tx:method name="*" read-only="true"/>
 		</tx:attributes>
-	</tx:advice>
-	
-	
-<!-- 	<aop:config> -->
-	
-<!-- 		<aop:pointcut id="abc" expression="execution(* com.yc.biz.impl.*.(..))"/> -->
-<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="abc"/> -->
-<!-- 	</aop:config> -->
+	</tx:advice> -->
 
 
 </beans>
