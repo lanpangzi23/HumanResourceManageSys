@@ -30,7 +30,7 @@
 var j=0
 function delName(id){
 	$.post("deleteSalaryProjectName/"+ id,function(data){
-		$("#salaryNameTable").load("admin/salaryManagementSetting");
+		$("#salaryNameTable").load();
 	})
 }
 function reName(id,i){
