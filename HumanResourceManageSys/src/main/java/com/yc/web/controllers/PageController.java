@@ -1,12 +1,7 @@
 package com.yc.web.controllers;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,16 +12,19 @@ import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
-import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.HumanBiz;
+import com.yc.biz.SalaryAdministrationBiz;
 import com.yc.biz.SystemManagementBiz;
 import com.yc.web.utils.RandomNumberUtil;
-import com.yc.web.utils.UploadFileUtil;
-import com.yc.web.utils.UploadFileUtil.UploadFile;
 @Controller
 public class PageController {
 	private SystemManagementBiz systemManagementBizImpl;
+	private SalaryAdministrationBiz salaryAdministrationBizImpl;
+	@Resource
+	public void setSalaryAdministrationBizImpl(SalaryAdministrationBiz salaryAdministrationBizImpl) {
+		this.salaryAdministrationBizImpl = salaryAdministrationBizImpl;
+	}
 	private HumanBiz humanBiz;
 	@Resource(name="humanBizImpl")
 	public void setHumanBiz(HumanBiz humanBiz) {
@@ -103,9 +101,12 @@ public class PageController {
 		mv.addObject("configPublicChar", list);
 		return mv;
 	}
-	@RequestMapping(value="/admin/CompensationStandardRegistrationReview")
-	public String toCompensationStandardRegistrationReviewPage(){
-		return "CompensationStandardRegistrationReview";
+	@RequestMapping(value="/admin/CompensationStandardRegistrationReview")//转到薪酬复核界面
+	public ModelAndView toCompensationStandardRegistrationReviewPage(){
+		ModelAndView mv=new ModelAndView("findCheckSalaryStandard");
+		List<SalaryStandard> list=salaryAdministrationBizImpl.findSalaryStandard();
+		mv.addObject("salaryStandard", list);
+		return mv ;
 	}
 	
 	
