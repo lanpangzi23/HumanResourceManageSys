@@ -1,4 +1,6 @@
 package com.yc.biz.impl;
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,5 +30,10 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 			baseDaoMybatisImpl.add(ssd, "insertSalaryStandardDetails");
 		}
 		baseDaoMybatisImpl.add(salaryS, "insertSalaryStandard");
+	}
+	public List<SalaryStandard> findSalaryStandard() {
+		SalaryStandard ss=new SalaryStandard();
+		List<SalaryStandard> list=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard");
+		return list;
 	}
 }
