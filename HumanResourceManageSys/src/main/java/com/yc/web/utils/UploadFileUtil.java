@@ -26,7 +26,6 @@ public class UploadFileUtil {
 		if (files != null && files.size() > 0) {
 			
 			File webappsfile=new File( request.getSession().getServletContext().getRealPath(  "/"     )).getParentFile();
-			System.out.println("********************=========="+webappsfile);
 			//图片保存的服务器位置
 			File picFile=new File(  webappsfile, picRootName);
 			//构建图片服务器的url地址

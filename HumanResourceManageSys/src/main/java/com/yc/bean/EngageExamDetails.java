@@ -15,17 +15,17 @@ public class EngageExamDetails implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4606622302614229067L;
-	private int exd_id;
+	private Integer exd_id;
 	private String exam_number;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
 	private String second_kind_name; 
-	private int question_amount;
-	public int getExd_id() {
+	private Integer question_amount;
+	public Integer getExd_id() {
 		return exd_id;
 	}
-	public void setExd_id(int exd_id) {
+	public void setExd_id(Integer exd_id) {
 		this.exd_id = exd_id;
 	}
 	public String getExam_number() {
@@ -58,10 +58,10 @@ public class EngageExamDetails implements Serializable {
 	public void setSecond_kind_name(String second_kind_name) {
 		this.second_kind_name = second_kind_name;
 	}
-	public int getQuestion_amount() {
+	public Integer getQuestion_amount() {
 		return question_amount;
 	}
-	public void setQuestion_amount(int question_amount) {
+	public void setQuestion_amount(Integer question_amount) {
 		this.question_amount = question_amount;
 	}
 }

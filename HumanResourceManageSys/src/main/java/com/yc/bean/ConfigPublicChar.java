@@ -11,13 +11,13 @@ public class ConfigPublicChar implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6779703261814557280L;
-	private int pbc_id;
+	private Integer pbc_id;
 	private String attribute_kind;
 	private String attribute_name;
-	public int getPbc_id() {
+	public Integer getPbc_id() {
 		return pbc_id;
 	}
-	public void setPbc_id(int pbc_id) {
+	public void setPbc_id(Integer pbc_id) {
 		this.pbc_id = pbc_id;
 	}
 	public String getAttribute_kind() {

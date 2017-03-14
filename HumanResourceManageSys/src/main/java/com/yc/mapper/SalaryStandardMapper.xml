@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.SalaryStandardMapper">
+	<insert id="insertSalaryStandard" parameterType="SalaryStandard">
+		insert into salary_standard(standard_id,standard_name,designer,register,checker,changer,regist_time,check_time,salary_sum,
+		check_status,change_status,check_comment,remark) values(#{standard_id},#{standard_name},#{designer},#{register},#{checker},
+		#{changer},#{regist_time},#{check_time},#{salary_sum},#{check_status},#{change_status},#{check_comment},#{remark})
+	</insert>
+	<select id="selectSalaryStandard" parameterType="SalaryStandard" resultType="SalaryStandard">
+		select * from salary_standard where check_status is null
+	</select>
+</mapper>

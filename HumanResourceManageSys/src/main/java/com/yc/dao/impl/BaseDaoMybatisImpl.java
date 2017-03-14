@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +14,9 @@ import com.yc.dao.BaseDao;
 
 @Repository
 public class BaseDaoMybatisImpl<T> extends SqlSessionDaoSupport implements BaseDao<T> {
+	private Logger logger=Logger.getLogger(   BaseDaoMybatisImpl.class);
 	
-private String mapperLocation="com.yc.mapper.";
+	private String mapperLocation="com.yc.mapper.";
 	
 	@Override
 	@Resource( name="sqlSessionFactory"  )   //di

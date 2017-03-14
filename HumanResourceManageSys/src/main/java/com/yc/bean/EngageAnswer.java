@@ -24,11 +24,11 @@ public class EngageAnswer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1622766876884468261L;
-	private int ans_id;
+	private Integer ans_id;
 	private String answer_number;
 	private String exam_number;
-	private int resume_id;
-	private int interview_id;
+	private Integer resume_id;
+	private Integer interview_id;
 	private String human_name;
 	private String  human_idcard;
 	private String major_kind_id;
@@ -37,11 +37,11 @@ public class EngageAnswer implements Serializable {
 	private String major_name;
 	private Date test_time;
 	private String use_time;
-	private double total_point;
-	public int getAns_id() {
+	private Double total_point;
+	public Integer getAns_id() {
 		return ans_id;
 	}
-	public void setAns_id(int ans_id) {
+	public void setAns_id(Integer ans_id) {
 		this.ans_id = ans_id;
 	}
 	public String getAnswer_number() {
@@ -56,16 +56,16 @@ public class EngageAnswer implements Serializable {
 	public void setExam_number(String exam_number) {
 		this.exam_number = exam_number;
 	}
-	public int getResume_id() {
+	public Integer getResume_id() {
 		return resume_id;
 	}
-	public void setResume_id(int resume_id) {
+	public void setResume_id(Integer resume_id) {
 		this.resume_id = resume_id;
 	}
-	public int getInterview_id() {
+	public Integer getInterview_id() {
 		return interview_id;
 	}
-	public void setInterview_id(int interview_id) {
+	public void setInterview_id(Integer interview_id) {
 		this.interview_id = interview_id;
 	}
 	public String getHuman_name() {
@@ -116,10 +116,10 @@ public class EngageAnswer implements Serializable {
 	public void setUse_time(String use_time) {
 		this.use_time = use_time;
 	}
-	public double getTotal_point() {
+	public Double getTotal_point() {
 		return total_point;
 	}
-	public void setTotal_point(double total_point) {
+	public void setTotal_point(Double total_point) {
 		this.total_point = total_point;
 	}
 }

@@ -41,7 +41,7 @@ import java.util.Date;
 /* 	"regist_time" : 登记时间                                                                      */
 /* 	"check_time" : 复核时间                                                                       */ 
 public class MajorChange {
-	private int mch_id;
+	private Integer mch_id;
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
@@ -66,21 +66,21 @@ public class MajorChange {
 	private String human_name;
 	private String salary_standard_id;
 	private String salary_standard_name;
-	private double salary_sum;
+	private Double salary_sum;
 	private String new_salary_standard_id;
 	private String new_salary_standard_name;
-	private double new_salary_sum;
+	private Double new_salary_sum;
 	private String change_reason;
 	private String check_reason;
-	private int check_status;
+	private Integer check_status;
 	private String register;
 	private String 	checker;
 	private Date regist_time;
 	private Date check_time;
-	public int getMch_id() {
+	public Integer getMch_id() {
 		return mch_id;
 	}
-	public void setMch_id(int mch_id) {
+	public void setMch_id(Integer mch_id) {
 		this.mch_id = mch_id;
 	}
 	public String getFirst_kind_id() {
@@ -227,10 +227,10 @@ public class MajorChange {
 	public void setSalary_standard_name(String salary_standard_name) {
 		this.salary_standard_name = salary_standard_name;
 	}
-	public double getSalary_sum() {
+	public Double getSalary_sum() {
 		return salary_sum;
 	}
-	public void setSalary_sum(double salary_sum) {
+	public void setSalary_sum(Double salary_sum) {
 		this.salary_sum = salary_sum;
 	}
 	public String getNew_salary_standard_id() {
@@ -245,10 +245,10 @@ public class MajorChange {
 	public void setNew_salary_standard_name(String new_salary_standard_name) {
 		this.new_salary_standard_name = new_salary_standard_name;
 	}
-	public double getNew_salary_sum() {
+	public Double getNew_salary_sum() {
 		return new_salary_sum;
 	}
-	public void setNew_salary_sum(double new_salary_sum) {
+	public void setNew_salary_sum(Double new_salary_sum) {
 		this.new_salary_sum = new_salary_sum;
 	}
 	public String getChange_reason() {
@@ -263,10 +263,10 @@ public class MajorChange {
 	public void setCheck_reason(String check_reason) {
 		this.check_reason = check_reason;
 	}
-	public int getCheck_status() {
+	public Integer getCheck_status() {
 		return check_status;
 	}
-	public void setCheck_status(int check_status) {
+	public void setCheck_status(Integer check_status) {
 		this.check_status = check_status;
 	}
 	public String getRegister() {

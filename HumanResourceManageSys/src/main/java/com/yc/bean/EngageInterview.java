@@ -33,9 +33,9 @@ public class EngageInterview implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4117455717674059170L;
-	private int ein_id;
+	private Integer ein_id;
 	private String human_name;
-	private int interview_amount;
+	private Integer interview_amount;
 	private String human_major_kind_id;
 	private String human_major_kind_name;
 	private String human_major_id;
@@ -51,16 +51,16 @@ public class EngageInterview implements Serializable {
 	private String checker;
 	private Date registe_time;
 	private Date check_time;
-	private int resume_id;
+	private Integer resume_id;
 	private String result;
 	private String interview_comment;
 	private String check_comment;
-	private int interview_status;
-	private int check_status;
-	public int getEin_id() {
+	private Integer interview_status;
+	private Integer check_status;
+	public Integer getEin_id() {
 		return ein_id;
 	}
-	public void setEin_id(int ein_id) {
+	public void setEin_id(Integer ein_id) {
 		this.ein_id = ein_id;
 	}
 	public String getHuman_name() {
@@ -69,10 +69,10 @@ public class EngageInterview implements Serializable {
 	public void setHuman_name(String human_name) {
 		this.human_name = human_name;
 	}
-	public int getInterview_amount() {
+	public Integer getInterview_amount() {
 		return interview_amount;
 	}
-	public void setInterview_amount(int interview_amount) {
+	public void setInterview_amount(Integer interview_amount) {
 		this.interview_amount = interview_amount;
 	}
 	public String getHuman_major_kind_id() {
@@ -165,10 +165,10 @@ public class EngageInterview implements Serializable {
 	public void setCheck_time(Date check_time) {
 		this.check_time = check_time;
 	}
-	public int getResume_id() {
+	public Integer getResume_id() {
 		return resume_id;
 	}
-	public void setResume_id(int resume_id) {
+	public void setResume_id(Integer resume_id) {
 		this.resume_id = resume_id;
 	}
 	public String getResult() {
@@ -189,16 +189,16 @@ public class EngageInterview implements Serializable {
 	public void setCheck_comment(String check_comment) {
 		this.check_comment = check_comment;
 	}
-	public int getInterview_status() {
+	public Integer getInterview_status() {
 		return interview_status;
 	}
-	public void setInterview_status(int interview_status) {
+	public void setInterview_status(Integer interview_status) {
 		this.interview_status = interview_status;
 	}
-	public int getCheck_status() {
+	public Integer getCheck_status() {
 		return check_status;
 	}
-	public void setCheck_status(int check_status) {
+	public void setCheck_status(Integer check_status) {
 		this.check_status = check_status;
 	}
 }

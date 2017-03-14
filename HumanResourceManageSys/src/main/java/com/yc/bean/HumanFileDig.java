@@ -67,7 +67,11 @@ import java.sql.Date;
 /* 	"recovery_time" : 档案恢复时间                                                                  */
 /* 	"human_file_status" : 档案状态                                                                */  
 public class HumanFileDig implements Serializable {
-	private int hfd_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer hfd_id;
 	private String human_id;
 	private String first_kind_id;
 	private String first_kind_name;
@@ -102,27 +106,27 @@ public class HumanFileDig implements Serializable {
 	private String human_race;
 		private Date human_birthday;
 		private String human_birthplace;
-	private int human_age;
+	private Integer human_age;
 	private String human_educated_degree;
-	private int human_educated_years;
+	private Integer human_educated_years;
 	private String human_educated_major;
 	private String human_society_security_id;
 	private String human_id_card;
 	private String remark;
 	private String salary_standard_id;
 	private String salary_standard_name;
-	private double salary_sum;
-	private double demand_salary_sum;
-	private double paid_salary_sum;
-	private int major_change_amount;
-	private int bonus_amount;
-	private int training_amount;
-	private int file_change_amount;
+	private Double salary_sum;
+	private Double demand_salary_sum;
+	private Double paid_salary_sum;
+	private Integer major_change_amount;
+	private Integer bonus_amount;
+	private Integer training_amount;
+	private Integer file_change_amount;
 	private String human_history_records;
 	private String human_family_membership;
 	private String human_picture;
 	private String attchment_name;
-	private int check_status;
+	private Integer check_status;
 	private String register;
 	private String checker;
 	private String changer;
@@ -133,10 +137,10 @@ public class HumanFileDig implements Serializable {
 	private Date delete_time;
 	private Date recovery_time;
 	private Boolean human_file_status;
-	public int getHfd_id() {
+	public Integer getHfd_id() {
 		return hfd_id;
 	}
-	public void setHfd_id(int hfd_id) {
+	public void setHfd_id(Integer hfd_id) {
 		this.hfd_id = hfd_id;
 	}
 	public String getHuman_id() {
@@ -301,10 +305,10 @@ public class HumanFileDig implements Serializable {
 	public void setHuman_birthplace(String human_birthplace) {
 		this.human_birthplace = human_birthplace;
 	}
-	public int getHuman_age() {
+	public Integer getHuman_age() {
 		return human_age;
 	}
-	public void setHuman_age(int human_age) {
+	public void setHuman_age(Integer human_age) {
 		this.human_age = human_age;
 	}
 	public String getHuman_educated_degree() {
@@ -313,10 +317,10 @@ public class HumanFileDig implements Serializable {
 	public void setHuman_educated_degree(String human_educated_degree) {
 		this.human_educated_degree = human_educated_degree;
 	}
-	public int getHuman_educated_years() {
+	public Integer getHuman_educated_years() {
 		return human_educated_years;
 	}
-	public void setHuman_educated_years(int human_educated_years) {
+	public void setHuman_educated_years(Integer human_educated_years) {
 		this.human_educated_years = human_educated_years;
 	}
 	public String getHuman_educated_major() {
@@ -355,46 +359,46 @@ public class HumanFileDig implements Serializable {
 	public void setSalary_standard_name(String salary_standard_name) {
 		this.salary_standard_name = salary_standard_name;
 	}
-	public double getSalary_sum() {
+	public Double getSalary_sum() {
 		return salary_sum;
 	}
-	public void setSalary_sum(double salary_sum) {
+	public void setSalary_sum(Double salary_sum) {
 		this.salary_sum = salary_sum;
 	}
-	public double getDemand_salary_sum() {
+	public Double getDemand_salary_sum() {
 		return demand_salary_sum;
 	}
-	public void setDemand_salary_sum(double demand_salary_sum) {
+	public void setDemand_salary_sum(Double demand_salary_sum) {
 		this.demand_salary_sum = demand_salary_sum;
 	}
-	public double getPaid_salary_sum() {
+	public Double getPaid_salary_sum() {
 		return paid_salary_sum;
 	}
-	public void setPaid_salary_sum(double paid_salary_sum) {
+	public void setPaid_salary_sum(Double paid_salary_sum) {
 		this.paid_salary_sum = paid_salary_sum;
 	}
-	public int getMajor_change_amount() {
+	public Integer getMajor_change_amount() {
 		return major_change_amount;
 	}
-	public void setMajor_change_amount(int major_change_amount) {
+	public void setMajor_change_amount(Integer major_change_amount) {
 		this.major_change_amount = major_change_amount;
 	}
-	public int getBonus_amount() {
+	public Integer getBonus_amount() {
 		return bonus_amount;
 	}
-	public void setBonus_amount(int bonus_amount) {
+	public void setBonus_amount(Integer bonus_amount) {
 		this.bonus_amount = bonus_amount;
 	}
-	public int getTraining_amount() {
+	public Integer getTraining_amount() {
 		return training_amount;
 	}
-	public void setTraining_amount(int training_amount) {
+	public void setTraining_amount(Integer training_amount) {
 		this.training_amount = training_amount;
 	}
-	public int getFile_change_amount() {
+	public Integer getFile_change_amount() {
 		return file_change_amount;
 	}
-	public void setFile_change_amount(int file_change_amount) {
+	public void setFile_change_amount(Integer file_change_amount) {
 		this.file_change_amount = file_change_amount;
 	}
 	public String getHuman_history_records() {
@@ -421,10 +425,10 @@ public class HumanFileDig implements Serializable {
 	public void setAttchment_name(String attchment_name) {
 		this.attchment_name = attchment_name;
 	}
-	public int getCheck_status() {
+	public Integer getCheck_status() {
 		return check_status;
 	}
-	public void setCheck_status(int check_status) {
+	public void setCheck_status(Integer check_status) {
 		this.check_status = check_status;
 	}
 	public String getRegister() {
