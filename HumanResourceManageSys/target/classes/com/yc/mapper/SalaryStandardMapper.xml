@@ -9,6 +9,6 @@
 		#{changer},#{regist_time},#{check_time},#{salary_sum},#{check_status},#{change_status},#{check_comment},#{remark})
 	</insert>
 	<select id="selectSalaryStandard" parameterType="SalaryStandard" resultType="SalaryStandard">
-		select * from salary_standard where check_status is null
+		select * from salary_standard where check_status is null and ssd_id LIMIT #{minPage},#{maxPage}
 	</select>
 </mapper>
