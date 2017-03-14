@@ -4,7 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.mapper.ConfigFileSecondKindMapper">
 	<select id="selectAllSecondKinds" resultType="ConfigFileSecondKind" >
+		select second_kind_id,second_kind_name,
+		second_salary_id from config_file_second_kind 
+	</select>
+	<select id="selectAllSecondKindsByFirst" resultType="ConfigFileSecondKind" parameterType="String" >
 		select first_kind_id,first_kind_name,second_kind_id,second_kind_name,
-		second_salary_id,second_sale_id from config_file_second_kind 
+		second_salary_id,second_sale_id from config_file_second_kind
+		where  first_kind_id=#{first_kind_id}
 	</select>
 </mapper>

@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -23,26 +25,25 @@
 	
 <form id="upload_form" enctype="multipart/form-data" action="humanResourceRegistration" method="post">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
-	
-	<input class="easyui" type="button" id="login" style="margin-left:899px; background:#CFC;" value="提交"/>
+	<input class="easyui" type="submit"  style="margin-left:899px; background:#CFC;" value="提交"/>
     <input class="easyui" type="reset" style="background:#F33;"  value="删除"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
-			<td ><select class="easyui-combobox" type="text" id="primaryMechanism">
-					<c:forEach items="${configFileFirstKinds}" var="s" varStatus="ss">
-						<option value="${s.first_kind_id }">${s.first_kind_name }</option>
+			<td ><select name="first_kind_id" class="easyui-combobox" type="text" id="primaryMechanism" data-options='onChange:findByFirst'>
+					<c:forEach items="${configFileFirstKinds}" var="s" >
+						<option  value="${s.first_kind_id }">${s.first_kind_name }</option>
 					</c:forEach>
 			</select></td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
-			<td><select class="easyui-combobox" type="text" id="secondaryInstitutions">
-					<c:forEach items="${configFileSecondKind}" var="s" varStatus="ss">
+			<td><select name="second_kind_id" class="easyui-combobox" type="text" id="secondaryInstitutions">
+					<c:forEach items="${configFileSecondKind}" var="s" >
 						<option value="${s.second_kind_id }">${s.second_kind_name }</option>
 					</c:forEach>
 			</select></td>
 			<td style="text-align:center" class="backcolor">III级机构</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configFileThirdKind}" var="s" varStatus="ss">
+				<select name="third_kind_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${configFileThirdKind}" var="s" >
 						<option value="${s.second_kind_id }">${s.third_kind_name }</option>
 					</c:forEach>
 				</select>
@@ -52,7 +53,7 @@
      		  			 <img id="Img" width="200px" height="200px"/>
    		 			</div>
 				
-       				 <input class="easyui-filebox" style="width:300px" data-options='onChange:change_photo' id="file_upload" name="file_upload2"/><br/> 
+       				 <input class="easyui-filebox" style="width:300px" data-options='onChange:change_photo' id="file_upload" name="picUrl"/><br/> 
    			
     	
     </center></td>
@@ -60,24 +61,24 @@
 		<tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">职位分类</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configMajorKind}" var="s" varStatus="ss">
+				<select name="human_major_kind_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${configMajorKind}" var="s" >
 						<option value="${s.major_kind_id }">${s.major_kind_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">职位名称</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configMajor}" var="s" varStatus="ss">
+				<select name="human_major_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${configMajor}" var="s" >
 						<option value="${s.major_id }">${s.major_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">职称</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${technicalTitles}" var="s" varStatus="ss">
+				<select name="human_pro_designation" class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${technicalTitles}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -85,43 +86,47 @@
 		</tr>
         <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">姓名</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="text" id="I" name="human_name"></td>
 			<td style="text-align:center" class="backcolor">性别</td>
-			<td><input class="easyui-combobox" type="text" id="I" name="Ijjg"></td>
+			<td><select name="human_sex" class="easyui-combobox" type="text" id="tertiaryMechanism">
+						<option value="男">男</option>
+						<option value="女">女</option>
+				</select>
+			</td>
 			<td style="text-align:center" class="backcolor">EMAIL</td>
-			<td><input class="easyui" type="email" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="email" id="I" name="human_email"></td>
 		</tr>
         <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">电话</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="number" id="I" name="human_telephone"></td>
 			<td style="text-align:center" class="backcolor">QQ</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="number" id="I" name="human_qq"></td>
 			<td style="text-align:center" class="backcolor">手机</td>
-			<td><input class="easyui" type="tel" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="tel" id="I" name="human_mobilephone"></td>
 		</tr>
          <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">住址</td>
 			<td colspan="3"><input class="easyui" type="text" id="I" name="human_address"></td>
 			<td style="text-align:center" class="backcolor">邮编</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="text" id="I" name="human_postcode"></td>
 			
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">国籍</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select name="human_nationality" class="easyui-combobox" type="text" id="tertiaryMechanism">
 					<c:forEach items="${nationalitys}" var="s" varStatus="ss">
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">出生地</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_birthplace" class="easyui" type="text" id="I" name="Ijjg"></td>
 			<td style="text-align:center" class="backcolor">生日</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_birthday" class="easyui" type="date" id="I" name="Ijjg"></td>
             <td style="text-align:center" class="backcolor">民族</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select class="easyui-combobox" type="text" name="human_race">
 					<c:forEach items="${nations}" var="s" varStatus="ss">
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
@@ -132,7 +137,7 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">宗教信仰</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select class="easyui-combobox" type="text" name="human_religion">
 					<c:forEach items="${religiousBeliefs}" var="s" varStatus="ss">
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
@@ -140,41 +145,41 @@
 			</td>
 			<td style="text-align:center" class="backcolor">政治面貌</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select class="easyui-combobox" type="text" name="human_party">
 					<c:forEach items="${politicalStatus}" var="s" varStatus="ss">
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">身份证号码</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_id_card" class="easyui" type="text" id="I" ></td>
             <td style="text-align:center" class="backcolor">社会保障号码</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_society_security_id" class="easyui" type="text" id="I" ></td>
 		</tr>
           </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">年龄</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_age" class="easyui" type="text" id="I" ></td>
 			<td style="text-align:center" class="backcolor">学历</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${schooling}" var="s" varStatus="ss">
+				<select class="easyui-combobox" type="text" name="human_educated_degree">
+					<c:forEach items="${schooling}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">教育年限</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${educationsYears}" var="s" varStatus="ss">
+				<select class="easyui-combobox" type="text" name="human_educated_years">
+					<c:forEach items="${educationsYears}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
             <td style="text-align:center" class="backcolor">学历专业</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${educations}" var="s" varStatus="ss">
+				<select class="easyui-combobox" type="text" name="human_educated_major">
+					<c:forEach items="${educations}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -184,68 +189,88 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">薪酬标准</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configFileThirdKind}" var="s" varStatus="ss">
+				<select class="easyui-combobox" type="text" name="salary_standard_id">
+					<c:forEach items="${configFileThirdKind}" var="s" >
 						<option value="${s.second_kind_id }">${s.third_kind_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">开户银行</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_bank" class="easyui" type="text" id="I" ></td>
 			<td style="text-align:center" class="backcolor">账号</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_account" class="easyui" type="text" id="I" ></td>
             <td style="text-align:center" class="backcolor">登记人</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="register" class="easyui" type="text" id="I" ></td>
 		</tr>
          </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">建档时间</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<%SimpleDateFormat da=new SimpleDateFormat("YYYY-MM-dd HH:mm");
+				String dd=da.format(new Date());
+			%>
+			<td><input name="regist_time" class="easyui" type="text" id="I" value="<%=dd %>" ></td>
 			<td style="text-align:center" class="backcolor">特长</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${strongPoints}" var="s" varStatus="ss">
+				<select name="human_speciality" class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${strongPoints}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">爱好</td>
 			<td>
-				<select class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${hobbys}" var="s" varStatus="ss">
+				<select name="human_hobby" class="easyui-combobox" type="text" id="tertiaryMechanism">
+					<c:forEach items="${hobbys}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
             <td style="text-align:center" class="backcolor"></td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input class="easyui" type="text" id="I" ></td>
 		</tr>
          </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">个人履历</td>
-			<td colspan="7"><textarea class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
+			<td colspan="7"><textarea name="human_histroy_records" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
 			
 		</tr>
           </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">家庭关系信息</td>
-			<td colspan="7"><textarea class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
+			<td colspan="7"><textarea name="human_family_membership" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
 			
 		</tr>
           </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">备注</td>
-			<td colspan="7"><textarea class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
+			<td colspan="7"><textarea name="remark" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
 			
 		</tr>
 
  
 </table></form>
 <script>
-$('#login').click(function(){
-	alert(1)
-	$('form').submit();
-})
+<!--根据一级机构查寻二级机构-->
+
+			function findByFirst()(
+					console.info(1)
+// 				function(){
+// 					$.post("findSecondByFirst/"+$(this).val(),function(json){
+// 						var obj=$.parseJSON(json);
+// 						$("#secondaryInstitutions").html("");
+// 						for(var i=0;i<obj.length;i++){
+// 							var o=obj[i];
+// 							$("#secondaryInstitutions").append(
+// 									"<option value="+o.second_kind_id+">"+o.second_kind_name+"</option>"
+// 								)
+// 						}
+						
+// 					});
+				);
+
+
+
+
 
 function change_photo(){
     PreviewImage($("input[name='file_upload2']")[0], 'Img', 'Imgdiv');

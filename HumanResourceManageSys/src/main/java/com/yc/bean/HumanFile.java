@@ -78,6 +78,7 @@ public class HumanFile implements Serializable {
 	/**
 	 * 
 	 */
+//	private S
 	private Double demand_salaray_sum;
 	private String remark;
 	private String human_id;
