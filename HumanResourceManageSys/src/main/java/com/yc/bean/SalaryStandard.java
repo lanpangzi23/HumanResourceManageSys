@@ -39,6 +39,20 @@ public class SalaryStandard implements Serializable {
 	private Integer change_status;
 	private String check_comment;
 	private String remark;
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	public Date getRegist_time() {
 		return regist_time;
 	}

@@ -31,8 +31,10 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 		}
 		baseDaoMybatisImpl.add(salaryS, "insertSalaryStandard");
 	}
-	public List<SalaryStandard> findSalaryStandard() {
+	public List<SalaryStandard> findSalaryStandard(int minPage,int maxPage) {
 		SalaryStandard ss=new SalaryStandard();
+		ss.setMinPage(minPage);
+		ss.setMaxPage(maxPage);
 		List<SalaryStandard> list=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard");
 		return list;
 	}
