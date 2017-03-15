@@ -18,6 +18,7 @@ public interface HumanBiz {
 	List<ConfigFileFirstKind> getAllConfigFileFirstKinds();
 	//二级机构查寻
 	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
+	List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id);
 	//三级机构查寻
 	List<ConfigFileThirdKind> getAllConfigFileThirdKinds();
 	//职位分类查寻

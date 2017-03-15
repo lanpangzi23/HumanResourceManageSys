@@ -131,5 +131,11 @@ public class HumanBizImpl implements HumanBiz {
 		return list;
 	}
 
+	@Override
+	public List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id) {
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(new ConfigFileSecondKind(), "selectAllSecondKindsByFirst");
+		return list;
+	}
+
 
 }
