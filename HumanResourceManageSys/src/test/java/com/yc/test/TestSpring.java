@@ -44,6 +44,7 @@ public class TestSpring extends TestCase {
 		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
 		System.out.println(bb);
 		HumanFile hf=new HumanFile();
+		hf.setMajor_change_amount(1);
 		hf.setHuman_id("110FGHJKL");
 		hf.setFirst_kind_id("10");
 		hf.setFirst_kind_name("思凯乐集团");
@@ -80,9 +81,7 @@ public class TestSpring extends TestCase {
 		hf.setHuman_age(22);
 		hf.setHuman_educated_years(4);
 		hf.setHuman_educated_major("本科网络工程");
-		hf.setSalary_sum(0);
 		hf=bb.save(hf);
-		hf.setPaid_salary_sum(1);
 		
 		System.out.println(hf);
 

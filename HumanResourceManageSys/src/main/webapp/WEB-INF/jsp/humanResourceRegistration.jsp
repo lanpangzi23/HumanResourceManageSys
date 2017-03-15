@@ -29,11 +29,12 @@
     <input class="easyui" type="reset" style="background:#F33;"  value="删除"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
-			<td ><select name="first_kind_id" class="easyui-combobox" type="text" id="primaryMechanism" data-options='onChange:findByFirst'>
+			<td ><select name="first_kind_id" class="easyui-combobox" type="text" id="primaryMechanism" >
 					<c:forEach items="${configFileFirstKinds}" var="s" >
 						<option  value="${s.first_kind_id }">${s.first_kind_name }</option>
 					</c:forEach>
-			</select></td>
+				</select>
+			</td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
 			<td><select name="second_kind_id" class="easyui-combobox" type="text" id="secondaryInstitutions">
 					<c:forEach items="${configFileSecondKind}" var="s" >
@@ -250,30 +251,8 @@
  
 </table></form>
 <script>
-<!--根据一级机构查寻二级机构-->
-
-			function findByFirst()(
-					console.info(1)
-// 				function(){
-// 					$.post("findSecondByFirst/"+$(this).val(),function(json){
-// 						var obj=$.parseJSON(json);
-// 						$("#secondaryInstitutions").html("");
-// 						for(var i=0;i<obj.length;i++){
-// 							var o=obj[i];
-// 							$("#secondaryInstitutions").append(
-// 									"<option value="+o.second_kind_id+">"+o.second_kind_name+"</option>"
-// 								)
-// 						}
-						
-// 					});
-				);
-
-
-
-
-
 function change_photo(){
-    PreviewImage($("input[name='file_upload2']")[0], 'Img', 'Imgdiv');
+    PreviewImage($("input[name='picUrl']")[0], 'Img', 'Imgdiv');
 }
 function PreviewImage(fileObj,imgPreviewId,divPreviewId){  
     var allowExtention=".jpg,.bmp,.gif,.png";//允许上传文件的后缀名document.getElementById("hfAllowPicSuffix").value;  
