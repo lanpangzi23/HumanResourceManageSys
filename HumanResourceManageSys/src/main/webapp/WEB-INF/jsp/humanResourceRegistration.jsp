@@ -112,29 +112,29 @@
 			<td><input class="easyui" type="text" id="I" name="human_postcode"></td>
 			
 		</tr>
+		
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">国籍</td>
 			<td>
-				<select name="human_nationality" class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${nationalitys}" var="s" varStatus="ss">
+				<select name="human_nationality" class="easyui-combobox" type="text" >
+					<c:forEach items="${nationalitys}" var="s" >
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">出生地</td>
-			<td><input name="human_birthplace" class="easyui" type="text" id="I" name="Ijjg"></td>
+			<td><input name="human_birthplace" class="easyui" type="text"></td>
 			<td style="text-align:center" class="backcolor">生日</td>
-			<td><input name="human_birthday" class="easyui" type="date" id="I" name="Ijjg"></td>
+			<td><input name="human_birthday" class="easyui" onblur="todate()"/></td>
             <td style="text-align:center" class="backcolor">民族</td>
 			<td>
 				<select class="easyui-combobox" type="text" name="human_race">
-					<c:forEach items="${nations}" var="s" varStatus="ss">
+					<c:forEach items="${nations}" var="s">
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 		</tr>
-        </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">宗教信仰</td>
 			<td>
@@ -186,7 +186,6 @@
 				</select>
 			</td>
 		</tr>
-         </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">薪酬标准</td>
 			<td>
@@ -203,13 +202,9 @@
             <td style="text-align:center" class="backcolor">登记人</td>
 			<td><input name="register" class="easyui" type="text" id="I" ></td>
 		</tr>
-         </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">建档时间</td>
-			<%SimpleDateFormat da=new SimpleDateFormat("YYYY-MM-dd HH:mm");
-				String dd=da.format(new Date());
-			%>
-			<td><input name="regist_time" class="easyui" type="text" id="I" value="<%=dd %>" ></td>
+			<td><input name="regist_time" class="easyui" type="text" id="I" value="<%=new Date() %>" ></td>
 			<td style="text-align:center" class="backcolor">特长</td>
 			<td>
 				<select name="human_speciality" class="easyui-combobox" type="text" id="tertiaryMechanism">
@@ -251,6 +246,12 @@
  
 </table></form>
 <script>
+
+function todate(){
+ 	var birthday=$('input[name=human_birthday]').val();
+	alert(birthday)
+}
+
 function change_photo(){
     PreviewImage($("input[name='picUrl']")[0], 'Img', 'Imgdiv');
 }
