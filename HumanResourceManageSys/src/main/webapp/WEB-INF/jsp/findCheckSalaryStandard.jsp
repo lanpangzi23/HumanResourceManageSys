@@ -23,12 +23,17 @@ $('#dg').datagrid({
         {field:'register',title:'登记人',width:100},   
         {field:'regist_time',title:'登记时间',width:150},   
         {field:'salary_sum',title:'薪酬总额',width:100} ,
-        {field:'userId',title:'User', width:80,
-          	formatter: function(value,row,index){
-          		
-          		}
-    	]]   
-});  
+        {field:'cz',title:'操作', width:80,
+        	formatter : function(value, row, index) {
+				return '   <a href="javascript:findByDetails('
+						+ row.standard_id + ')">查看详情</a>';
+			}
+        }
+    ]]   
+}); 
+function findByDetails(id){
+	$('#main_panel').panel('refresh',"toCompensationStandardRegistrationReview/"+id);
+}
 </script> 
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.yc.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /* 创建新表 "salary_standard"。                                                                    */
 /* "salary_standard" : 薪酬标准基本信息表                                                              */
 /* 	"ssd_id" : 主键，自动增长列                                                                       */
@@ -41,6 +42,13 @@ public class SalaryStandard implements Serializable {
 	private String remark;
 	private Integer minPage;
 	private Integer maxPage;
+	private List<SalaryStandardDetails> salaryStandardDetails;
+	public List<SalaryStandardDetails> getSalaryStandardDetails() {
+		return salaryStandardDetails;
+	}
+	public void setSalaryStandardDetails(List<SalaryStandardDetails> salaryStandardDetails) {
+		this.salaryStandardDetails = salaryStandardDetails;
+	}
 	public Integer getMinPage() {
 		return minPage;
 	}

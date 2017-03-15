@@ -1,4 +1,5 @@
 package com.yc.biz.impl;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -33,9 +34,22 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 	}
 	public List<SalaryStandard> findSalaryStandard(int minPage,int maxPage) {
 		SalaryStandard ss=new SalaryStandard();
+		ss.setChange_status(0);
 		ss.setMinPage(minPage);
 		ss.setMaxPage(maxPage);
 		List<SalaryStandard> list=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard");
+		return list;
+	}
+	public List<Object> findSalaryStandardDetails(String id){
+		SalaryStandard ss=new SalaryStandard();
+		SalaryStandardDetails ssds=new SalaryStandardDetails();
+		List<Object> list=new ArrayList<>();
+		ss.setStandard_id(id);
+		ssds.setStandard_id(id);
+		List<SalaryStandard> salaryStandard=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard");
+		List<SalaryStandardDetails> salaryStandardDetails=baseDaoMybatisImpl.findAll(ssds, "selectSalaryStandardDetails");
+		list.add(salaryStandard.get(0));
+		list.add(salaryStandardDetails);
 		return list;
 	}
 }

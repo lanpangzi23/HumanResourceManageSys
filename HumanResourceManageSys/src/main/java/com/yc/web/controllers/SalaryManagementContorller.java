@@ -5,9 +5,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.google.gson.Gson;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
@@ -39,5 +42,13 @@ public class SalaryManagementContorller {
 		rd.setRows(list);
 		rd.setTotal(""+size);
 		out.print(gson.toJson(rd));
+	}
+	@RequestMapping(value="toCompensationStandardRegistrationReview/{id}")
+	public ModelAndView addSalaryStandard(@PathVariable String id){//查看待复核人详情
+		ModelAndView mv=new ModelAndView("CompensationStandardRegistrationReview");
+		List<Object> list=salaryAdministrationBizImpl.findSalaryStandardDetails(id);
+		mv.addObject("salaryStandard", list.get(0));
+		mv.addObject("salaryStandardDetails", list.get(1));
+		return mv;
 	}
 }
