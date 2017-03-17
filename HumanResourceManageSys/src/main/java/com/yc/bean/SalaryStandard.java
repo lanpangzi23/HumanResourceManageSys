@@ -42,6 +42,27 @@ public class SalaryStandard implements Serializable {
 	private String remark;
 	private Integer minPage;
 	private Integer maxPage;
+	private String keyword;
+	private Date minDate;
+	private Date maxDate;
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public Date getMinDate() {
+		return minDate;
+	}
+	public void setMinDate(Date minDate) {
+		this.minDate = minDate;
+	}
+	public Date getMaxDate() {
+		return maxDate;
+	}
+	public void setMaxDate(Date maxDate) {
+		this.maxDate = maxDate;
+	}
 	private List<SalaryStandardDetails> salaryStandardDetails;
 	public List<SalaryStandardDetails> getSalaryStandardDetails() {
 		return salaryStandardDetails;

@@ -1,7 +1,7 @@
 package com.yc.biz.impl;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -11,7 +11,7 @@ import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
 import com.yc.dao.BaseDao;
 @Repository
-@Transactional(readOnly=true)
+@Transactional(readOnly=false)
 public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 	private BaseDao baseDaoMybatisImpl;
 	@Resource(name="baseDaoMybatisImpl")
@@ -22,6 +22,7 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 	 * PROPAGATION_REQUIRES_NEW 新建事务，如果当前存在事务，把当前事务挂起。*/
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
 	public void addSalaryStandard(SalaryStandard salaryS,SalaryStandardDetails ssd) {
+		salaryS.setCheck_status(0);
 		ssd.setStandard_id(salaryS.getStandard_id());
 		ssd.setStandard_name(salaryS.getStandard_name());
 		for(int i=0;i<ssd.getItem_idList().size();i++){
@@ -32,9 +33,9 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 		}
 		baseDaoMybatisImpl.add(salaryS, "insertSalaryStandard");
 	}
-	public List<SalaryStandard> findSalaryStandard(int minPage,int maxPage) {
+	public List<SalaryStandard> findSalaryStandard(int minPage,int maxPage) {//分页
 		SalaryStandard ss=new SalaryStandard();
-		ss.setChange_status(0);
+		ss.setCheck_status(0);
 		ss.setMinPage(minPage);
 		ss.setMaxPage(maxPage);
 		List<SalaryStandard> list=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard");
@@ -47,9 +48,22 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 		ss.setStandard_id(id);
 		ssds.setStandard_id(id);
 		List<SalaryStandard> salaryStandard=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard");
+		salaryStandard.get(0).setCheck_time(new Date());
+		salaryStandard.get(0).setChecker("admin");
 		List<SalaryStandardDetails> salaryStandardDetails=baseDaoMybatisImpl.findAll(ssds, "selectSalaryStandardDetails");
 		list.add(salaryStandard.get(0));
 		list.add(salaryStandardDetails);
+		return list;
+	}
+	public void reviewSalaryStandard(String standard_id, String check_commnt) {
+		SalaryStandard ss=new SalaryStandard();
+		ss.setStandard_id(standard_id);
+		ss.setCheck_comment(check_commnt);
+		baseDaoMybatisImpl.update(ss, "updateSalaryStandard");
+	}
+	public List<SalaryStandard> fuzzyQuery(SalaryStandard ss){//根据条件查询支持模糊查询
+		//关键字查询条件将在薪酬标准名称、制定人、变更人和复核人字段进行匹配
+		List<SalaryStandard> list=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard1");
 		return list;
 	}
 }
