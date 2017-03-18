@@ -35,12 +35,8 @@ public class PageController {
 	//人力资源档案登记 ss
 	@RequestMapping(value="/admin/humanResourceRegistration")
 	public String toHumanResourceRegistrationPage(Model model){
-		List<ConfigFileFirstKind> configFileFirstKinds=this.humanBiz.getAllConfigFileFirstKinds();
-		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
-		List<ConfigFileSecondKind> configFileSecondKind=this.humanBiz.getAllConfigFileSecondKinds();
-		model.addAttribute("configFileSecondKind",configFileSecondKind);
-		List<ConfigFileThirdKind> configFileThirdKind=this.humanBiz.getAllConfigFileThirdKinds();
-		model.addAttribute("configFileThirdKind",configFileThirdKind);
+//		List<ConfigFileFirstKind> configFileFirstKinds=this.humanBiz.getAllConfigFileFirstKinds();
+//		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
 		List<ConfigMajorKind> configMajorKind=this.humanBiz.getAllConfigMajorKinds();
 		model.addAttribute("configMajorKind",configMajorKind);
 		List<ConfigMajor> configMajor=this.humanBiz.getAllConfigMajors();
@@ -125,4 +121,8 @@ public class PageController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/admin/organization")
+	public String toOrganization(){//转到机构设置区
+		return "Organization";
+	}
 }

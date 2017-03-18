@@ -14,13 +14,7 @@ import com.yc.bean.SalaryStandardDetails;
 public interface HumanBiz {
 	//员工档案登记
 	HumanFile save(HumanFile book);
-	//一级机构查寻
-	List<ConfigFileFirstKind> getAllConfigFileFirstKinds();
-	//二级机构查寻
-	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
-	List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id);
-	//三级机构查寻
-	List<ConfigFileThirdKind> getAllConfigFileThirdKinds();
+	
 	//职位分类查寻
 	List<ConfigMajorKind> getAllConfigMajorKinds();
 	//职位名称查寻

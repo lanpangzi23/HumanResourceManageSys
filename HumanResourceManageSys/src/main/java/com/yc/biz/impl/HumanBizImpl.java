@@ -32,25 +32,6 @@ public class HumanBizImpl implements HumanBiz {
 		return humanFile;
 	}
 
-	//一级机构查寻
-	@Override
-	public List<ConfigFileFirstKind> getAllConfigFileFirstKinds() {
-		List<ConfigFileFirstKind> list=this.baseDao.findAll(new ConfigFileFirstKind(), "selectAllFirstKinds");
-		return list;
-	}
-	
-	//二级机构查寻
-	@Override
-	public List<ConfigFileSecondKind> getAllConfigFileSecondKinds() {
-		List<ConfigFileSecondKind> list=this.baseDao.findAll(new ConfigFileSecondKind(), "selectAllSecondKinds");
-		return list;
-	}
-	//三级机构查寻
-	@Override
-	public List<ConfigFileThirdKind> getAllConfigFileThirdKinds() {
-		List<ConfigFileThirdKind> list=this.baseDao.findAll(new ConfigFileThirdKind(), "selectAllThirdKinds");
-		return list;
-	}
 	//职位分类查寻
 	@Override
 	public List<ConfigMajorKind> getAllConfigMajorKinds() {
@@ -131,11 +112,7 @@ public class HumanBizImpl implements HumanBiz {
 		return list;
 	}
 
-	@Override
-	public List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id) {
-		List<ConfigFileSecondKind> list=this.baseDao.findAll(new ConfigFileSecondKind(), "selectAllSecondKindsByFirst");
-		return list;
-	}
+
 
 
 }

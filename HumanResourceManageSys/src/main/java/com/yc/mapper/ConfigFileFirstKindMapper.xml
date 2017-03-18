@@ -11,9 +11,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- /* 	"first_kind_salary_id" : 一级机构薪酬发放责任人编号                                                    */ -->
 <!-- /* 	"first_kind_sale_id" : 一级机构销售责任人编号                                                        */  -->
 	<select id="selectAllFirstKinds" resultType="ConfigFileFirstKind" >
-		select first_kind_id,first_kind_name,first_kind_salary_id,first_kind_sale_id
+		select ffk_id, first_kind_id,first_kind_name,first_kind_salary_id,first_kind_sale_id
 		from config_file_first_kind 
 	</select>
+	
+	<update id="updateFirstKind" parameterType="ConfigFileFirstKind">
+		update config_file_first_kind 
+		set first_kind_salary_id=#{first_kind_salary_id},first_kind_sale_id=#{first_kind_sale_id}
+		<if test="first_kind_name!=''">
+		,first_kind_name=#{first_kind_name}
+		</if>
+		where first_kind_id=#{first_kind_id}
+	</update>
+	
+	<delete id="deleteFirstKind" parameterType="ConfigFileFirstKind">
+		delete config_file_first_kind
+		where ffk_id=#{ffk_id}
+	</delete>
+	
+	<insert id="addFirstKind" parameterType="ConfigFileFirstKind" useGeneratedKeys="true" keyProperty="ffk_id">
+		insert into config_file_first_kind(first_kind_id,first_kind_name,first_kind_salary_id,first_kind_sale_id) 
+		values(#{first_kind_id},#{first_kind_name},#{first_kind_salary_id},#{first_kind_sale_id})
+	</insert>
 	
 	
 
