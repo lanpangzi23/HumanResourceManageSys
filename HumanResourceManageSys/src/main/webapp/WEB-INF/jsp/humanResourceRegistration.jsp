@@ -16,7 +16,6 @@
 <base href="<%=basePath%>">
 <style>
 
-
 </style>
 </head>
 
@@ -29,25 +28,34 @@
     <input class="easyui" type="reset" style="background:#F33;"  value="删除"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
-			<td ><select name="first_kind_id" class="easyui-combobox" type="text" id="primaryMechanism" >
-					<c:forEach items="${configFileFirstKinds}" var="s" >
-						<option  value="${s.first_kind_id }">${s.first_kind_name }</option>
-					</c:forEach>
-				</select>
-			</td>
+
+		<td>
+			<input name="first_kind_id" id="cc1" class="easyui-combobox"
+				data-options="   
+			        valueField: 'first_kind_id',
+		        	textField: 'first_kind_name',
+		        	url: 'findFirstKind',
+		        	onSelect: function(rec){
+			            var url = 'findSecondKindByFirstKindId?first_kind_id=rec.first_kind_id;
+			            $('#cc2').combobox('reload', url);
+		        }" />
+
+		</td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
-			<td><select name="second_kind_id" class="easyui-combobox" type="text" id="secondaryInstitutions">
-					<c:forEach items="${configFileSecondKind}" var="s" >
-						<option value="${s.second_kind_id }">${s.second_kind_name }</option>
-					</c:forEach>
-			</select></td>
+			<td><input name="second_kind_id" id="cc2" class="easyui-combobox"
+					data-options="
+					valueField:'second_kind_id',
+					textField:'second_kind_name',
+		        	onSelect: function(rec){
+			            var url = 'findThirdKindBySecondKindId?second_kind_id='+rec.second_kind_id;   
+			            $('#cc3').combobox('reload', url);
+				}" />
+
+			</td>
 			<td style="text-align:center" class="backcolor">III级机构</td>
 			<td>
-				<select name="third_kind_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configFileThirdKind}" var="s" >
-						<option value="${s.second_kind_id }">${s.third_kind_name }</option>
-					</c:forEach>
-				</select>
+				<input  name="third_kind_id"  id="cc3" class="easyui-combobox" data-options="valueField:'third_kind_id',textField:'third_kind_name'" />
+
 			</td>
 			<td rowspan="5" colspan="2"><center>
 					<div id="Imgdiv">
@@ -57,7 +65,7 @@
        				 <input class="easyui-filebox" style="width:300px" data-options='onChange:change_photo' id="file_upload" name="picUrl"/><br/> 
    			
     	
-    </center></td>
+</td>
 		</tr>
 		<tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">职位分类</td>
@@ -125,7 +133,12 @@
 			<td style="text-align:center" class="backcolor">出生地</td>
 			<td><input name="human_birthplace" class="easyui" type="text"></td>
 			<td style="text-align:center" class="backcolor">生日</td>
-			<td><input name="human_birthday" class="easyui" onblur="todate()"/></td>
+			<td>
+			<input class="easyui" value="格式需为HHH-DD-MM" type="hidden" id="dataTiShi"  style="background-color:#FF903C;font-weight:300; border-bottom-color: red;"/>
+			<input id="human_birthday" name="human_birthday" class="easyui" onblur="todate()"/>
+			</td>
+			
+          
             <td style="text-align:center" class="backcolor">民族</td>
 			<td>
 				<select class="easyui-combobox" type="text" name="human_race">
@@ -248,9 +261,25 @@
 <script>
 
 function todate(){
+	$('#dataTiShi').attr('type','hidden');
  	var birthday=$('input[name=human_birthday]').val();
-	alert(birthday)
+ 	var date=new Date(birthday)
+ 	if('Invalid Date'==date){
+ 		$('#dataTiShi').val('格式无效，重新输入');
+ 		$('#dataTiShi').attr('type','text');
+ 		$('input[name=human_birthday]').val('');
+ 	}else{
+ 		$('#dataTiShi').val('格式需为HHH-DD-MM');
+ 		$('#dataTiShi').attr('type','hidden');
+ 		$('input[name=human_birthday]').val(date);
+ 	}
+	
 }
+$('#human_birthday').bind('input propertychange',function(){
+	$('#dataTiShi').attr('type','text');
+	
+})
+
 
 function change_photo(){
     PreviewImage($("input[name='picUrl']")[0], 'Img', 'Imgdiv');

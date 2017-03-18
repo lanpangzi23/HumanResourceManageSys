@@ -86,36 +86,36 @@ public class TestSpring extends TestCase {
 		System.out.println(hf);
 
 	}
-	//测试查寻一级机构
-	@Test
-	public void test1() {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
-		List<ConfigFileFirstKind> list=bb.getAllConfigFileFirstKinds();
-		for(ConfigFileFirstKind c:list){
-			System.out.println(c);
-		}
-	}
-	//测试查寻二级机构
-	@Test
-	public void test2() {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
-		List<ConfigFileSecondKind> list=bb.getAllConfigFileSecondKinds();
-		for(ConfigFileSecondKind c:list){
-			System.out.println(c);
-		}
-	}
-	//测试查寻三级机构
-		@Test
-		public void test3() {
-			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
-			List<ConfigFileThirdKind> list=bb.getAllConfigFileThirdKinds();
-			for(ConfigFileThirdKind c:list){
-				System.out.println(c);
-			}
-		}
+//	//测试查寻一级机构
+//	@Test
+//	public void test1() {
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+//		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+//		List<ConfigFileFirstKind> list=bb.getAllConfigFileFirstKinds();
+//		for(ConfigFileFirstKind c:list){
+//			System.out.println(c);
+//		}
+//	}
+////	//测试查寻二级机构
+//	@Test
+//	public void test2() {
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+//		HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+//		List<ConfigFileSecondKind> list=bb.getAllConfigFileSecondKinds();
+//		for(ConfigFileSecondKind c:list){
+//			System.out.println(c);
+//		}
+//	}
+//	//测试查寻三级机构
+//		@Test
+//		public void test3() {
+//			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+//			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+//			List<ConfigFileThirdKind> list=bb.getAllConfigFileThirdKinds();
+//			for(ConfigFileThirdKind c:list){
+//				System.out.println(c);
+//			}
+//		}
 		
 		//职位分类查寻
 		@Test
@@ -209,15 +209,15 @@ public class TestSpring extends TestCase {
 			}
 		}
 		//薪酬标准查寻
-		@Test
-		public void test13() {
-			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
-			List<ConfigFileThirdKind> list=bb.getAllConfigFileThirdKinds();
-			for(ConfigFileThirdKind c:list){
-				System.out.println(c);
-			}
-		}
+//		@Test
+//		public void test13() {
+//			ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+//			HumanBiz bb=  ac.getBean("humanBizImpl",HumanBiz.class);
+//			List<ConfigFileThirdKind> list=bb.getAllConfigFileThirdKinds();
+//			for(ConfigFileThirdKind c:list){
+//				System.out.println(c);
+//			}
+//		}
 		//特长查寻
 		@Test
 		public void test14() {
