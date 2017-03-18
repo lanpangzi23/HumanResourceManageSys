@@ -7,4 +7,7 @@
 		insert into salary_standard_details(standard_id,standard_name,item_id,item_name,salary) 
 		values(#{standard_id},#{standard_name},#{item_id},#{item_name},#{salary})
 	</insert>
+	<select id="selectSalaryStandardDetails" parameterType="SalaryStandardDetails" resultType="SalaryStandardDetails">
+		select * from salary_standard_details where standard_id=#{standard_id}
+	</select>
 </mapper>

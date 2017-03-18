@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yc.mapper.PersonnelTransferMapper">
+	<!-- 根据员工所在机构和建档时间查询状态为正常的员工 -->
+	<select id="selectPersonInfo" resultType="HumanFile">
+		select huf_id,first_kind_name,second_kind_name,third_kind_name,human_name,human_major_kind_name,hunma_major_name,salary_standard_name,regist_time from human_file
+	</select>
+	
+	<select id="selectPersonInfos" resultType="String">
+		select human_name from human_file
+	</select>
+	<insert id="insertHumanFile" parameterType="HumanFile">
+		insert into human_file(human_id_card,human_name) 
+		values(#(human_id_card),#{human_name})
+	</insert>
+	
+
+</mapper>
+ 
