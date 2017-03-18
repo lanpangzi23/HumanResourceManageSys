@@ -17,8 +17,8 @@
 <script type="text/javascript">
 var standard_id=$('input[name="standard_id"]').val();
 var keyword=$('input[name="keyword"]').val();
-var minDate=new Date($('input[name="minDate"]').val());
-var maxDate=new Date($('input[name="maxDate"]').val());
+var minDate=$('input[name="minDate"]').val();
+var maxDate=$('input[name="maxDate"]').val();
 $('#dg').datagrid({   
     url:'findByFuzzy',  
     pagination:true,

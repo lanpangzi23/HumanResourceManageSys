@@ -1,4 +1,7 @@
 package com.yc.web.utils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 public class RandomNumberUtil {
 	private static Random rd=new Random();
@@ -22,5 +25,16 @@ public class RandomNumberUtil {
 			}
 		}
 		return "0"+id;
+	}
+	public static Date toDate(String datestr){
+		if(datestr!=null){
+			SimpleDateFormat sdf=new SimpleDateFormat(datestr);
+			try {
+				return sdf.parse(datestr);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 }

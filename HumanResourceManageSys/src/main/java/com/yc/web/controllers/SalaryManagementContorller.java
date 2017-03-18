@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,14 +60,16 @@ public class SalaryManagementContorller {
 		return "success";
 	}
 	@RequestMapping(value="findByFuzzy")
-	public @ResponseBody void findByFuzzy(@RequestParam String standard_id,@RequestParam String keyword,@RequestParam Date minDate,@RequestParam Date maxDate,HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{//查看待复核人详情
+	public @ResponseBody void findByFuzzy(@RequestParam String standard_id,@RequestParam String keyword,@RequestParam String minDate,@RequestParam String maxDate,HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{//查看待复核人详情
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		SalaryStandard ss=new SalaryStandard();
 		ss.setStandard_id(standard_id);
-		ss.setKeyword(keyword);
-		ss.setMinDate(minDate);
-		ss.setMaxDate(maxDate);
+		if(!keyword.equals("")){
+			ss.setKeyword(keyword);
+		}
+		ss.setMinDate(RandomNumberUtil.toDate(minDate));
+		ss.setMaxDate(RandomNumberUtil.toDate(maxDate));
 		ss.setMinPage(rows*(page-1));
 		ss.setMaxPage(rows);
 		List<SalaryStandard> list=salaryAdministrationBizImpl.fuzzyQuery(ss);
@@ -82,13 +82,13 @@ public class SalaryManagementContorller {
 		rd.setTotal(""+size);
 		out.print(gson.toJson(rd));
 	}
-	@RequestMapping(value="toFindByFuzzy/{standard_id}/{keyword}/{minDate}/{maxDate}")
-	public String toFindByFuzzy(@PathVariable String standard_id,@PathVariable String keyword,@PathVariable Date minDate,@PathVariable Date maxDate,Model model){//查看待复核人详情
+	@RequestMapping(value="toFindByFuzzy")
+	public String toFindByFuzzy(@RequestParam String standard_id,@RequestParam String keyword,@RequestParam String minDate,@RequestParam String maxDate,Model model){//查看待复核人详情
 		SalaryStandard ss=new SalaryStandard();
 		ss.setStandard_id(standard_id);
 		ss.setKeyword(keyword);
-		ss.setMinDate(minDate);
-		ss.setMaxDate(maxDate);
+		ss.setMinDate(RandomNumberUtil.toDate(minDate));
+		ss.setMaxDate(RandomNumberUtil.toDate(maxDate));
 		model.addAttribute("ss", ss);
 		return "findByFuzzy";
 	}

@@ -34,9 +34,9 @@
 function findByFuzzy(){
 	var standard_id=$('input[name="standard_id"]').val();
 	var keyword=$('input[name="keyword"]').val();
-	var minDate=new Date($('input[name="minDate"]').val());
-	var maxDate=new Date($('input[name="maxDate"]').val());
-	$('#main_panel').panel('refresh',"toFindByFuzzy/"+standard_id+"/"+keyword+"/"+minDate+"/"+maxDate);
+	var minDate=$('input[name="minDate"]').val();
+	var maxDate=$('input[name="maxDate"]').val();
+	$('#main_panel').panel('refresh',"toFindByFuzzy?standard_id="+standard_id+"&keyword="+keyword+"&minDate="+minDate+"&maxDate="+maxDate);
 }
 </script>
 </body>
