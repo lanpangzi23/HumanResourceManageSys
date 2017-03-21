@@ -5,6 +5,7 @@ import java.util.List;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.SalaryStandard;
 public interface OrganizationBiz {
 	//一级机构添加
 	ConfigFileFirstKind save(ConfigFileFirstKind configFileFirstKind);
@@ -14,6 +15,8 @@ public interface OrganizationBiz {
 	ConfigFileFirstKind update(ConfigFileFirstKind configFileFirstKind);
 	//一级机构查寻
 	List<ConfigFileFirstKind> getAllConfigFileFirstKinds();
+	public List<ConfigFileFirstKind> findConfigFileFirstKind(int minPage,int maxPage);
+	public List<ConfigFileFirstKind> findConfigFileFirstKindByName(ConfigFileFirstKind configFileFirstKind);
 		//二级机构查寻
 	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
 		//
