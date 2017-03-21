@@ -79,6 +79,20 @@ public class HumanFile implements Serializable {
 	 * 
 	 */
 //	private S
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private Double demand_salaray_sum;
 	@Override
 	public String toString() {

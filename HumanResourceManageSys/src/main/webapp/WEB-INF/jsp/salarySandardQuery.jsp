@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>无标题文档</title>
+<title>薪酬标准查寻</title>
 </head>
 
 <body>

@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
@@ -65,5 +67,14 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 		//关键字查询条件将在薪酬标准名称、制定人、变更人和复核人字段进行匹配
 		List<SalaryStandard> list=baseDaoMybatisImpl.findAll(ss, "selectSalaryStandard1");
 		return list;
+	}
+	//查找待发放的薪资列表
+	public List<HumanFile> findPayoff(int page,int rows){
+		HumanFile hf=new HumanFile();
+		List<HumanFile> list=baseDaoMybatisImpl.findAll(hf, "selectHumanFile");
+		return list;
+	}
+	public void updateHumanFile() {//每月的22号提醒老板发工资给员工
+		baseDaoMybatisImpl.update(new HumanFile(), "updateHumanFile");
 	}
 }

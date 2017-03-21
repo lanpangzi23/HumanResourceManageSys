@@ -26,10 +26,10 @@
 	<select id="selectSalaryStandard1" parameterType="SalaryStandard" resultType="SalaryStandard">
 		select * from salary_standard where 1=1
 		<if test="standard_id!=null">
-			and standard_id like '%#{standard_id}%'
+			and standard_id like #{standard_id}
 		</if>
 		<if test="keyword!=null">
-			and standard_name or checker  or register or changer like '%#{keyword}%'
+			and standard_name like #{keyword} or checker like #{keyword}  or register like #{keyword} or changer like #{keyword}
 		</if>
 		<if test="minDate!=null">
 			and regist_time between #{minDate} and  #{maxDate}
