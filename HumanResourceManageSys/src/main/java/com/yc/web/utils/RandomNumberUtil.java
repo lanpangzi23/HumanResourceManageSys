@@ -5,8 +5,29 @@ import java.util.Date;
 import java.util.Random;
 public class RandomNumberUtil {
 	private static Random rd=new Random();
+	private static int total=1;
+	private static Date date=new Date("2017-02-22");
+	public static int getTotal(){
+		return total++;
+	}
 	public static String getTenByteNumber(){
 		String tenByte="";
+		for(int i=0;i<10;i++){
+			tenByte=tenByte+rd.nextInt(9);
+		}
+		return tenByte;
+	}
+	@SuppressWarnings("deprecation")
+	public static Date getDate(){
+		date.setMonth(date.getMonth()+1);
+		return date;
+	}
+	public static String getSalaryGrantId(){
+		String tenByte="";
+		String str="ABCDEFGHIGKLMNOPQRSTUVWXYZ";
+		for(int i=0;i<2;i++){
+			tenByte=tenByte+rd.nextInt(26);
+		}
 		for(int i=0;i<10;i++){
 			tenByte=tenByte+rd.nextInt(9);
 		}
@@ -27,8 +48,8 @@ public class RandomNumberUtil {
 		return "0"+id;
 	}
 	public static Date toDate(String datestr){
-		if(datestr!=null){
-			SimpleDateFormat sdf=new SimpleDateFormat(datestr);
+		if(!datestr.equals("")){
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			try {
 				return sdf.parse(datestr);
 			} catch (ParseException e) {

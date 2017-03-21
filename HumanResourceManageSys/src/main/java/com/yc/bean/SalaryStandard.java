@@ -172,4 +172,13 @@ public class SalaryStandard implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public String toString() {
+		return "SalaryStandard [ssd_id=" + ssd_id + ", standard_id=" + standard_id + ", standard_name=" + standard_name
+				+ ", designer=" + designer + ", register=" + register + ", checker=" + checker + ", changer=" + changer
+				+ ", regist_time=" + regist_time + ", check_time=" + check_time + ", change_time=" + change_time
+				+ ", salary_sum=" + salary_sum + ", check_status=" + check_status + ", change_status=" + change_status
+				+ ", check_comment=" + check_comment + ", remark=" + remark + ", minPage=" + minPage + ", maxPage="
+				+ maxPage + ", keyword=" + keyword + ", minDate=" + minDate + ", maxDate=" + maxDate
+				+ ", salaryStandardDetails=" + salaryStandardDetails + "]";
+	}
 }

@@ -1,10 +1,6 @@
 package com.yc.biz;
 
 import java.util.List;
-
-import com.yc.bean.ConfigFileFirstKind;
-import com.yc.bean.ConfigFileSecondKind;
-import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
@@ -43,6 +39,4 @@ public interface HumanBiz {
 	//教育年限查询
 	List<ConfigPublicChar> getAllEducationsYears();
 	//人力资源档案登记
-	
-
 }

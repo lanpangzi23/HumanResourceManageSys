@@ -1,6 +1,9 @@
 package com.yc.web.controllers;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,9 +104,9 @@ public class PageController {
 	public String tosalarySandardQueryPage(){
 		return "salarySandardQuery";
 	}
-	@RequestMapping(value="/admin/paymentRegistrationReview")
+	@RequestMapping(value="/admin/paymentRegistrationReview")//跳转到待发放的薪酬界面
 	public String topaymentRegistrationReviewPage(){
-		return "paymentRegistrationReview";
+		return "payoffList";
 	}
 	@RequestMapping(value="/admin/transferRegistration")
 	public String totransferRegistrationPage(){

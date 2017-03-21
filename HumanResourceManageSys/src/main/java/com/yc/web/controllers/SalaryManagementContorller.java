@@ -1,7 +1,6 @@
 package com.yc.web.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
+import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
@@ -64,9 +64,11 @@ public class SalaryManagementContorller {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		SalaryStandard ss=new SalaryStandard();
-		ss.setStandard_id(standard_id);
+		if(!standard_id.equals("")){
+			ss.setStandard_id("%"+standard_id+"%");
+		}
 		if(!keyword.equals("")){
-			ss.setKeyword(keyword);
+			ss.setKeyword("%"+keyword+"%");
 		}
 		ss.setMinDate(RandomNumberUtil.toDate(minDate));
 		ss.setMaxDate(RandomNumberUtil.toDate(maxDate));
@@ -87,9 +89,27 @@ public class SalaryManagementContorller {
 		SalaryStandard ss=new SalaryStandard();
 		ss.setStandard_id(standard_id);
 		ss.setKeyword(keyword);
+		System.out.println(minDate+"---"+maxDate);
 		ss.setMinDate(RandomNumberUtil.toDate(minDate));
 		ss.setMaxDate(RandomNumberUtil.toDate(maxDate));
 		model.addAttribute("ss", ss);
 		return "findByFuzzy";
+	}
+	@RequestMapping(value="findPayoff")
+	public @ResponseBody void findPayoff(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
+		PrintWriter out=response.getWriter();
+		List<HumanFile> list=salaryAdministrationBizImpl.findPayoff(rows*(page-1),rows);
+		ResponseData rd=new ResponseData();
+		Gson gson=new Gson();
+		rd.setCount(RandomNumberUtil.getTotal());
+		rd.setDate(RandomNumberUtil.getDate());
+		rd.setSalary_grant_id(RandomNumberUtil.getSalaryGrantId());
+		rd.setRows(list);
+		rd.setTotal(list.size()+"");
+		for(int i=0;i<list.size();i++){
+			
+		}
+		//rd.setPaidSalarySum(paidSalarySum);
+		out.print(gson.toJson(rd));
 	}
 }

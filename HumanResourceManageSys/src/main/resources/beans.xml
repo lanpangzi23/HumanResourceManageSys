@@ -72,5 +72,27 @@
 		</tx:attributes>
 	</tx:advice> -->
 
-
+	<!-- 配置作业类 -->
+	<bean id='simpleJobDetail' class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="salaryAdministrationBizImpl"></property>
+		<property name="targetMethod" value="updateHumanFile"></property>
+	</bean>
+	<!-- 配置触发器 -->
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name='jobDetail' ref="simpleJobDetail"/>
+		<property name="cronExpression" value="0 0 0 22 * ?"></property>
+	</bean>
+	<!-- 任务调类 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="simpleJobDetail"/>
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger"/>
+			</list>
+		</property>
+	</bean>
 </beans>
