@@ -14,6 +14,20 @@ public class ConfigFileFirstKind implements Serializable {
 	/**
 	 * 
 	 */
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private static final long serialVersionUID = 6502933049514913098L;
 	private Integer ffk_id;
 	private String first_kind_id;

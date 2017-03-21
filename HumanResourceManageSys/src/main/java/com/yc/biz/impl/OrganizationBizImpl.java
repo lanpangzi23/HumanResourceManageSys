@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.SalaryStandard;
 import com.yc.biz.OrganizationBiz;
 import com.yc.dao.BaseDao;
 @Service
@@ -63,5 +64,21 @@ public class OrganizationBizImpl implements OrganizationBiz {
 		this.baseDao.delete(configFileFirstKind, "deleteFirstKind");
 		return configFileFirstKind;
 	}
+
+	@Override
+	public List<ConfigFileFirstKind> findConfigFileFirstKind(int minPage, int maxPage) {
+		ConfigFileFirstKind ss=new ConfigFileFirstKind();
+		ss.setMaxPage(maxPage);
+		ss.setMinPage(minPage);
+		List<ConfigFileFirstKind> list=this.baseDao.findAll(ss, "selectAllFirstKinds");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileFirstKind> findConfigFileFirstKindByName(ConfigFileFirstKind configFileFirstKind) {
+		List<ConfigFileFirstKind> list=this.baseDao.findAll(configFileFirstKind, "selectFirstKindByName");
+		return list;
+	}
+
 
 }

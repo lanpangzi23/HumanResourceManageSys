@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.HumanFile;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.OrganizationBiz;
+import com.yc.web.utils.ResponseData;
 import com.yc.web.utils.UUIDUtil;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
@@ -62,27 +64,91 @@ public class HumanFileController {
 		Gson gson=new Gson();
 		return gson.toJson(list);
 	}
-	// 机构级联1
+	// 一级机构分页查寻
 		@RequestMapping(value = "/findFirstKind")
-		public @ResponseBody void findFirstKind(HttpServletResponse response) throws Exception {
+		public @ResponseBody void findFirstKind(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
+			
 			response.setCharacterEncoding("utf-8");
-			List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.getAllConfigFileFirstKinds();
+			List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.findConfigFileFirstKind(rows*(page-1), rows);
 			PrintWriter out = response.getWriter();
-			Gson gson = new Gson();
-			out.print(gson.toJson(configFileFirstKinds));
+			int size=organizationBiz.findConfigFileFirstKind(0, 10000).size();
+			Gson gson=new Gson();
+			ResponseData rd=new ResponseData();
+			rd.setRows(configFileFirstKinds);
+			rd.setTotal(""+size);
+			out.print(gson.toJson(rd)); 
 		}
+		//一级机构删除
 		@RequestMapping(value="/deleteFirstKind")
-		public @ResponseBody void deleteFirstKind(HttpServletResponse response,@RequestParam String  first_kind_id) throws IOException{
-			System.out.println("``````````"+first_kind_id);
+		public @ResponseBody void deleteFirstKind(HttpServletResponse response,@RequestParam String  ffk_id) throws IOException{
 			ConfigFileFirstKind configFileFirstKind=new ConfigFileFirstKind();
-			configFileFirstKind.setFirst_kind_id(first_kind_id);
-			List<ConfigFileFirstKind> list=(List<ConfigFileFirstKind>) this.organizationBiz.deleteConfigFileFirstKind(configFileFirstKind);
+			configFileFirstKind.setFfk_id(Integer.parseInt(ffk_id));
+			try {
+				List<ConfigFileFirstKind> list=(List<ConfigFileFirstKind>) this.organizationBiz.deleteConfigFileFirstKind(configFileFirstKind);
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 0 );
+			}
 			PrintWriter out = response.getWriter();
 			Gson gson=new Gson();
-			out.print( gson.toJson(list));
+			out.print( 1 );
 		}
+		//一级机构添加
+		@RequestMapping(value="/addFirstKind")
+		public @ResponseBody void addFirstKind(HttpServletResponse response,@RequestParam String  firstKindName,String firstKindSalaryId,String firstKindSaleId) throws IOException{
+			ConfigFileFirstKind configFileFirstKind=new ConfigFileFirstKind();
+			configFileFirstKind.setFirst_kind_id(UUIDUtil.getASIC());
+			configFileFirstKind.setFirst_kind_name(firstKindName);
+			configFileFirstKind.setFirst_kind_salary_id(firstKindSalaryId);
+			configFileFirstKind.setFirst_kind_sale_id(firstKindSaleId);
+			List<ConfigFileFirstKind> list1=this.organizationBiz.findConfigFileFirstKindByName(configFileFirstKind);
+			if(list1.size()>0){
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 2 );
+			}else{
+			try {
+				List<ConfigFileFirstKind> list=(List<ConfigFileFirstKind>) this.organizationBiz.save(configFileFirstKind);
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 0 );
+			}
+			PrintWriter out = response.getWriter();
+			Gson gson=new Gson();
+			out.print( 1 );
+		}}
+		@RequestMapping(value="/findFirstKindByName")
+		public @ResponseBody void findFirstKindByName(HttpServletResponse response,@RequestParam String  first_kind_name) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			ConfigFileFirstKind configFileFirstKind=new ConfigFileFirstKind();
+			configFileFirstKind.setFirst_kind_name(first_kind_name);
+			List<ConfigFileFirstKind> list1=this.organizationBiz.findConfigFileFirstKindByName(configFileFirstKind);
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				System.out.println(list1.get(0).getFirst_kind_name());
+				out.print(gson.toJson(list1) );
+		}
+		//修改                                                                                                                               
+		@RequestMapping(value="/updateFirstKind")
+		public @ResponseBody void updateFirstKind(HttpServletResponse response,@RequestParam String  firstKindName,@RequestParam String  firstKindSalaryId,@RequestParam String  fkkid,@RequestParam String  firstKindSaleId) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			ConfigFileFirstKind configFileFirstKind=new ConfigFileFirstKind();
+			configFileFirstKind.setFfk_id(Integer.parseInt(fkkid));
+			configFileFirstKind.setFirst_kind_name(firstKindName);
+			configFileFirstKind.setFirst_kind_salary_id(firstKindSalaryId);
+			configFileFirstKind.setFirst_kind_sale_id(firstKindSaleId);
+			try {
+				ConfigFileFirstKind list1=this.organizationBiz.update(configFileFirstKind);
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print(0);
+			}
+			
+		}
+				
 
-	
-	
 
 }
