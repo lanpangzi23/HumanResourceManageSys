@@ -14,6 +14,20 @@ public class ConfigFileSecondKind implements Serializable {
 	/**
 	 * 
 	 */
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private static final long serialVersionUID = 5723635721181684913L;
 	private Integer fsk_id;
 	private String first_kind_id;

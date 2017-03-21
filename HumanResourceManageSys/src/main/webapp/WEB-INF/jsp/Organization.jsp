@@ -34,10 +34,7 @@
     				<option value="10002">销售专员</option>
     			</select></td>
     		</tr>
-    		<br/>
-    		<br/>
-    		<br/>
-    		
+    		<br/><br/><br/>
     	</table> 
     	</form>
     	</center>
@@ -45,10 +42,7 @@
     		<br/>
     		<input type="button" onclick="updateFirstKind()" value="确认修改" style="float: right;">
     		<input type="button" onclick="addFindKind()" value="添加" style="float: right;">
-    		<br/>
-    		<br/>
-    		
-    		
+    		<br/><br/>
     		<div id="showFirstKind"></div>
     		<div id="alertFirstKind"></div>
     </div> 
@@ -60,6 +54,15 @@
     	<table id="salaryNameTable">
     		<tr>
     			<td>一级机构名称:</td>
+    			<td><select type="text" class="firstKindSaleId"  style="width: 150px;">
+    				<option value="10001">销售经理</option>
+    				<option value="10002">销售专员</option>
+    			</select>
+    			</td>
+    			
+    		</tr>
+    		<tr>
+    			<td>二级机构名称:</td>
     			<td>
     			<input type="text" class="firstKindffkId" value="" hidden="hidden"/>
     			<input type="text" class="firstKindName" value=""></td>
@@ -93,8 +96,8 @@
     		<br/>
     		
     		
-    		<div id="showFirstKind"></div>
-    		<div id="alertFirstKind"></div>
+    		<div id="showSecondKind"></div>
+    		<div id="alertSecondKind"></div>
     </div>   
     
     
@@ -137,13 +140,13 @@
     		<br/>
     		
     		
-    		<div id="showFirstKind"></div>
-    		<div id="alertFirstKind"></div>
+    		<div id="showThirdKind"></div>
+    		<div id="alertThirdKind"></div>
     </div>   
 </div>
 <script type="text/javascript">
 $('#showFirstKind').datagrid({
-	url:'findFirstKind',//goodinfo.action----
+	url:'findFirstKindByPage',//goodinfo.action----
 	pagination:true,//显示分页工具栏
 	pageSize:2,
 	pageList:[2,4,6],
@@ -159,31 +162,30 @@ $('#showFirstKind').datagrid({
 	     ]]
 });
 $('#showSecondKind').datagrid({
-	url:'../GoodTypeServlet.action',//goodinfo.action----
-	queryParams:{op:'findMenuByPage'},
+	url:'findSecondKindByPage',//goodinfo.action----
 	pagination:true,//显示分页工具栏
 	pageSize:2,
 	pageList:[2,4,6],
 	columns:[[
-	          {field:'ck',checkbox:true,width:100},
-	          {field:'t_id',title:'二级机构编号',width:100},
-	          {field:'t_name',title:'二级机构名称',width:100},
-	          {field:'t_parent',title:'二级机构薪酬发放责任人编号',width:100},
-	          {field:'t_disc',title:'二级机构销售责任人编号',width:100},
+			  {field:'fsk_id',width:0},
+	          {field:'first_kind_name',title:'所属一级机构名称',width:100},
+	          {field:'second_kind_name',title:'二级机构名称',width:100},
+	          {field:'second_salary_id',title:'二级机构薪酬发放责任人编号',width:200},
+	          {field:'second_sale_id',title:'二级机构销售责任人编号',width:200}
 	     ]]
 });
 $('#showThirdKind').datagrid({
-	url:'../GoodTypeServlet.action',//goodinfo.action----
-	queryParams:{op:'findMenuByPage'},
+	url:'findThirdKindByPage',//goodinfo.action----
 	pagination:true,//显示分页工具栏
 	pageSize:2,
 	pageList:[2,4,6],
 	columns:[[
-	          {field:'ck',checkbox:true,width:100},
-	          {field:'t_id',title:'三级机构编号',width:100},
-	          {field:'t_name',title:'三级机构名称',width:100},
-	          {field:'t_parent',title:'三级机构薪酬发放责任人编号',width:100},
-	          {field:'t_disc',title:'三级机构销售责任人编号',width:100},
+				{field:'ftk_id',width:0},
+				{field:'first_kind_name',title:'所属一级机构名称',width:100},
+				{field:'second_kind_name',title:'所属二级机构名称',width:200},
+				{field:'third_kind_name',title:'三级机构名称',width:100},
+				{field:'third_kind_sale_id',title:'三级机构销售责任人编号',width:200},
+				{field:'third_kind_is_retail',title:'是否为零售店',width:100}
 	     ]]
 });
 ////修改前显示 

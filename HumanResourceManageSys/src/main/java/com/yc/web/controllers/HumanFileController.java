@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
+import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.HumanFile;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.OrganizationBiz;
@@ -65,19 +66,45 @@ public class HumanFileController {
 		return gson.toJson(list);
 	}
 	// 一级机构分页查寻
-		@RequestMapping(value = "/findFirstKind")
+		@RequestMapping(value = "/findFirstKindByPage")
 		public @ResponseBody void findFirstKind(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
 			
 			response.setCharacterEncoding("utf-8");
-			List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.findConfigFileFirstKind(rows*(page-1), rows);
+			List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.findConfigFileFirstKindByPage(rows*(page-1), rows);
 			PrintWriter out = response.getWriter();
-			int size=organizationBiz.findConfigFileFirstKind(0, 10000).size();
+			int size=organizationBiz.findConfigFileFirstKindByPage(0, 10000).size();
 			Gson gson=new Gson();
 			ResponseData rd=new ResponseData();
 			rd.setRows(configFileFirstKinds);
 			rd.setTotal(""+size);
 			out.print(gson.toJson(rd)); 
 		}
+		// 二级机构分页查寻
+				@RequestMapping(value = "/findSecondKindByPage")
+				public @ResponseBody void findSecondKindByPage(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
+					response.setCharacterEncoding("utf-8");
+					List<ConfigFileSecondKind> configFileSecondKinds=this.organizationBiz.findConfigFileSecondKindByPage(rows*(page-1), rows);
+					PrintWriter out = response.getWriter();
+					int size=organizationBiz.findConfigFileFirstKindByPage(0, 10000).size();
+					Gson gson=new Gson();
+					ResponseData rd=new ResponseData();
+					rd.setRows(configFileSecondKinds);
+					rd.setTotal(""+size);
+					out.print(gson.toJson(rd)); 
+				}
+				// 三级机构分页查寻
+				@RequestMapping(value = "/findThirdKindByPage")
+				public @ResponseBody void findThirdKindByPage(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
+					response.setCharacterEncoding("utf-8");
+					List<ConfigFileThirdKind> configFileThirdKinds=this.organizationBiz.findConfigFileThirdKindByPage(rows*(page-1), rows);
+					PrintWriter out = response.getWriter();
+					int size=organizationBiz.findConfigFileFirstKindByPage(0, 10000).size();
+					Gson gson=new Gson();
+					ResponseData rd=new ResponseData();
+					rd.setRows(configFileThirdKinds);
+					rd.setTotal(""+size);
+					out.print(gson.toJson(rd)); 
+				}
 		//一级机构删除
 		@RequestMapping(value="/deleteFirstKind")
 		public @ResponseBody void deleteFirstKind(HttpServletResponse response,@RequestParam String  ffk_id) throws IOException{
