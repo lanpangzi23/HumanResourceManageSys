@@ -16,7 +16,9 @@
     	<table id="salaryNameTable">
     		<tr>
     			<td>一级机构名称:</td>
-    			<td><input type="text" class="firstKindName" value=""></td>
+    			<td>
+    			<input type="text" class="firstKindffkId" value="" hidden="hidden"/>
+    			<input type="text" class="firstKindName" value=""></td>
     		</tr>
     		<tr>
     			<td>一级机构薪酬发放责任人:</td>
@@ -32,58 +34,111 @@
     				<option value="10002">销售专员</option>
     			</select></td>
     		</tr>
-    		<tr>
-    			<td colspan="2"><input type="button" onclick="addFindKind()" value="添加" style="float: right;"></td>
-    		</tr>
+    		<br/>
+    		<br/>
+    		<br/>
+    		
     	</table> 
     	</form>
     	</center>
+    	<br/>
+    		<br/>
+    		<input type="button" onclick="updateFirstKind()" value="确认修改" style="float: right;">
+    		<input type="button" onclick="addFindKind()" value="添加" style="float: right;">
+    		<br/>
+    		<br/>
+    		
+    		
     		<div id="showFirstKind"></div>
-    		<div id="add_gb"></div>
+    		<div id="alertFirstKind"></div>
     </div> 
     
     
     <div title="二级机构设置" style="padding:20px;display:none;"> 
+    	 <center>
+    <form>
     	<table id="salaryNameTable">
     		<tr>
-    			<td>薪酬项目名称</td>
-    		</tr>
-    		<c:forEach items="${salaryName }" var="s" varStatus="ss">
-    		<tr>
-    			<td><input type="text" name="attribute_name" value="${s.attribute_name }"/></td>
+    			<td>一级机构名称:</td>
     			<td>
-    				<a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" href="javascript:delName(${s.pbc_id })">Remove</a>&nbsp;&nbsp;&nbsp;
-    				<a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" href="javascript:reName(${s.pbc_id },${ss.index })">Rename</a>
-    			</td>
+    			<input type="text" class="firstKindffkId" value="" hidden="hidden"/>
+    			<input type="text" class="firstKindName" value=""></td>
     		</tr>
-    		</c:forEach>
-    		<tr id="addSalaryName">
-    			<td><a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="javascript:addSalaryName()">Add</a></td>
+    		<tr>
+    			<td>一级机构薪酬发放责任人:</td>
+    			<td><select type="text" class="firstKindSalaryId" style="width: 150px;" >
+    				<option value="1001">薪酬经理</option>
+    				<option value="1002">薪酬专员</option>
+    			</select></td>
     		</tr>
+    		<tr>
+    			<td>一级机构销售责任人:</td>
+    			<td><select type="text" class="firstKindSaleId"  style="width: 150px;">
+    				<option value="10001">销售经理</option>
+    				<option value="10002">销售专员</option>
+    			</select></td>
+    		</tr>
+    		<br/>
+    		<br/>
+    		<br/>
+    		
     	</table> 
-    		<div id="showMainmenu"></div>
+    	</form>
+    	</center>
+    	<br/>
+    		<br/>
+    		<input type="button" onclick="updateFirstKind()" value="确认修改" style="float: right;">
+    		<input type="button" onclick="addFindKind()" value="添加" style="float: right;">
+    		<br/>
+    		<br/>
+    		
+    		
+    		<div id="showFirstKind"></div>
+    		<div id="alertFirstKind"></div>
     </div>   
     
     
      <div title="三级机构设置" style="padding:20px;display:none;"> 
+    	 <center>
+    <form>
     	<table id="salaryNameTable">
     		<tr>
-    			<td>薪酬项目名称</td>
-    		</tr>
-    		<c:forEach items="${salaryName }" var="s" varStatus="ss">
-    		<tr>
-    			<td><input type="text" name="attribute_name" value="${s.attribute_name }"/></td>
+    			<td>一级机构名称:</td>
     			<td>
-    				<a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" href="javascript:delName(${s.pbc_id })">Remove</a>&nbsp;&nbsp;&nbsp;
-    				<a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" href="javascript:reName(${s.pbc_id },${ss.index })">Rename</a>
-    			</td>
+    			<input type="text" class="firstKindffkId" value="" hidden="hidden"/>
+    			<input type="text" class="firstKindName" value=""></td>
     		</tr>
-    		</c:forEach>
-    		<tr id="addSalaryName">
-    			<td><a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="javascript:addSalaryName()">Add</a></td>
+    		<tr>
+    			<td>一级机构薪酬发放责任人:</td>
+    			<td><select type="text" class="firstKindSalaryId" style="width: 150px;" >
+    				<option value="1001">薪酬经理</option>
+    				<option value="1002">薪酬专员</option>
+    			</select></td>
     		</tr>
+    		<tr>
+    			<td>一级机构销售责任人:</td>
+    			<td><select type="text" class="firstKindSaleId"  style="width: 150px;">
+    				<option value="10001">销售经理</option>
+    				<option value="10002">销售专员</option>
+    			</select></td>
+    		</tr>
+    		<br/>
+    		<br/>
+    		<br/>
+    		
     	</table> 
-    		<div id="showMainmenu"></div>
+    	</form>
+    	</center>
+    	<br/>
+    		<br/>
+    		<input type="button" onclick="updateFirstKind()" value="确认修改" style="float: right;">
+    		<input type="button" onclick="addFindKind()" value="添加" style="float: right;">
+    		<br/>
+    		<br/>
+    		
+    		
+    		<div id="showFirstKind"></div>
+    		<div id="alertFirstKind"></div>
     </div>   
 </div>
 <script type="text/javascript">
@@ -99,7 +154,7 @@ $('#showFirstKind').datagrid({
 	          {field:'first_kind_salary_id',title:'一级机构薪酬发放责任人编号',width:300},
 	          {field:'first_kind_sale_id',title:'一级机构销售责任人编号',width:300},
 	          {field:'cz',title:'操作',width:100,formatter:function(value,row,index){
-	        	  return '<a href="javascript:deleteFirstKind('+row.ffk_id+')">删除</a> <a href="javascript:updateFirstKind('+row.ffk_id+')">修改</a>';
+	        	  return '<a href="javascript:deleteFirstKind('+row.ffk_id+')">删除</a> <a href="javascript:alertFirstKind(\''+row.first_kind_name+'\')">修改</a>';
 	          }}
 	     ]]
 });
@@ -131,25 +186,38 @@ $('#showThirdKind').datagrid({
 	          {field:'t_disc',title:'三级机构销售责任人编号',width:100},
 	     ]]
 });
-////修改 
-function updateFirstKind(id){
-		alert(id)
-		$('#add_gb').dialog({
-			title:'一级机构信息修改',
-			width:600,
-			height:500,
-			closed:false,
-			cache:false,
-			href:'updateFirstKind',
-			modal:true,
-			queryParams:{first_kind_id:id}
-		});
+////修改前显示 
+function alertFirstKind(first_kind_name){
+	$.post('findFirstKindByName',{first_kind_name:first_kind_name},function(data){
+		$('.firstKindffkId').val(data[0].ffk_id);
+		$('.firstKindName').val(data[0].first_kind_name);
+		$('.firstKindSalaryId').val(data[0].first_kind_salary_id);
+		$('.firstKindSaleId').val(data[0].first_kind_sale_id);
+	},'json');
 		
-	};
+};
+
+////修改
+function updateFirstKind(){
+	var fkkid=$('.firstKindffkId').val();
+	var firstKindName =$('.firstKindName').val();
+	var firstKindSalaryId=$('.firstKindSalaryId').val();
+	var firstKindSaleId=$('.firstKindSaleId').val();
+	$.post('updateFirstKind',{fkkid:fkkid,firstKindName:firstKindName,firstKindSalaryId:firstKindSalaryId,firstKindSaleId:firstKindSaleId},function(data){
+		if(data==0){
+			alert('修改失败')
+		}else{
+			alert('修改成功')
+			$('#showFirstKind').datagrid('reload');//刷新
+		}
+	},'text');
+		
+};
+
+	
 
 //删除 
 function deleteFirstKind(id){
-	alert(id)
 	$.post('deleteFirstKind',{ffk_id:id},function(data){
 		if(data==1){
 			alert('删除成功');
@@ -175,10 +243,10 @@ function addFindKind(){//菜单添加
 			}else if(data==0){
 				alert('添加失败');
 			}else if(data==2){
-				alert('菜单已存在，请勿重复添加！');var Mainmenu=$('.Mainmeu').val();
-				$('.Mainmeu').val('');
-				$('.Child').val('');
-				$('.dis').val('');
+				alert('一级机构名称已存在，请勿重复添加！');var Mainmenu=$('.Mainmeu').val();
+				$('.firstKindName').val('');
+				$('.firstKindSalaryId').val('');
+				$('.firstKindSaleId').val('');
 			}
 		},'text');
 }

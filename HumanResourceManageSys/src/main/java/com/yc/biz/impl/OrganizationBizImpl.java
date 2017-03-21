@@ -76,7 +76,7 @@ public class OrganizationBizImpl implements OrganizationBiz {
 
 	@Override
 	public List<ConfigFileFirstKind> findConfigFileFirstKindByName(ConfigFileFirstKind configFileFirstKind) {
-		List<ConfigFileFirstKind> list=this.baseDao.findAll(configFileFirstKind, "selectAllFirstKinds");
+		List<ConfigFileFirstKind> list=this.baseDao.findAll(configFileFirstKind, "selectFirstKindByName");
 		return list;
 	}
 

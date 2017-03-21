@@ -103,7 +103,7 @@ public class HumanFileController {
 			configFileFirstKind.setFirst_kind_salary_id(firstKindSalaryId);
 			configFileFirstKind.setFirst_kind_sale_id(firstKindSaleId);
 			List<ConfigFileFirstKind> list1=this.organizationBiz.findConfigFileFirstKindByName(configFileFirstKind);
-			if(list1!=null){
+			if(list1.size()>0){
 				PrintWriter out = response.getWriter();
 				Gson gson=new Gson();
 				out.print( 2 );
@@ -119,8 +119,36 @@ public class HumanFileController {
 			Gson gson=new Gson();
 			out.print( 1 );
 		}}
+		@RequestMapping(value="/findFirstKindByName")
+		public @ResponseBody void findFirstKindByName(HttpServletResponse response,@RequestParam String  first_kind_name) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			ConfigFileFirstKind configFileFirstKind=new ConfigFileFirstKind();
+			configFileFirstKind.setFirst_kind_name(first_kind_name);
+			List<ConfigFileFirstKind> list1=this.organizationBiz.findConfigFileFirstKindByName(configFileFirstKind);
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				System.out.println(list1.get(0).getFirst_kind_name());
+				out.print(gson.toJson(list1) );
+		}
+		//修改                                                                                                                               
+		@RequestMapping(value="/updateFirstKind")
+		public @ResponseBody void updateFirstKind(HttpServletResponse response,@RequestParam String  firstKindName,@RequestParam String  firstKindSalaryId,@RequestParam String  fkkid,@RequestParam String  firstKindSaleId) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			ConfigFileFirstKind configFileFirstKind=new ConfigFileFirstKind();
+			configFileFirstKind.setFfk_id(Integer.parseInt(fkkid));
+			configFileFirstKind.setFirst_kind_name(firstKindName);
+			configFileFirstKind.setFirst_kind_salary_id(firstKindSalaryId);
+			configFileFirstKind.setFirst_kind_sale_id(firstKindSaleId);
+			try {
+				ConfigFileFirstKind list1=this.organizationBiz.update(configFileFirstKind);
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print(0);
+			}
+			
+		}
+				
 
-	
-	
 
 }
