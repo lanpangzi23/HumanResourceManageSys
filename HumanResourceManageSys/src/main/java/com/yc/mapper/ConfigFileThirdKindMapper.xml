@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectThirdKindByName" resultType="ConfigFileThirdKind" >
 		select ftk_id, first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,
 		third_kind_sale_id,third_kind_is_retail
-		from config_file_third_kind  where third_kind_name=#{third_kind_name}
+		from config_file_third_kind  where third_kind_name=#{third_kind_name} and second_kind_name=#{second_kind_name} and third_kind_name=#{third_kind_name}
 	</select>
 	
 	<update id="updateThirdKind" parameterType="ConfigFileThirdKind">

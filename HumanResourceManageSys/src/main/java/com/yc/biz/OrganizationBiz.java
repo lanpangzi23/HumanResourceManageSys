@@ -19,21 +19,12 @@ public interface OrganizationBiz {
 	public List<ConfigFileFirstKind> findConfigFileFirstKindByPage(int minPage,int maxPage);
 	public List<ConfigFileSecondKind> findConfigFileSecondKindByPage(int minPage,int maxPage);
 	public List<ConfigFileThirdKind> findConfigFileThirdKindByPage(int minPage,int maxPage);
-	
-	
-	public List<ConfigFileFirstKind> findConfigFileFirstKindByName(ConfigFileFirstKind configFileFirstKind);
+
 		//二级机构查寻
 	List<ConfigFileSecondKind> getAllConfigFileSecondKinds();
-		//根据一级机构查寻二级机构
-	List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id);
-	//根据二级机构查寻三级机构
-	List<ConfigFileThirdKind> getAllConfigFileThirdKindsBySecond(String id);
 		//三级机构查寻
 	List<ConfigFileThirdKind> getAllConfigFileThirdKinds();
-	
-	
-	
-	//二级机构添加
+		//二级机构添加
 	ConfigFileSecondKind saveConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
 		//二级机构删除
 	ConfigFileSecondKind deleteConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind);
@@ -45,5 +36,14 @@ public interface OrganizationBiz {
 	ConfigFileThirdKind deleteConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
 		//三级机构修改
 	ConfigFileThirdKind updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind);
-
+	//根据一级机构查寻二级机构
+	List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id);
+	//根据二级机构查寻三级机构
+	List<ConfigFileThirdKind> getAllConfigFileThirdKindsBySecond(String id);
+	//根据名字查寻一级机构
+	public List<ConfigFileFirstKind> findConfigFileFirstKindByName(ConfigFileFirstKind configFileFirstKind);
+	//根据名字查寻一级机构
+	public List<ConfigFileSecondKind> findConfigFileSecondKindByName(ConfigFileSecondKind configFileSecondKind);
+	//根据名字查寻一级机构
+	public List<ConfigFileThirdKind> findConfigFileThirdKindByName(ConfigFileThirdKind configFileThirdKind);
 }

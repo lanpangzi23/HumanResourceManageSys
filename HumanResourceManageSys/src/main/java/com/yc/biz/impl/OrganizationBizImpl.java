@@ -55,7 +55,9 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	}
 	@Override
 	public List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id) {
-		List<ConfigFileSecondKind> list=this.baseDao.findAll(new ConfigFileSecondKind(), "selectAllSecondKindsByFirst");
+		ConfigFileSecondKind configFileSecondKind=new ConfigFileSecondKind();
+		configFileSecondKind.setFirst_kind_id(id);
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(configFileSecondKind, "selectAllSecondKindsByFirst");
 		return list;
 	}
 
@@ -141,6 +143,18 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	public ConfigFileThirdKind updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind) {
 		this.baseDao.update(configFileThirdKind, "updateThirdKind");
 		return configFileThirdKind;
+	}
+
+	@Override
+	public List<ConfigFileSecondKind> findConfigFileSecondKindByName(ConfigFileSecondKind configFileSecondKind) {
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(configFileSecondKind, "selectSecondKindByName");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> findConfigFileThirdKindByName(ConfigFileThirdKind configFileThirdKind) {
+		List<ConfigFileThirdKind> list=this.baseDao.findAll(configFileThirdKind, "selectThirdKindByName");
+		return list;
 	}
 
 
