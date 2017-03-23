@@ -22,7 +22,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{register},#{checker},#{changer},#{regist_time},#{check_time},#{change_time},#{lastly_change_time},#{delete_time},#{recovery_time},#{human_file_status})
 	</insert>
 	
-
+	<select id="selectHumanFile" parameterType="HumanFile" resultType="HumanFile">
+		select first_kind_name,second_kind_name,count(*) count,sum(salary_sum) salary_sum,sum(paid_salary_sum) paid_salary_sum from 
+		(select * from human_file WHERE paid_salary_sum is null and huf_id limit #{minPage},#{maxPage}) s
+		group by first_kind_name,second_kind_name
+	</select>
+	
+	<update id="updateHumanFile" parameterType="HumanFile">
+		update human_file set paid_salary_sum=null
+	</update>
 	
 <!-- 	<select id="getAllBooks" resultType="Book" resultMap="BookResultMap"> -->
 <!-- 		select bid,author,isbn,title,price,book.cid,name,pdfs,description -->

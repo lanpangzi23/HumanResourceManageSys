@@ -97,19 +97,14 @@ public class SalaryManagementContorller {
 	}
 	@RequestMapping(value="findPayoff")
 	public @ResponseBody void findPayoff(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
+		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		List<HumanFile> list=salaryAdministrationBizImpl.findPayoff(rows*(page-1),rows);
+		int size=salaryAdministrationBizImpl.findPayoff(0,1000000).size();
 		ResponseData rd=new ResponseData();
 		Gson gson=new Gson();
-		rd.setCount(RandomNumberUtil.getTotal());
-		rd.setDate(RandomNumberUtil.getDate());
-		rd.setSalary_grant_id(RandomNumberUtil.getSalaryGrantId());
 		rd.setRows(list);
-		rd.setTotal(list.size()+"");
-		for(int i=0;i<list.size();i++){
-			
-		}
-		//rd.setPaidSalarySum(paidSalarySum);
+		rd.setTotal(size+"");
 		out.print(gson.toJson(rd));
 	}
 }

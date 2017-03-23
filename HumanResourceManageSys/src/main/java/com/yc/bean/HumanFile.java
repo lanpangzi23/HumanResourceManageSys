@@ -81,6 +81,13 @@ public class HumanFile implements Serializable {
 //	private S
 	private Integer minPage;
 	private Integer maxPage;
+	private Integer count;
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public Integer getMinPage() {
 		return minPage;
 	}
