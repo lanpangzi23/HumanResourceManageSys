@@ -16,7 +16,20 @@ public class ConfigFileThirdKind implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private Integer ftk_id;
 
 	private String first_kind_id;

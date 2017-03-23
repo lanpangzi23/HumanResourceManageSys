@@ -55,7 +55,9 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	}
 	@Override
 	public List<ConfigFileSecondKind> getAllConfigFileSecondKindsByFirst(String id) {
-		List<ConfigFileSecondKind> list=this.baseDao.findAll(new ConfigFileSecondKind(), "selectAllSecondKindsByFirst");
+		ConfigFileSecondKind configFileSecondKind=new ConfigFileSecondKind();
+		configFileSecondKind.setFirst_kind_id(id);
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(configFileSecondKind, "selectAllSecondKindsByFirst");
 		return list;
 	}
 
@@ -66,7 +68,7 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	}
 
 	@Override
-	public List<ConfigFileFirstKind> findConfigFileFirstKind(int minPage, int maxPage) {
+	public List<ConfigFileFirstKind> findConfigFileFirstKindByPage(int minPage, int maxPage) {
 		ConfigFileFirstKind ss=new ConfigFileFirstKind();
 		ss.setMaxPage(maxPage);
 		ss.setMinPage(minPage);
@@ -77,6 +79,81 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	@Override
 	public List<ConfigFileFirstKind> findConfigFileFirstKindByName(ConfigFileFirstKind configFileFirstKind) {
 		List<ConfigFileFirstKind> list=this.baseDao.findAll(configFileFirstKind, "selectFirstKindByName");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> getAllConfigFileThirdKindsBySecond(String id) {
+		ConfigFileThirdKind ss=new ConfigFileThirdKind();
+		ss.setSecond_kind_id(id);
+		List<ConfigFileThirdKind> list=this.baseDao.findAll(ss, "selectThirdKindBySecond");
+		return list;
+	}
+
+	@Override
+	public ConfigFileSecondKind saveConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind) {
+		this.baseDao.add(configFileSecondKind, "addSecondKind");
+		return configFileSecondKind;
+	}
+
+
+	@Override
+	public List<ConfigFileSecondKind> findConfigFileSecondKindByPage(int minPage, int maxPage) {
+		ConfigFileSecondKind ss=new ConfigFileSecondKind();
+		ss.setMaxPage(maxPage);
+		ss.setMinPage(minPage);
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(ss, "selectAllSecondKinds");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> findConfigFileThirdKindByPage(int minPage, int maxPage) {
+		ConfigFileThirdKind ss=new ConfigFileThirdKind();
+		ss.setMaxPage(maxPage);
+		ss.setMinPage(minPage);
+		List<ConfigFileThirdKind> list=this.baseDao.findAll(ss, "selectAllThirdKinds");
+		return list;
+	}
+
+	@Override
+	public ConfigFileSecondKind deleteConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind) {
+		this.baseDao.delete(configFileSecondKind, "deleteSecondKind");
+		return configFileSecondKind;
+	}
+
+	@Override
+	public ConfigFileSecondKind updateConfigFileSecondKind(ConfigFileSecondKind configFileSecondKind) {
+		this.baseDao.update(configFileSecondKind, "updateSecondKind");
+		return configFileSecondKind;
+	}
+
+	@Override
+	public ConfigFileThirdKind saveConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind) {
+		this.baseDao.add(configFileThirdKind, "addThirdKind");
+		return configFileThirdKind;
+	}
+
+	@Override
+	public ConfigFileThirdKind deleteConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind) {
+		this.baseDao.delete(configFileThirdKind, "deleteThirdKind");
+		return configFileThirdKind;
+	}
+
+	@Override
+	public ConfigFileThirdKind updateConfigFileThirdKind(ConfigFileThirdKind configFileThirdKind) {
+		this.baseDao.update(configFileThirdKind, "updateThirdKind");
+		return configFileThirdKind;
+	}
+
+	@Override
+	public List<ConfigFileSecondKind> findConfigFileSecondKindByName(ConfigFileSecondKind configFileSecondKind) {
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(configFileSecondKind, "selectSecondKindByName");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> findConfigFileThirdKindByName(ConfigFileThirdKind configFileThirdKind) {
+		List<ConfigFileThirdKind> list=this.baseDao.findAll(configFileThirdKind, "selectThirdKindByName");
 		return list;
 	}
 

@@ -17,12 +17,18 @@ import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.HumanBiz;
+import com.yc.biz.OrganizationBiz;
 import com.yc.biz.SystemManagementBiz;
 import com.yc.web.utils.RandomNumberUtil;
 @Controller
 public class PageController {
 	private SystemManagementBiz systemManagementBizImpl;
 	private HumanBiz humanBiz;
+	private OrganizationBiz organizationBiz;
+	@Resource(name="organizationBizImpl")
+	public void setOrganizationBiz(OrganizationBiz organizationBiz) {
+		this.organizationBiz = organizationBiz;
+	}
 	@Resource(name="humanBizImpl")
 	public void setHumanBiz(HumanBiz humanBiz) {
 		this.humanBiz = humanBiz;
@@ -125,7 +131,9 @@ public class PageController {
 	}
 	
 	@RequestMapping(value="/admin/organization")
-	public String toOrganization(){//转到机构设置区
+	public String toOrganization(Model model){//转到机构设置区
+		List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.getAllConfigFileFirstKinds();
+		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
 		return "Organization";
 	}
 }
