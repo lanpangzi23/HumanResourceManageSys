@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="selectHumanFile" parameterType="HumanFile" resultType="HumanFile">
-		select first_kind_name,second_kind_name,count(*) count,sum(salary_sum) basicsum,sum(paid_salary_sum) sum from 
+		select first_kind_name,second_kind_name,count(*) count,sum(salary_sum) salary_sum,sum(paid_salary_sum) paid_salary_sum from 
 		(select * from human_file WHERE paid_salary_sum is null and huf_id limit #{minPage},#{maxPage}) s
 		group by first_kind_name,second_kind_name
 	</select>

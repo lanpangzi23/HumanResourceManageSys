@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.bean.HumanFile;
+import com.yc.bean.SalaryGrant;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
@@ -71,10 +72,15 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 	//查找待发放的薪资列表
 	public List<HumanFile> findPayoff(int page,int rows){
 		HumanFile hf=new HumanFile();
+		hf.setMinPage(page);
+		hf.setMaxPage(rows);
 		List<HumanFile> list=baseDaoMybatisImpl.findAll(hf, "selectHumanFile");
 		return list;
 	}
 	public void updateHumanFile() {//每月的22号提醒老板发工资给员工
 		baseDaoMybatisImpl.update(new HumanFile(), "updateHumanFile");
+	}
+	public List<SalaryGrant> findSalaryGrant() {
+		return baseDaoMybatisImpl.findAll(new SalaryGrant(), "selectSalaryGrant");
 	}
 }

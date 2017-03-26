@@ -6,7 +6,6 @@ import java.util.Random;
 public class RandomNumberUtil {
 	private static Random rd=new Random();
 	private static int total=1;
-	private static Date date=new Date("2017-02-22");
 	public static int getTotal(){
 		return total++;
 	}
@@ -17,16 +16,11 @@ public class RandomNumberUtil {
 		}
 		return tenByte;
 	}
-	@SuppressWarnings("deprecation")
-	public static Date getDate(){
-		date.setMonth(date.getMonth()+1);
-		return date;
-	}
 	public static String getSalaryGrantId(){
 		String tenByte="";
 		String str="ABCDEFGHIGKLMNOPQRSTUVWXYZ";
 		for(int i=0;i<2;i++){
-			tenByte=tenByte+rd.nextInt(26);
+			tenByte=tenByte+str.charAt(rd.nextInt(26));
 		}
 		for(int i=0;i<10;i++){
 			tenByte=tenByte+rd.nextInt(9);
