@@ -44,10 +44,9 @@
     <div data-options="region:'west',title:'West',href:'',split:true" style="width:200px;">
     	<div id="menu" class="easyui-accordion" fit="true" border="false">
         	<div title="系统管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="admin/humanResourceRegistration" data-options="plain:true">人力资源档案管理设置</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">人力资源档案管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">题库管理设置</a></li>
-                <li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">机构设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileUpdate" data-options="plain:true">其他设置</a></li>
                  
         	</div>

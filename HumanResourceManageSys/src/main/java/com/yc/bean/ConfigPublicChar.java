@@ -11,6 +11,20 @@ public class ConfigPublicChar implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6779703261814557280L;
+	private Integer minPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
+	private Integer maxPage;
 	private Integer pbc_id;
 	private String attribute_kind;
 	private String attribute_name;

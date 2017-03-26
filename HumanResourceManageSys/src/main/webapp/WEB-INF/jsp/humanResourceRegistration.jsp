@@ -24,7 +24,7 @@
 	
 <form id="upload_form" enctype="multipart/form-data" action="humanResourceRegistration" method="post">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
-	<input class="easyui" type="submit"  style="margin-left:899px; background:#CFC;" value="提交"/>
+	<input class="easyui submit" type="button"  style="margin-left:899px; background:#CFC;" value="提交"/>
     <input class="easyui" type="reset" style="background:#F33;"  value="删除"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
@@ -34,9 +34,9 @@
 				data-options="   
 			        valueField: 'first_kind_id',
 		        	textField: 'first_kind_name',
-		        	url: 'findFirstKind',
+		        	url: 'findAllFirstKind',
 		        	onSelect: function(rec){
-			            var url = 'findSecondKindByFirstKindId?first_kind_id=rec.first_kind_id;
+			            var url = 'findSecondKindByFirst?first_kind_id='+rec.first_kind_id;
 			            $('#cc2').combobox('reload', url);
 		        }" />
 
@@ -62,7 +62,7 @@
      		  			 <img id="Img" width="200px" height="200px"/>
    		 			</div>
 				
-       				 <input class="easyui-filebox" style="width:300px" data-options='onChange:change_photo' id="file_upload" name="picUrl"/><br/> 
+       				 <input class="easyui-filebox" style="width:300px" data-options="onChange:change_photo()" name="picUrl"/><br/> 
    			
     	
 </td>
@@ -258,7 +258,25 @@
 
  
 </table></form>
+
+</body>
+<script type="text/javascript" src="js/jquery-form.js"></script>
 <script>
+//图片上传  及数据保存  
+   $(function () {
+            $(".submit").click(function () {
+                $("#upload_form").ajaxSubmit({
+                    success: function (data) {
+                        alert(data.url);
+                    },
+                    error: function (error) { alert(error); },
+                    url: 'humanResourceRegistration', /*设置post提交到的页面*/
+                    type: "post", /*设置表单以post方法提交*/
+                    dataType: "json" /*设置返回值类型为文本*/
+                });
+            });
+        });
+///////////////////////
 
 function todate(){
 	$('#dataTiShi').attr('type','hidden');
@@ -340,7 +358,5 @@ function PreviewImage(fileObj,imgPreviewId,divPreviewId){
     }  
 }
 </script>
-
-</body>
 </html>
     
