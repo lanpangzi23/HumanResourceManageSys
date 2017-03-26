@@ -1,7 +1,11 @@
 package com.yc.web.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -106,5 +110,16 @@ public class SalaryManagementContorller {
 		rd.setRows(list);
 		rd.setTotal(size+"");
 		out.print(gson.toJson(rd));
+	}
+	@RequestMapping(value="toPayOffPage/{firstname}/{secondname}/{id}/{sum}/{count}")
+	public String findPayoff(@PathVariable String firstname,@PathVariable String secondname,@PathVariable String id,@PathVariable String sum,Model model,@PathVariable String count) {
+		Map<String,String> map=new HashMap<>();
+		map.put("firstname", firstname);
+		map.put("secondname", secondname);
+		map.put("id", id);
+		map.put("sum", sum);
+		map.put("count",count);
+		model.addAttribute("map", map);
+		return "paymentRegistrationReview";
 	}
 }
