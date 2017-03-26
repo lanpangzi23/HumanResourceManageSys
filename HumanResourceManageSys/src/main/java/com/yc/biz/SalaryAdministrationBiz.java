@@ -13,4 +13,6 @@ public interface SalaryAdministrationBiz {
 	public List<HumanFile> findPayoff(int page,int rows);
 	public void updateHumanFile();
 	public List<SalaryGrant> findSalaryGrant();
+	public List<HumanFile> findHumanName(String firstname,String secondname);
+	public List<SalaryStandardDetails> findBySalarySN(String name);
 }

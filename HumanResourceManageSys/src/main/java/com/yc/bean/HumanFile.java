@@ -82,6 +82,13 @@ public class HumanFile implements Serializable {
 	private Integer minPage;
 	private Integer maxPage;
 	private Integer count;
+	private List<SalaryStandardDetails> ssd;
+	public List<SalaryStandardDetails> getSsd() {
+		return ssd;
+	}
+	public void setSsd(List<SalaryStandardDetails> ssd) {
+		this.ssd = ssd;
+	}
 	public Integer getCount() {
 		return count;
 	}

@@ -83,4 +83,24 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 	public List<SalaryGrant> findSalaryGrant() {
 		return baseDaoMybatisImpl.findAll(new SalaryGrant(), "selectSalaryGrant");
 	}
+	public HumanFile findSalaryGrantDetail(String name,int page,int rows) {//查看具体员工的工资详情
+		HumanFile hf=new HumanFile();
+		hf.setHuman_name(name);
+		hf.setMinPage(page);
+		hf.setMaxPage(rows);
+		List<HumanFile> list=baseDaoMybatisImpl.findAll(hf, "selectSalaryStandardDetails1");
+		return list.get(0);
+	}
+	public List<HumanFile> findHumanName(String firstname, String secondname) {//根据一二机构查询员工信息
+		HumanFile hf=new HumanFile();
+		hf.setFirst_kind_name(firstname);
+		hf.setSecond_kind_name(secondname);
+		List<HumanFile> list=baseDaoMybatisImpl.findAll(hf, "selectHumanName");
+		return list;
+	}
+	public List<SalaryStandardDetails> findBySalarySN(String name) {//根据薪酬标准id查找薪酬项目详情
+		SalaryStandardDetails ssd=new SalaryStandardDetails();
+		ssd.setStandard_id(name);;
+		return baseDaoMybatisImpl.findAll(ssd, "selectSalaryStandardDetails");
+	}
 }

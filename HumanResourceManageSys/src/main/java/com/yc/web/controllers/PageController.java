@@ -1,31 +1,36 @@
 package com.yc.web.controllers;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.yc.bean.ConfigFileFirstKind;
-import com.yc.bean.ConfigFileSecondKind;
-import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
+
+import com.yc.bean.SalaryGrant;
+
 import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.OrganizationBiz;
+import com.yc.biz.SalaryAdministrationBiz;
 import com.yc.biz.SystemManagementBiz;
 import com.yc.web.utils.RandomNumberUtil;
+import com.yc.web.utils.ResponseData;
 @Controller
 public class PageController {
 	private SystemManagementBiz systemManagementBizImpl;
 	private HumanBiz humanBiz;
 	private OrganizationBiz organizationBiz;
+	private SalaryAdministrationBiz salaryAdministrationBizImpl;
+	@Resource
+	public void setSalaryAdministrationBizImpl(SalaryAdministrationBiz salaryAdministrationBizImpl) {
+		this.salaryAdministrationBizImpl = salaryAdministrationBizImpl;
+	}
 	@Resource(name="organizationBizImpl")
 	public void setOrganizationBiz(OrganizationBiz organizationBiz) {
 		this.organizationBiz = organizationBiz;
@@ -114,7 +119,15 @@ public class PageController {
 		return "salarySandardQuery";
 	}
 	@RequestMapping(value="/admin/paymentRegistrationReview")//跳转到待发放的薪酬界面
-	public String topaymentRegistrationReviewPage(){
+	public String topaymentRegistrationReviewPage(Model model){
+		List<SalaryGrant> list=salaryAdministrationBizImpl.findSalaryGrant();
+		ResponseData rd=new ResponseData();
+		if(list.size()>0){
+			rd.setTotalCount(list.size()+1);
+			rd.setDate(list.get(list.size()-1).getRegist_time());
+		}
+		rd.setSalaryGrantId(RandomNumberUtil.getSalaryGrantId());
+		model.addAttribute("salaryGrant", rd);
 		return "payoffList";
 	}
 	@RequestMapping(value="/admin/transferRegistration")
@@ -132,7 +145,6 @@ public class PageController {
 		mv.addObject("salaryName", list);
 		return mv;
 	}
-	
 	@RequestMapping(value="/admin/organization")
 	public String toOrganization(Model model){//转到机构设置区
 		List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.getAllConfigFileFirstKinds();

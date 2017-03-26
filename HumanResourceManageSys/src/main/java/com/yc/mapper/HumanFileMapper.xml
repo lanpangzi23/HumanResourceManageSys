@@ -27,10 +27,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select * from human_file WHERE paid_salary_sum is null and huf_id limit #{minPage},#{maxPage}) s
 		group by first_kind_name,second_kind_name
 	</select>
-	
+	<select id="selectHumanName" parameterType="HumanFile" resultType="HumanFile">
+		select human_name,human_id,salary_standard_id from human_file where first_kind_name=#{first_kind_name} and second_kind_name=#{second_kind_name}
+	</select>
 	<update id="updateHumanFile" parameterType="HumanFile">
 		update human_file set paid_salary_sum=null
 	</update>
+
+<!-- 	<select id="getAllBooks" resultType="Book" resultMap="BookResultMap"> -->
+<!-- 		select bid,author,isbn,title,price,book.cid,name,pdfs,description -->
+<!-- 		from book  -->
+<!-- 		inner join category -->
+<!-- 		on category.cid=book.cid -->
+<!-- 	</select> -->
+	
+<!-- 	<update id="updateBook" parameterType="Book"> -->
+<!-- 		update book  -->
+<!-- 		set author=#{author},isbn=#{isbn},price=#{price},title=#{title},cid=#{category.cid},description=#{description}  -->
+<!-- 		<if test="pdfs!=''"> -->
+<!-- 		,pdfs=#{pdfs} -->
+<!-- 		</if> -->
+<!-- 		where bid=#{bid} -->
+	
+<!-- 	</update> -->
+	
+		
+<!-- 	<select id="getBooksByCategory" resultType="Book" parameterType="Book" resultMap="BookResultMap"> -->
+<!-- 		select bid,author,isbn,title,price,book.cid,name,pdfs,description -->
+<!-- 		from book  -->
+<!-- 		inner join category -->
+<!-- 		on category.cid=book.cid -->
+<!-- 		where book.cid=#{category.cid} -->
+<!-- 	</select> -->
+
 	
 	<select id="selectHumanFileByCheck" parameterType="HumanFile" resultType="HumanFile">
 		select human_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,human_name,human_address,human_postcode
@@ -44,4 +73,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and human_id LIMIT #{minPage},#{maxPage}
 		</if> 
 	</select>
+<<<<<<< HEAD
+=======
+
+	
+	
+
+>>>>>>> 4233f778a6489432d20569db7ae14c40d9a0c716
 </mapper>
