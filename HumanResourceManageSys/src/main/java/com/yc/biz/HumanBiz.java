@@ -1,6 +1,8 @@
 package com.yc.biz;
 
 import java.util.List;
+
+import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
@@ -10,13 +12,11 @@ import com.yc.bean.SalaryStandardDetails;
 public interface HumanBiz {
 	//员工档案登记
 	HumanFile save(HumanFile book);
-	
 	//职位分类查寻
 	List<ConfigMajorKind> getAllConfigMajorKinds();
 	//职位名称查寻
 	List<ConfigMajor> getAllConfigMajors();
 	//职称查寻
-
 	List<ConfigPublicChar> getAllTechnicalTitles();
 	//国籍查寻
 	List<ConfigPublicChar> getAllNationalitys();
@@ -38,5 +38,6 @@ public interface HumanBiz {
 	List<ConfigPublicChar> getAllHobbys();
 	//教育年限查询
 	List<ConfigPublicChar> getAllEducationsYears();
-	//人力资源档案登记
+	//人力资源档案查寻（根据复核状态）
+	public List<HumanFile> findtHumanFileByCheck(int minPage,int maxPage);
 }

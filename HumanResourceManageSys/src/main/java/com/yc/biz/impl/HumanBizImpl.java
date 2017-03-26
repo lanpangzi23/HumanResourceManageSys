@@ -112,6 +112,16 @@ public class HumanBizImpl implements HumanBiz {
 		return list;
 	}
 
+	@Override
+	public List<HumanFile> findtHumanFileByCheck(int minPage, int maxPage) {
+		HumanFile ss=new HumanFile();
+		ss.setMaxPage(maxPage);
+		ss.setMinPage(minPage);
+		List<HumanFile> list=this.baseDao.findAll(ss, "selectHumanFileByCheck");
+		return list;
+	}
+
+
 
 
 

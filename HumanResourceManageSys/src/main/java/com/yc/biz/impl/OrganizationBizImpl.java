@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.OrganizationBiz;
 import com.yc.dao.BaseDao;
@@ -154,6 +155,36 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	@Override
 	public List<ConfigFileThirdKind> findConfigFileThirdKindByName(ConfigFileThirdKind configFileThirdKind) {
 		List<ConfigFileThirdKind> list=this.baseDao.findAll(configFileThirdKind, "selectThirdKindByName");
+		return list;
+	}
+
+	@Override
+	public List<ConfigPublicChar> findConfigPublicCharsByPage(ConfigPublicChar configPublicChar) {
+		List<ConfigPublicChar> list=this.baseDao.findAll(configPublicChar, "selectAllConfigPublicChars");
+		return list;
+	}
+
+	@Override
+	public ConfigPublicChar saveConfigPublicChar(ConfigPublicChar configPublicChar) {
+		this.baseDao.add(configPublicChar, "addConfigPublicChar");
+		return configPublicChar;
+	}
+
+	@Override
+	public List<ConfigPublicChar> selectAllConfigPublicCharByName(ConfigPublicChar configPublicChar) {
+		List<ConfigPublicChar> list=this.baseDao.findAll(configPublicChar, "selectAllConfigPublicCharByName");
+		return list;
+	}
+
+	@Override
+	public ConfigPublicChar deleteConfigPublicChar(ConfigPublicChar configPublicChar) {
+		this.baseDao.delete(configPublicChar, "deleteConfigPublicChar");
+		return configPublicChar;
+	}
+
+	@Override
+	public List<ConfigPublicChar> findAlllConfigPublicChars() {
+		List<ConfigPublicChar> list=this.baseDao.findAll(new ConfigPublicChar(), "findAlllConfigPublicChars");
 		return list;
 	}
 

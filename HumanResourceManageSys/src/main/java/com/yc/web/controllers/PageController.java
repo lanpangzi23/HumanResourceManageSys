@@ -15,6 +15,7 @@ import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
+import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.OrganizationBiz;
@@ -73,7 +74,9 @@ public class PageController {
 		return "humanResourceRegistration";
 	}
 	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")
-	public String tohumanResourceFileRegistrationReviewPage(){
+	public String tohumanResourceFileRegistrationReviewPage(Model model){
+		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(0,100000000);
+		model.addAttribute("humanFileSize",humanFile.size());
 		return "humanResourceFileRegistrationReview";
 	}
 	@RequestMapping(value="/admin/humanResourceFileQuery")
@@ -134,6 +137,8 @@ public class PageController {
 	public String toOrganization(Model model){//转到机构设置区
 		List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.getAllConfigFileFirstKinds();
 		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
+		List<ConfigPublicChar> configPublicChar=this.organizationBiz.findAlllConfigPublicChars();
+		model.addAttribute("configPublicChar",configPublicChar);
 		return "Organization";
 	}
 }
