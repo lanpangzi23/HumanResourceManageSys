@@ -28,13 +28,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by first_kind_name,second_kind_name
 	</select>
 	<select id="selectHumanName" parameterType="HumanFile" resultType="HumanFile">
-		select human_name,human_id,salary_standard_id from human_file where first_kind_name=#{first_kind_name} and second_kind_name=#{second_kind_name}
+		select first_kind_id,second_kind_id,human_name,human_id,salary_standard_id from human_file where first_kind_name=#{first_kind_name} and second_kind_name=#{second_kind_name}
 	</select>
 	<update id="updateHumanFile" parameterType="HumanFile">
 		update human_file set paid_salary_sum=null
 	</update>
 
-	
+	<update id="update" parameterType="HumanFile">
+		update human_file set paid_salary_sum=#{paid_salary_sum} where human_id=#{human_id}
+	</update>
 	<select id="selectHumanFileByCheck" parameterType="HumanFile" resultType="HumanFile">
 		select human_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,human_name,human_address,human_postcode
 		,human_pro_designation,human_major_kind_id,human_major_kind_name,human_major_id,hunma_major_name,human_telephone,human_mobilephone,human_bank,human_account,human_qq

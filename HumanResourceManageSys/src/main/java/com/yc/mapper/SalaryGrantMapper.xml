@@ -6,4 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectSalaryGrant" parameterType="SalaryGrant" resultType="SalaryGrant">
 		select * from salary_grant
 	</select>
+	<insert id="insertSalaryGrant" parameterType="SalaryGrant">
+		insert into salary_grant(salary_grant_id,salary_standard_id,first_kind_id,first_kind_name,second_kind_id,second_kind_name
+		,human_amount,salary_standard_sum,salary_paid_sum,register,regist_time,checker,check_time,
+		check_status) values(#{salary_grant_id},#{salary_standard_id},#{first_kind_id},#{first_kind_name},#{second_kind_id},
+		#{second_kind_name},#{human_amount},#{salary_standard_sum},#{salary_paid_sum},#{register},
+		#{regist_time},#{checker},#{check_time},#{check_status})
+	</insert>
 </mapper>
