@@ -1,11 +1,9 @@
 package com.yc.web.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -16,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
+import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
+import com.yc.biz.SystemManagementBiz;
 import com.yc.web.utils.RandomNumberUtil;
 import com.yc.web.utils.ResponseData;
 /*
@@ -28,6 +28,11 @@ import com.yc.web.utils.ResponseData;
 @Controller
 public class SalaryManagementContorller {
 	private SalaryAdministrationBiz salaryAdministrationBizImpl;
+	private SystemManagementBiz systemManagementBizImpl;
+	@Resource
+	public void setSystemManagementBizImpl(SystemManagementBiz systemManagementBizImpl) {
+		this.systemManagementBizImpl = systemManagementBizImpl;
+	}
 	@Resource
 	public void setSalaryAdministrationBizImpl(SalaryAdministrationBiz salaryAdministrationBizImpl) {
 		this.salaryAdministrationBizImpl = salaryAdministrationBizImpl;
@@ -119,7 +124,14 @@ public class SalaryManagementContorller {
 		map.put("id", id);
 		map.put("sum", sum);
 		map.put("count",count);
+		List<HumanFile> humanFile=salaryAdministrationBizImpl.findHumanName(firstname, secondname);
+		List<ConfigPublicChar> cpc=systemManagementBizImpl.findSalaryProjectName();
+		for(int i=0;i<humanFile.size();i++){
+			humanFile.get(i).setSsd(salaryAdministrationBizImpl.findBySalarySN(humanFile.get(i).getSalary_standard_id()));
+		}
 		model.addAttribute("map", map);
+		model.addAttribute("humanFile", humanFile);
+		model.addAttribute("cpc", cpc);
 		return "paymentRegistrationReview";
 	}
 }
