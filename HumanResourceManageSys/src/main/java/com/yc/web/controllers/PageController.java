@@ -76,6 +76,8 @@ public class PageController {
 		model.addAttribute("hobbys",hobbys);
 		List<ConfigPublicChar> educationsYears=this.humanBiz.getAllEducationsYears();
 		model.addAttribute("educationsYears",educationsYears);
+		List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
+		model.addAttribute("salaryStandard",salaryStandard);
 		return "humanResourceRegistration";
 	}
 	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")

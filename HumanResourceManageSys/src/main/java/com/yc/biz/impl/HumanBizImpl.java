@@ -13,6 +13,7 @@ import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.HumanBiz;
 import com.yc.dao.BaseDao;
@@ -124,6 +125,36 @@ public class HumanBizImpl implements HumanBiz {
 	@Override
 	public List<HumanFile> selectHumanFileById(HumanFile humanFile) {
 		List<HumanFile> list=this.baseDao.findAll(humanFile, "selectHumanFileById");
+		return list;
+	}
+
+	@Override
+	public List<ConfigMajorKind> selectConfigMajorKindById(ConfigMajorKind configMajorKind) {
+		List<ConfigMajorKind> list=this.baseDao.findAll(configMajorKind, "selectAllConfigMajorKindBy");
+		return list;
+	}
+
+	@Override
+	public List<ConfigMajor> selectConfigMajorById(ConfigMajor configMajor) {
+		List<ConfigMajor> list=this.baseDao.findAll(configMajor, "selectAllConfigMajorBy");
+		return list;
+	}
+
+	@Override
+	public List<ConfigMajor> selectConfigMajorByKind(ConfigMajor configMajor) {
+		List<ConfigMajor> list=this.baseDao.findAll(configMajor, "selectAllConfigMajorBy");
+		return list;
+	}
+
+	@Override
+	public List<SalaryStandard> getAllSalaryStandard() {
+		List<SalaryStandard> list=this.baseDao.findAll(new SalaryStandard(), "selectSalaryStandard");
+		return list;
+	}
+
+	@Override
+	public List<SalaryStandard> selectSalaryStandardById(SalaryStandard salaryStandard) {
+		List<SalaryStandard> list=this.baseDao.findAll(salaryStandard, "selectSalaryStandard");
 		return list;
 	}
 }

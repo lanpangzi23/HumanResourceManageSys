@@ -68,19 +68,22 @@
 		<tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">职位分类</td>
 			<td>
-				<select name="human_major_kind_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configMajorKind}" var="s" >
-						<option value="${s.major_kind_id }">${s.major_kind_name }</option>
-					</c:forEach>
-				</select>
+				<input name="human_major_kind_id" id="aa1" class="easyui-combobox"
+				data-options="   
+			        valueField: 'major_kind_id',
+		        	textField: 'major_kind_name',
+		        	url: 'findAllConfigMajorKind',
+		        	onSelect: function(rec){
+			            var url = 'selectConfigMajorByKind?major_kind_id='+rec.major_kind_id;
+			            $('#aa2').combobox('reload', url);
+		        }" />
 			</td>
 			<td style="text-align:center" class="backcolor">职位名称</td>
 			<td>
-				<select name="human_major_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<c:forEach items="${configMajor}" var="s" >
-						<option value="${s.major_id }">${s.major_name }</option>
-					</c:forEach>
-				</select>
+				<input name="human_major_id" id="aa2" class="easyui-combobox"
+					data-options="
+ 					valueField:'major_id', 
+ 					textField:'major_name'" />
 			</td>
 			<td style="text-align:center" class="backcolor">职称</td>
 			<td>
@@ -201,8 +204,8 @@
 			<td style="text-align:center" class="backcolor">薪酬标准</td>
 			<td>
 				<select class="easyui-combobox" type="text" name="salary_standard_id">
-					<c:forEach items="${configFileThirdKind}" var="s" >
-						<option value="${s.second_kind_id }">${s.third_kind_name }</option>
+					<c:forEach items="${salaryStandard}" var="s" >
+						<option value="${s.standard_id }">${s.standard_name }</option>
 					</c:forEach>
 				</select>
 			</td>
