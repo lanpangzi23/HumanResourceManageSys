@@ -7,6 +7,7 @@ import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 
 public interface HumanBiz {
@@ -42,4 +43,14 @@ public interface HumanBiz {
 	public List<HumanFile> findtHumanFileByCheck(int minPage,int maxPage);
 	//人力资源档案查寻（根据ID）
 	public List<HumanFile> selectHumanFileById(HumanFile humanFile);
+	//职位分类名称（根据ID）
+	public List<ConfigMajorKind> selectConfigMajorKindById(ConfigMajorKind configMajorKind);
+	//职位名称查寻（根据ID）
+	public List<ConfigMajor> selectConfigMajorById(ConfigMajor configMajor);
+	//职位名称查寻（根据ID）
+	public List<ConfigMajor> selectConfigMajorByKind(ConfigMajor configMajor);
+	//薪酬标准查寻
+	List<SalaryStandard> getAllSalaryStandard();
+	//职位名称查寻（根据ID）
+	public List<SalaryStandard> selectSalaryStandardById(SalaryStandard salaryStandard);
 }

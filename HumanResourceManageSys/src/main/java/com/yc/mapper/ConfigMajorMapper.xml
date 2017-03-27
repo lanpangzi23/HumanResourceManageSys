@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select major_kind_id,major_kind_name,major_id,major_name,test_amount
 		from config_major 
 	</select>
-	<select id="selectAllConfigMajorKindBy" resultType="ConfigMajorKind" >
+	<select id="selectAllConfigMajorBy" resultType="ConfigMajor" >
 		select major_kind_id,major_kind_name,major_id,major_name,test_amount
 		from config_major   where 1=1
 		<if test="major_id!=null">
