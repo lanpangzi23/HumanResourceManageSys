@@ -188,5 +188,23 @@ public class OrganizationBizImpl implements OrganizationBiz {
 		return list;
 	}
 
+	@Override
+	public List<ConfigFileFirstKind> selectFirstNameById(ConfigFileFirstKind configFileFirstKind) {
+		List<ConfigFileFirstKind> list=this.baseDao.findAll(configFileFirstKind, "selectFirstKindById");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileSecondKind> selectSecondNameById(ConfigFileSecondKind configFileSecondKind) {
+		List<ConfigFileSecondKind> list=this.baseDao.findAll(configFileSecondKind, "selectSecondKindByName");
+		return list;
+	}
+
+	@Override
+	public List<ConfigFileThirdKind> selectThirdNameById(ConfigFileThirdKind configFileThirdKind) {
+		List<ConfigFileThirdKind> list=this.baseDao.findAll(configFileThirdKind, "selectThirdKindByName");
+		return list;
+	}
+
 
 }

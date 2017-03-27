@@ -5,9 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yc.mapper.ConfigMajorKindMapper">
 	<select id="selectAllConfigMajorKinds" resultType="ConfigMajorKind" >
 		select major_kind_id,major_kind_name
-		from config_major_kind 
+		from config_major_kind   
 	</select>
-	
+	<select id="selectAllConfigMajorKindBy" resultType="ConfigMajorKind" >
+		select major_kind_id,major_kind_name
+		from config_major_kind   where 1=1
+		<if test="major_kind_id!=null">
+			and major_kind_id=#{major_kind_id}
+		</if> 
+	</select>
 	
 
 </mapper>

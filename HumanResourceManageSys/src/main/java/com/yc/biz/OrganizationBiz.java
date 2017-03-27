@@ -57,4 +57,10 @@ public interface OrganizationBiz {
 	ConfigPublicChar deleteConfigPublicChar(ConfigPublicChar configPublicChar);
 	//公共字段删除
 	List<ConfigPublicChar> findAlllConfigPublicChars();
+	//一级根据Id查名字
+	public List<ConfigFileFirstKind> selectFirstNameById(ConfigFileFirstKind configFileFirstKind);
+	//二级根据Id查名字
+	public List<ConfigFileSecondKind> selectSecondNameById(ConfigFileSecondKind configFileSecondKind);
+	//三级根据Id查名字
+	public List<ConfigFileThirdKind> selectThirdNameById(ConfigFileThirdKind configFileThirdKind);
 }

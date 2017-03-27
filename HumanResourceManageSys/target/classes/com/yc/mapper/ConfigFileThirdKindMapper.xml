@@ -34,6 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="ftk_id!=null">
 			and ftk_id=#{ftk_id}
 		</if>
+		<if test="third_kind_id!=null">
+			and third_kind_id=#{third_kind_id}
+		</if>
 	</select>
 	
 	<update id="updateThirdKind" parameterType="ConfigFileThirdKind">

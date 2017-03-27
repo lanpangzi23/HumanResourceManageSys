@@ -44,12 +44,12 @@
 			<td style="text-align:center" class="backcolor">II级机构</td>
 			<td><input name="second_kind_id" id="cc2" class="easyui-combobox"
 					data-options="
-					valueField:'second_kind_id',
-					textField:'second_kind_name',
-		        	onSelect: function(rec){
-			            var url = 'findThirdKindBySecondKindId?second_kind_id='+rec.second_kind_id;   
-			            $('#cc3').combobox('reload', url);
-				}" />
+ 					valueField:'second_kind_id', 
+ 					textField:'second_kind_name',
+ 		        	onSelect: function(rec){ 
+ 			            var url = 'findThirdKindBySecondKindId?second_kind_id='+rec.second_kind_id;
+			            $('#cc3').combobox('reload', url); 
+ 				}" /> 
 
 			</td>
 			<td style="text-align:center" class="backcolor">III级机构</td>
@@ -61,10 +61,8 @@
 					<div id="Imgdiv">
      		  			 <img id="Img" width="200px" height="200px"/>
    		 			</div>
-				
-       				 <input class="easyui-filebox" style="width:300px" data-options="onChange:change_photo()" name="picUrl"/><br/> 
-   			
-    	
+       				 <input class="easyui-filebox" style="width:300px" data-options='onChange:change_photo' id="file_upload" name="picUrl"/>
+       				 <br/> 
 </td>
 		</tr>
 		<tr style="height:35px;">
@@ -237,30 +235,22 @@
             <td style="text-align:center" class="backcolor"></td>
 			<td><input class="easyui" type="text" id="I" ></td>
 		</tr>
-         </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">个人履历</td>
 			<td colspan="7"><textarea name="human_histroy_records" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
 			
 		</tr>
-          </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">家庭关系信息</td>
 			<td colspan="7"><textarea name="human_family_membership" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
 			
 		</tr>
-          </tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">备注</td>
 			<td colspan="7"><textarea name="remark" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
 			
 		</tr>
-
- 
 </table></form>
-
-</body>
-<script type="text/javascript" src="js/jquery-form.js"></script>
 <script>
 //图片上传  及数据保存  
    $(function () {
@@ -358,5 +348,6 @@ function PreviewImage(fileObj,imgPreviewId,divPreviewId){
     }  
 }
 </script>
+</body>
 </html>
     

@@ -40,4 +40,6 @@ public interface HumanBiz {
 	List<ConfigPublicChar> getAllEducationsYears();
 	//人力资源档案查寻（根据复核状态）
 	public List<HumanFile> findtHumanFileByCheck(int minPage,int maxPage);
+	//人力资源档案查寻（根据ID）
+	public List<HumanFile> selectHumanFileById(HumanFile humanFile);
 }

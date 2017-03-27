@@ -22,6 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ffk_id, first_kind_id,first_kind_name,first_kind_salary_id,first_kind_sale_id
 		from config_file_first_kind  where first_kind_name=#{first_kind_name}
 	</select>
+	<!-- 根据Id查名称 -->
+	<select id="selectFirstKindById" resultType="ConfigFileFirstKind" >
+		select  first_kind_name
+		from config_file_first_kind  where first_kind_id=#{first_kind_id}
+	</select>
 	
 	<update id="updateFirstKind" parameterType="ConfigFileFirstKind">
 		update config_file_first_kind 

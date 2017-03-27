@@ -11,14 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.HumanFile;
 import com.yc.biz.HumanBiz;
+import com.yc.web.utils.RandomNumberUtil;
 import com.yc.web.utils.ResponseData;
 import com.yc.web.utils.UUIDUtil;
 import com.yc.web.utils.UploadFileUtil;
@@ -34,7 +37,8 @@ public class HumanFileController {
 	}
 	//人力资源档案登记 
 	@RequestMapping(value="/humanResourceRegistration")
-	public String saveHumanFile(HttpServletRequest request,HumanFile humanFile){
+	public @ResponseBody void saveHumanFile(HttpServletResponse response,HttpServletRequest request,HumanFile humanFile) throws IOException{
+		response.setCharacterEncoding("utf-8");
 		UUIDUtil u=new UUIDUtil();
 		String human_picture="";
 		//上传
@@ -47,8 +51,11 @@ public class HumanFileController {
 		humanFile.setHuman_picture(human_picture);
 		humanFile.setHuman_id(u.getUuidUtil());
 		humanFile.setHuman_file_status(false);
+		humanFile.setCheck_status(0);
 		this.humanBiz.save(humanFile);
-		return "humanResourceRegistration";
+		PrintWriter out = response.getWriter();
+		Gson gson=new Gson();
+		out.print(gson.toJson(1));
 	}
 	//人力资源档案查寻（复核状态）
 	@RequestMapping(value="/findtHumanFileByCheck")
@@ -62,5 +69,14 @@ public class HumanFileController {
 		rd.setRows(humanFile);
 		rd.setTotal(""+size);
 		out.print(gson.toJson(rd)); 
+	}
+	@RequestMapping(value="tohumanResourceFileRegistrationReviewEnd/{id}")
+	public ModelAndView tohumanResourceFileRegistrationReviewEnd(@PathVariable String id){//查看待复核人详情
+		ModelAndView mv=new ModelAndView("humanResourceFileRegistrationReviewEnd");
+		HumanFile humanFile=new HumanFile();
+		humanFile.setHuman_id(id);
+		List<HumanFile> list=humanBiz.selectHumanFileById(humanFile);
+		mv.addObject("humanFileCheck", list.get(0));
+		return mv;
 	}
 }

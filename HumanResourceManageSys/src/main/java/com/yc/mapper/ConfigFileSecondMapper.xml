@@ -27,7 +27,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="fsk_id!=null">
 			and fsk_id=#{fsk_id}
-		</if> 
+		</if>
+		<if test="first_kind_id!=null">
+			and first_kind_id=#{first_kind_id}
+		</if>
+		<if test="second_kind_id!=null">
+			and second_kind_id=#{second_kind_id}
+		</if>  
 	</select>
 	
 	<update id="updateSecondKind" parameterType="ConfigFileSecondKind">
