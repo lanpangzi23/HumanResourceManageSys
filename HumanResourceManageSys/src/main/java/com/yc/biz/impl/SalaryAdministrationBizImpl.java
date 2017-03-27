@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryGrant;
+import com.yc.bean.SalaryGrantDetails;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
 import com.yc.dao.BaseDao;
+import com.yc.view.HumanFileAndStandardGrant;
 @Repository
 @Transactional(readOnly=false)
 public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
@@ -102,5 +104,30 @@ public class SalaryAdministrationBizImpl implements SalaryAdministrationBiz{
 		SalaryStandardDetails ssd=new SalaryStandardDetails();
 		ssd.setStandard_id(name);;
 		return baseDaoMybatisImpl.findAll(ssd, "selectSalaryStandardDetails");
+	}
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
+	public void addSalaryGrant(SalaryGrant sg,HumanFileAndStandardGrant hfasg) {
+		sg.setSalary_paid_sum(sg.getSalary_paid_sum()+sg.getSalary_standard_sum());
+		sg.setCheck_status(0);
+		baseDaoMybatisImpl.add(sg, "insertSalaryGrant");
+		for(int i=0;i<hfasg.getHuman_id().size();i++){
+			SalaryGrantDetails sgs=new SalaryGrantDetails();
+			sgs.setHuman_id(hfasg.getHuman_id().get(i));
+			sgs.setHuman_name(hfasg.getHuman_name().get(i));
+			sgs.setBouns_sum(hfasg.getBouns_sum().get(i));
+			sgs.setSalary_grant_id(sg.getSalary_grant_id());
+			sgs.setSale_sum(hfasg.getSale_sum().get(i));
+			sgs.setDeduct_sum(hfasg.getDeduct_sum().get(i));
+			sgs.setSalary_standard_sum(hfasg.getSum().get(i));
+			sgs.setSalary_paid_sum(hfasg.getPaidsum().get(i)+hfasg.getSum().get(i));
+			baseDaoMybatisImpl.add(sgs, "insertSalaryGrantDetails");
+			update(hfasg.getHuman_id().get(i),hfasg.getPaidsum().get(i)+hfasg.getSum().get(i));
+		}
+	}
+	public void update(String human_id, double salary) {//修改实发金额
+		HumanFile hf=new HumanFile();
+		hf.setHuman_id(human_id);
+		hf.setPaid_salary_sum(salary);
+		baseDaoMybatisImpl.update(hf, "update");
 	}
 }

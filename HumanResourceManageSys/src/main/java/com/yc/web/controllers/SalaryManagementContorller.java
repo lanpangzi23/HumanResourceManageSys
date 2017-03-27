@@ -16,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.SalaryGrant;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.SalaryAdministrationBiz;
 import com.yc.biz.SystemManagementBiz;
+import com.yc.view.HumanFileAndStandardGrant;
 import com.yc.web.utils.RandomNumberUtil;
 import com.yc.web.utils.ResponseData;
 /*
@@ -133,5 +135,10 @@ public class SalaryManagementContorller {
 		model.addAttribute("humanFile", humanFile);
 		model.addAttribute("cpc", cpc);
 		return "paymentRegistrationReview";
+	}
+	@RequestMapping(value="addToSalaryGrant")
+	public String addToSalaryGrant(HumanFileAndStandardGrant hfasg,SalaryGrant sg) {
+		salaryAdministrationBizImpl.addSalaryGrant(sg, hfasg);
+		return "index";
 	}
 }
