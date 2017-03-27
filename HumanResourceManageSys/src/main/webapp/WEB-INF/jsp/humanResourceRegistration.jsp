@@ -240,17 +240,23 @@
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">个人履历</td>
-			<td colspan="7"><textarea name="human_histroy_records" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
+			<td colspan="7">
+			<input class="easyui-textbox" name="humanHistoryRecords" data-options="multiline:true" style="height:100px;width:930px">
+			</td>
 			
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">家庭关系信息</td>
-			<td colspan="7"><textarea name="human_family_membership" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
+			<td colspan="7">
+			<input class="easyui-textbox" name="human_family_membership" data-options="multiline:true" style="height:100px;width:930px">
+			</td>
 			
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">备注</td>
-			<td colspan="7"><textarea name="remark" class="easyui-validatebox" style="height:100px; width:930px;"></textarea></td>
+			<td colspan="7">
+			<input class="easyui-textbox" name="remark" data-options="multiline:true" style="height:100px;width:930px">
+			</td>
 			
 		</tr>
 </table></form>

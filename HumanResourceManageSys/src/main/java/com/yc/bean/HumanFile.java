@@ -136,8 +136,7 @@ public class HumanFile implements Serializable {
 				+ changer + ", regist_time=" + regist_time + ", check_time=" + check_time + ", change_time="
 				+ change_time + ", lastly_change_time=" + lastly_change_time + ", delete_time=" + delete_time
 				+ ", recovery_time=" + recovery_time + ", human_file_status=" + human_file_status
-				+ ", human_pro_desgination=" + human_pro_desgination + ", human_major_name=" + human_major_name
-				+ ", human_mobliephone=" + human_mobliephone + ", picUrl=" + picUrl + "]";
+				+ ", human_pro_desgination=" + human_pro_desgination + ", human_mobliephone=" + human_mobliephone + ", picUrl=" + picUrl + "]";
 	}
 	private String remark;
 	private String human_id;
@@ -434,7 +433,13 @@ public class HumanFile implements Serializable {
 	public String getHuman_history_records() {
 		return human_histroy_records;
 	}
+	public String getHumanHistroyRecords() {
+		return this.human_histroy_records;
+	}
 	public void setHuman_history_records(String human_history_records) {
+		this.human_histroy_records = human_history_records;
+	}
+	public void setHumanHistoryRecords(String human_history_records) {
 		this.human_histroy_records = human_history_records;
 	}
 	public String getHuman_family_membership() {
@@ -527,12 +532,6 @@ public class HumanFile implements Serializable {
 	public void setHuman_pro_desgination(String human_pro_desgination) {
 		this.human_pro_desgination = human_pro_desgination;
 	}
-	public String getHuman_major_name() {
-		return human_major_name;
-	}
-	public void setHuman_major_name(String human_major_name) {
-		this.human_major_name = human_major_name;
-	}
 	public String getHuman_mobliephone() {
 		return human_mobliephone;
 	}
@@ -606,7 +605,6 @@ public class HumanFile implements Serializable {
 	private Date recovery_time;
 	private Boolean human_file_status;
 	private String human_pro_desgination;
-	private String human_major_name;
 	private String human_mobliephone;
 	//标准javabean方法在页面上，可以利用  ${book.pdfsStringList}
 		public List<String> getPdfsStringList(){

@@ -52,10 +52,10 @@ public class PageController {
 	public String toHumanResourceRegistrationPage(Model model){
 //		List<ConfigFileFirstKind> configFileFirstKinds=this.humanBiz.getAllConfigFileFirstKinds();
 //		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
-		List<ConfigMajorKind> configMajorKind=this.humanBiz.getAllConfigMajorKinds();
-		model.addAttribute("configMajorKind",configMajorKind);
-		List<ConfigMajor> configMajor=this.humanBiz.getAllConfigMajors();
-		model.addAttribute("configMajor",configMajor);
+//		List<ConfigMajorKind> configMajorKind=this.humanBiz.getAllConfigMajorKinds();
+//		model.addAttribute("configMajorKind",configMajorKind);
+//		List<ConfigMajor> configMajor=this.humanBiz.getAllConfigMajors();
+//		model.addAttribute("configMajor",configMajor);
 		List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
 		model.addAttribute("technicalTitles",technicalTitles);
 		List<ConfigPublicChar> nationalitys=this.humanBiz.getAllNationalitys();

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,7 @@ import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
+import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.HumanBiz;
@@ -83,7 +85,8 @@ public class HumanFileController {
 		ConfigMajor configMajor=new ConfigMajor();
 		configMajor.setMajor_id(humanFile.getHuman_major_id());
 		List<ConfigMajor> cm=humanBiz.selectConfigMajorById(configMajor);
-		humanFile.setHuman_major_name(cm.get(0).getMajor_name());
+		//humanFile.setHuman_major_name(cm.get(0).getMajor_name());
+		humanFile.setHunma_major_name(cm.get(0).getMajor_name());
 		
 		SalaryStandard salaryStandard=new SalaryStandard();
 		salaryStandard.setStandard_id(humanFile.getSalary_standard_id());
@@ -114,12 +117,36 @@ public class HumanFileController {
 		out.print(gson.toJson(rd)); 
 	}
 	@RequestMapping(value="tohumanResourceFileRegistrationReviewEnd/{id}")
-	public ModelAndView tohumanResourceFileRegistrationReviewEnd(@PathVariable String id){//查看待复核人详情
+	public ModelAndView tohumanResourceFileRegistrationReviewEnd(@PathVariable String id,Model model){//查看待复核人详情
 		ModelAndView mv=new ModelAndView("humanResourceFileRegistrationReviewEnd");
 		HumanFile humanFile=new HumanFile();
 		humanFile.setHuman_id(id);
 		List<HumanFile> list=humanBiz.selectHumanFileById(humanFile);
+		List<ConfigPublicChar> schooling=this.humanBiz.getAllSchooling();
+		List<ConfigPublicChar> educations=this.humanBiz.getAllEducations();
+		List<ConfigPublicChar> strongPoints=this.humanBiz.getAllStrongPoints();
+		List<ConfigPublicChar> hobbys=this.humanBiz.getAllHobbys();
+		List<ConfigPublicChar> educationsYears=this.humanBiz.getAllEducationsYears();
+		List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
+		List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
+		List<ConfigPublicChar> nationalitys=this.humanBiz.getAllNationalitys();
+		List<ConfigPublicChar> nations=this.humanBiz.getAllNations();
+		List<ConfigPublicChar> religiousBeliefs=this.humanBiz.getAllReligiousBeliefs();
+		List<ConfigPublicChar> politicalStatus=this.humanBiz.getAllPoliticalStatus();
+		
 		mv.addObject("humanFileCheck", list.get(0));
+		System.out.println("建立"+list.get(0).getHuman_history_records());
+		mv.addObject("salaryStandard", salaryStandard);
+		mv.addObject("educationsYears", educationsYears);
+		mv.addObject("hobbys", hobbys);
+		mv.addObject("strongPoints", strongPoints);
+		mv.addObject("educations", educations);
+		mv.addObject("schooling", schooling);
+		mv.addObject("technicalTitles",technicalTitles);
+		mv.addObject("nationalitys", nationalitys);
+		mv.addObject("nations", nations);
+		mv.addObject("religiousBeliefs", religiousBeliefs);
+		mv.addObject("politicalStatus",politicalStatus);
 		return mv;
 	}
 	@RequestMapping(value="/selectConfigMajorByKind")

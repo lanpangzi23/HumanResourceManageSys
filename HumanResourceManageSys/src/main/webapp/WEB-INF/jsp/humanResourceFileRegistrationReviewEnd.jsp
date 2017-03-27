@@ -19,31 +19,32 @@
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">档案编号</td>
-			<td colspan="5" ><input class="easyui" type="text" id="FileNumber" value="${humanFileCheck.human_id}" name="FileNumber"></td>
+			<td colspan="5" ><input class="easyui" type="text" id="FileNumber" value="${humanFileCheck.human_id}" name="human_id" style="border: none;" readonly="readonly"></td>
 			
 			<td rowspan="6" colspan="2"><center><input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/></center></td>
 		</tr>
         <td class="backcolor" style="text-align:center">I级机构</td>
-			<td ><input class="easyui" type="text" id="I" name="Ijjg" value="${humanFileCheck.first_kind_name}"/></td>
+			<td ><input class="easyui" type="text" id="I" name="first_kind_id" value="${humanFileCheck.first_kind_name}" style="border: none;" readonly="readonly"/></td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg" value="${humanFileCheck.second_kind_name}"/></td>
+			<td><input class="easyui" type="text" id="I" name="second_kind_id" value="${humanFileCheck.second_kind_name}" style="border: none;" readonly="readonly"/></td>
 			<td style="text-align:center" class="backcolor" >III级机构</td>
-			<td><input class="easyui" type="text" id="I" name="Ijjg" value="${humanFileCheck.third_kind_name}"/></td>
+			<td><input class="easyui" type="text" id="I" name="third_kind_id" value="${humanFileCheck.third_kind_name}" style="border: none;" readonly="readonly"/></td>
 		<tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">职位分类</td>
 			<td>
-				<input class="easyui" type="text" id="I" name="Ijjg" value="${humanFileCheck.human_major_kind_name}"/>
+				<input class="easyui" type="text" id="I" name="human_major_kind_id" value="${humanFileCheck.human_major_kind_name}" style="border: none;" readonly="readonly"/>
 			</td>
 			<td style="text-align:center" class="backcolor">职位名称</td>
 			<td>
-				<select name="human_major_id" class="easyui-combobox" type="text" id="tertiaryMechanism">
-					<input class="easyui" type="text" id="I" name="Ijjg" value="${humanFileCheck.hunma_major_name}"/>
-				</select>
+					<input class="easyui" type="text" id="I" name="human_major_id" value="${humanFileCheck.hunma_major_name}" style="border: none;" readonly="readonly"/>
 			</td>
 			<td style="text-align:center" class="backcolor">职称</td>
 			<td>
-				<select name="human_pro_designation" class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select name="human_pro_designation" class="easyui-combobox"  data-option="${humanFileCheck.human_pro_designation}" type="text" id="tertiaryMechanism">
 					<c:forEach items="${technicalTitles}" var="s" >
+						<c:if test="${s.attribute_name ==humanFileCheck.human_pro_designation}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -77,8 +78,11 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">国籍</td>
 			<td>
-				<select name="human_nationality" class="easyui-combobox" type="text" >
+				<select name="human_nationality" class="easyui-combobox" data-option="${humanFileCheck.human_nationality}">
 					<c:forEach items="${nationalitys}" var="s" >
+						<c:if test="${s.attribute_name ==humanFileCheck.human_nationality}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -92,8 +96,11 @@
 			</td>
             <td style="text-align:center" class="backcolor">民族</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="human_race">
+				<select class="easyui-combobox" type="text" name="human_race" data-option="${humanFileCheck.human_race}">
 					<c:forEach items="${nations}" var="s">
+						<c:if test="${s.attribute_name ==humanFileCheck.human_race}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -102,16 +109,22 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">宗教信仰</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="human_religion">
+				<select class="easyui-combobox" type="text" name="human_religion" data-option="${humanFileCheck.human_religion}">
 					<c:forEach items="${religiousBeliefs}" var="s" varStatus="ss">
+						<c:if test="${s.attribute_name ==humanFileCheck.human_religion}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">政治面貌</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="human_party">
+				<select class="easyui-combobox" type="text" name="human_party" data-option="${humanFileCheck.human_party}">
 					<c:forEach items="${politicalStatus}" var="s" varStatus="ss">
+						<c:if test="${s.attribute_name==humanFileCheck.human_party}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -127,24 +140,33 @@
 			<td><input name="human_age" class="easyui" type="text" id="I" value="${humanFileCheck.human_age}"/></td>
 			<td style="text-align:center" class="backcolor">学历</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="human_educated_degree">
+				<select class="easyui-combobox" type="text" name="human_educated_degree" data-option="${humanFileCheck.human_educated_degree}">
 					<c:forEach items="${schooling}" var="s" >
+						<c:if test="${s.attribute_name ==humanFileCheck.human_educated_degree}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">教育年限</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="human_educated_years">
+				<select class="easyui-combobox" type="text" name="human_educated_years" data-option="${humanFileCheck.human_educated_years}">
 					<c:forEach items="${educationsYears}" var="s" >
+						<c:if test="${s.attribute_name ==humanFileCheck.human_educated_years}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
             <td style="text-align:center" class="backcolor">学历专业</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="human_educated_major">
+				<select class="easyui-combobox" type="text" name="human_educated_major" data-option="${humanFileCheck.human_educated_major}">
 					<c:forEach items="${educations}" var="s" >
+						<c:if test="${s.attribute_name ==humanFileCheck.human_educated_major}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -153,9 +175,12 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">薪酬标准</td>
 			<td>
-				<select class="easyui-combobox" type="text" name="salary_standard_id">
-					<c:forEach items="${configFileThirdKind}" var="s" >
-						<option value="${s.second_kind_id }">${s.third_kind_name }</option>
+				<select class="easyui-combobox" type="text" name="salary_standard_id" data-option="${humanFileCheck.salary_standard_id}">
+					<c:forEach items="${salaryStandard}" var="s" >
+						<c:if test="${s.standard_id==humanFileCheck.salary_standard_id }">
+						<option value="${s.standard_id }" selected>${s.standard_name }</option>
+					</c:if>
+						<option value="${s.standard_id }">${s.standard_name }</option>
 					</c:forEach>
 				</select>
 			</td>
@@ -171,16 +196,22 @@
 			<td><input name="regist_time" class="easyui" type="text" id="I" value="<%=new Date() %>"/></td>
 			<td style="text-align:center" class="backcolor">特长</td>
 			<td>
-				<select name="human_speciality" class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select name="human_speciality" class="easyui-combobox" type="text" id="tertiaryMechanism" data-option="${humanFileCheck.human_speciality}">
 					<c:forEach items="${strongPoints}" var="s" >
+					<c:if test="${s.attribute_name==humanFileCheck.human_speciality }">
+						<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+					</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">爱好</td>
 			<td>
-				<select name="human_hobby" class="easyui-combobox" type="text" id="tertiaryMechanism">
+				<select name="human_hobby" class="easyui-combobox" type="text" id="tertiaryMechanism" data-option="${humanFileCheck.human_hobby}">
 					<c:forEach items="${hobbys}" var="s" >
+						<c:if test="${s.attribute_name ==humanFileCheck.human_hobby}">
+							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
+						</c:if>
 						<option value="${s.attribute_name }">${s.attribute_name }</option>
 					</c:forEach>
 				</select>
@@ -190,17 +221,23 @@
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">个人履历</td>
-			<td colspan="7"><textarea name="human_histroy_records" class="easyui-validatebox" style="height:100px; width:930px;" value="${humanFileCheck.human_educated_degree}"/></textarea></td>
+			<td colspan="7">
+			<input class="easyui-textbox" name="human_histroy_records" data-options="multiline:true" style="height:100px;width:930px" value="${humanFileCheck.humanHistroyRecords}">
+			</td>
 			
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">家庭关系信息</td>
-			<td colspan="7"><textarea name="human_family_membership" class="easyui-validatebox" style="height:100px; width:930px;" value="${humanFileCheck.human_family_membership}"/></textarea></td>
+			<td colspan="7">
+			<input class="easyui-textbox" name="human_family_membership" data-options="multiline:true" style="height:100px;width:930px" value="${humanFileCheck.human_family_membership}">
+			</td>
 			
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">备注</td>
-			<td colspan="7"><textarea name="remark" class="easyui-validatebox" style="height:100px; width:930px;" value="${humanFileCheck.remark}"/></textarea></td>
+			<td colspan="7">
+			<input class="easyui-textbox" name="remark" data-options="multiline:true" style="height:100px;width:930px" value="${humanFileCheck.remark}"/>
+			</td>
 			
 		</tr>
 </body>
