@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
+<%@ page isELIgnored="false" %>
 <%
 	String path=request.getContextPath();//项目名
 						//http					localhost						8080
@@ -72,7 +75,12 @@
              <div title="激励管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
             </div>
              <div title="招聘管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">职位发布管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">职位发布管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">简历管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">面试管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">招聘考试题库管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">招聘考试管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">录用管理</a></li>
             </div>
              <div title="标准化数据报" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
         		<li><a class="easyui-linkbutton" href="transferAudit.html" data-options="plain:true">调动审核</a></li>

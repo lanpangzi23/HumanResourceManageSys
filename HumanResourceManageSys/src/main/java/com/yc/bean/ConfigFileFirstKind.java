@@ -2,6 +2,8 @@ package com.yc.bean;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Repository;
+
 /* 创建新表 "config_file_first_kind"。                                                             */
 /* "config_file_first_kind" : 一级机构设置                                                          */
 /* 	"ffk_id" : 主键，自动增长列                                                                       */
@@ -9,7 +11,8 @@ import java.io.Serializable;
 /* 	"first_kind_name" : 一级机构名称                                                                */
 /* 	"first_kind_salary_id" : 一级机构薪酬发放责任人编号                                                    */
 /* 	"first_kind_sale_id" : 一级机构销售责任人编号  
-                                                      */ 
+                                                    */ 
+@Repository
 public class ConfigFileFirstKind implements Serializable {
 	/**
 	 * 
