@@ -57,7 +57,7 @@
         		<li><a class="easyui-linkbutton" href="admin/humanResourceRegistration" data-options="plain:true">人力资源档案登记</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileRegistrationReview" data-options="plain:true">人力资源档案登记复核</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">人力资源档案查询</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanResourceFileUpdate" data-options="plain:true">人力资源档案变更</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanFileChangeReview" data-options="plain:true">人力资源档案变更</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileDelete" data-options="plain:true">人力资源档案删除</a></li>
             </div>
             <div title="薪酬管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
