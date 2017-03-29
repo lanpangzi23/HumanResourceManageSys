@@ -155,4 +155,8 @@ public class PageController {
 		model.addAttribute("configPublicChar",configPublicChar);
 		return "Organization";
 	}
+	@RequestMapping(value="/admin/toPostRegistration")
+	public String toPostRegistration(Model model){//转到机构设置区
+		return "postRegistration";
+	}
 }

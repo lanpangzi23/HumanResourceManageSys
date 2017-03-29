@@ -49,6 +49,20 @@ public class EngageMajorRelease implements Serializable {
 	private Date change_time;
 	private String major_describe;
 	private String engage_required;
+	private Integer page;
+	private Integer rows;
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	public Integer getRows() {
+		return rows;
+	}
+	public void setRows(Integer rows) {
+		this.rows = rows;
+	}
 	public Integer getMre_id() {
 		return mre_id;
 	}
