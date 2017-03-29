@@ -11,17 +11,23 @@
 </head>
 <body>
 <p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记复核</p><br/>
-
-	<input class="easyui" type="button" style="margin-left:823px;; background:#CFC;" value="复核通过"/>
-    <input class="easyui" type="button" style="background:#F33;;" value="删除"/>
-    <input class="easyui" type="button" style="background:#F33;;" value="返回"/>
-
+<form id="check_form" enctype="multipart/form-data">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
+	<input class="easyui checkHumanFile" type="button" style="margin-left:805px;; background:#CFC;" value="复核通过"/>&nbsp;&nbsp;
+    <input class="easyui" type="reset" style="background:#F33;"  value="清除"/>&nbsp;&nbsp;
+    <input class="easyui" type="button" style="" onclick="backCheck()" value="返回"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">档案编号</td>
 			<td colspan="5" ><input class="easyui" type="text" id="FileNumber" value="${humanFileCheck.human_id}" name="human_id" style="border: none;" readonly="readonly"></td>
 			
-			<td rowspan="6" colspan="2"><center><input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/></center></td>
+			<td rowspan="6" colspan="2">
+			
+			<center>
+			<input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/><br/>
+				 <input class="easyui" type="button"  onclick="changePhoto('${humanFileCheck.human_id}')" value="更改档案照片"/>	
+			</center>
+			
+			</td>
 		</tr>
         <td class="backcolor" style="text-align:center">I级机构</td>
 			<td ><input class="easyui" type="text" id="I" name="first_kind_id" value="${humanFileCheck.first_kind_name}" style="border: none;" readonly="readonly"/></td>
@@ -54,7 +60,7 @@
 			<td style="text-align:center" class="backcolor">姓名</td>
 			<td><input class="easyui" type="text" id="I" name="human_name" value="${humanFileCheck.human_name}"/></td>
 			<td style="text-align:center" class="backcolor">性别</td>
-			<td><input class="easyui" type="text" id="I" name="human_name" value="${humanFileCheck.human_sex}"/>
+			<td><input class="easyui" type="text" id="I" name="human_sex" value="${humanFileCheck.human_sex}"/>
 			</td>
 			<td style="text-align:center" class="backcolor">EMAIL</td>
 			<td><input class="easyui" type="email" id="I" name="human_email" value="${humanFileCheck.human_email}"/></td>
@@ -189,11 +195,11 @@
 			<td style="text-align:center" class="backcolor">账号</td>
 			<td><input name="human_account" class="easyui" type="text" id="I"  value="${humanFileCheck.human_account}"/></td>
             <td style="text-align:center" class="backcolor">复核人</td>
-			<td><input name="register" class="easyui" type="text" id="I"  value="登录人"/></td>
+			<td><input name="checker" class="easyui" type="text" id="I"  value="登录人"/></td>
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">复核时间</td>
-			<td><input name="regist_time" class="easyui" type="text" id="I" value="<%=new Date() %>"/></td>
+			<td><input name="check_time" class="easyui" type="text" id="I" value="<%=new Date() %>"/></td>
 			<td style="text-align:center" class="backcolor">特长</td>
 			<td>
 				<select name="human_speciality" class="easyui-combobox" type="text" id="tertiaryMechanism" data-option="${humanFileCheck.human_speciality}">
@@ -222,7 +228,7 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">个人履历</td>
 			<td colspan="7">
-			<input class="easyui-textbox" name="human_histroy_records" data-options="multiline:true" style="height:100px;width:930px" value="${humanFileCheck.humanHistroyRecords}">
+			<input class="easyui-textbox" name="human_histroy_records" data-options="multiline:true" style="height:100px;width:930px" value="${humanFileCheck.human_histroy_records}">
 			</td>
 			
 		</tr>
@@ -240,5 +246,40 @@
 			</td>
 			
 		</tr>
+		</table>
+		</form>
+<script type="text/javascript">
+//更改照片 
+function changePhoto(id){
+	$('#main_panel').panel('refresh',"toChangePhoto/"+id);
+}
+//档案复核 
+ $(function () {
+            $(".checkHumanFile").click(function () {
+            	 var birthday=$('input[name=human_birthday]').val();
+            	 var date=new Date(birthday);
+               	 $('input[name=human_birthday]').val(date);
+                $("#check_form").ajaxSubmit({
+                    success: function (data) {
+                    	if(data==1){
+                    		alert('复核成功')
+                    		$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReview");
+                    	}else{
+                    		alert('复核失败')
+                    	}
+                    },
+                    error: function (error) { alert('复核失败'); },
+                    url: 'checkHumanFile', /*设置post提交到的页面*/
+                    type: "post", /*设置表单以post方法提交*/
+                    dataType: "text" /*设置返回值类型为文本*/
+                });
+            });
+        });
+//返回  
+function backCheck(){
+	$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReview");
+}
+
+	</script>
 </body>
 </html>

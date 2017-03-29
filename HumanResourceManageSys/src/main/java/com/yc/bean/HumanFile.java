@@ -78,22 +78,24 @@ public class HumanFile implements Serializable {
 	/**
 	 * 
 	 */
-//	private S
-	private Integer minPage;
-	private Integer maxPage;
-	private Integer count;
-	private List<SalaryStandardDetails> ssd;
-	public List<SalaryStandardDetails> getSsd() {
-		return ssd;
+	private Date minDate;
+	public Integer getHuf_id() {
+		return huf_id;
 	}
-	public void setSsd(List<SalaryStandardDetails> ssd) {
-		this.ssd = ssd;
+	public void setHuf_id(Integer huf_id) {
+		this.huf_id = huf_id;
 	}
-	public Integer getCount() {
-		return count;
+	public Date getMinDate() {
+		return minDate;
 	}
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setMinDate(Date minDate) {
+		this.minDate = minDate;
+	}
+	public Date getMaxDate() {
+		return maxDate;
+	}
+	public void setMaxDate(Date maxDate) {
+		this.maxDate = maxDate;
 	}
 	public Integer getMinPage() {
 		return minPage;
@@ -107,46 +109,17 @@ public class HumanFile implements Serializable {
 	public void setMaxPage(Integer maxPage) {
 		this.maxPage = maxPage;
 	}
-	private Double demand_salaray_sum;
-	@Override
-	public String toString() {
-		return "HumanFile [huf_id=" + huf_id + ", demand_salaray_sum=" + demand_salaray_sum + ", remark=" + remark
-				+ ", human_id=" + human_id + ", first_kind_name=" + first_kind_name + ", first_kind_id=" + first_kind_id
-				+ ", second_kind_id=" + second_kind_id + ", second_kind_name=" + second_kind_name + ", third_kind_id="
-				+ third_kind_id + ", third_kind_name=" + third_kind_name + ", human_address=" + human_address
-				+ ", human_name=" + human_name + ", human_postcode=" + human_postcode + ", human_pro_designation="
-				+ human_pro_designation + ", human_major_kind_id=" + human_major_kind_id + ", human_major_kind_name="
-				+ human_major_kind_name + ", human_major_id=" + human_major_id + ", hunma_major_name="
-				+ hunma_major_name + ", human_telephone=" + human_telephone + ", human_mobilephone=" + human_mobilephone
-				+ ", human_account=" + human_account + ", human_bank=" + human_bank + ", human_email=" + human_email
-				+ ", human_hobby=" + human_hobby + ", human_qq=" + human_qq + ", human_speciality=" + human_speciality
-				+ ", human_sex=" + human_sex + ", human_religion=" + human_religion + ", human_party=" + human_party
-				+ ", human_nationality=" + human_nationality + ", human_race=" + human_race + ", human_birthday="
-				+ human_birthday + ", human_birthplace=" + human_birthplace + ", human_age=" + human_age
-				+ ", human_educated_degree=" + human_educated_degree + ", human_educated_years=" + human_educated_years
-				+ ", human_educated_major=" + human_educated_major + ", human_society_security_id="
-				+ human_society_security_id + ", human_id_card=" + human_id_card + ", salary_standard_id="
-				+ salary_standard_id + ", salary_standard_name=" + salary_standard_name + ", salary_sum=" + salary_sum
-				+ ", demand_salary_sum=" + demand_salary_sum + ", paid_salary_sum=" + paid_salary_sum
-				+ ", major_change_amount=" + major_change_amount + ", bonus_amount=" + bonus_amount
-				+ ", training_amount=" + training_amount + ", file_change_amount=" + file_chang_amount
-				+ ", human_history_records=" + human_histroy_records + ", human_family_membership="
-				+ human_family_membership + ", human_picture=" + human_picture + ", attchment_name=" + attachment_name
-				+ ", check_status=" + check_status + ", register=" + register + ", checker=" + checker + ", changer="
-				+ changer + ", regist_time=" + regist_time + ", check_time=" + check_time + ", change_time="
-				+ change_time + ", lastly_change_time=" + lastly_change_time + ", delete_time=" + delete_time
-				+ ", recovery_time=" + recovery_time + ", human_file_status=" + human_file_status
-				+ ", human_pro_desgination=" + human_pro_desgination + ", human_mobliephone=" + human_mobliephone + ", picUrl=" + picUrl + "]";
+	public Integer getCount() {
+		return count;
 	}
-	private String remark;
-	private String human_id;
-	
-	
-	public Integer getHuf_id() {
-		return huf_id;
+	public void setCount(Integer count) {
+		this.count = count;
 	}
-	public void setHuf_id(Integer huf_id) {
-		this.huf_id = huf_id;
+	public List<SalaryStandardDetails> getSsd() {
+		return ssd;
+	}
+	public void setSsd(List<SalaryStandardDetails> ssd) {
+		this.ssd = ssd;
 	}
 	public Double getDemand_salaray_sum() {
 		return demand_salaray_sum;
@@ -430,17 +403,11 @@ public class HumanFile implements Serializable {
 	public void setFile_chang_amount(Integer file_chang_amount) {
 		this.file_chang_amount = file_chang_amount;
 	}
-	public String getHuman_history_records() {
+	public String getHuman_histroy_records() {
 		return human_histroy_records;
 	}
-	public String getHumanHistroyRecords() {
-		return this.human_histroy_records;
-	}
-	public void setHuman_history_records(String human_history_records) {
-		this.human_histroy_records = human_history_records;
-	}
-	public void setHumanHistoryRecords(String human_history_records) {
-		this.human_histroy_records = human_history_records;
+	public void setHuman_histroy_records(String human_histroy_records) {
+		this.human_histroy_records = human_histroy_records;
 	}
 	public String getHuman_family_membership() {
 		return human_family_membership;
@@ -454,11 +421,11 @@ public class HumanFile implements Serializable {
 	public void setHuman_picture(String human_picture) {
 		this.human_picture = human_picture;
 	}
-	public String getAttchment_name() {
+	public String getAttachment_name() {
 		return attachment_name;
 	}
-	public void setAttchment_name(String attchment_name) {
-		this.attachment_name = attchment_name;
+	public void setAttachment_name(String attachment_name) {
+		this.attachment_name = attachment_name;
 	}
 	public Integer getCheck_status() {
 		return check_status;
@@ -544,6 +511,47 @@ public class HumanFile implements Serializable {
 	public void setPicUrl(List<MultipartFile> picUrl) {
 		this.picUrl = picUrl;
 	}
+	private Date maxDate;
+	private Integer minPage;
+	private Integer maxPage;
+	private Integer count;
+	private List<SalaryStandardDetails> ssd;
+	private Double demand_salaray_sum;
+	
+	@Override
+	public String toString() {
+		return "HumanFile [huf_id=" + huf_id + ", minDate=" + minDate + ", maxDate=" + maxDate + ", minPage=" + minPage
+				+ ", maxPage=" + maxPage + ", count=" + count + ", ssd=" + ssd + ", demand_salaray_sum="
+				+ demand_salaray_sum + ", remark=" + remark + ", human_id=" + human_id + ", first_kind_name="
+				+ first_kind_name + ", first_kind_id=" + first_kind_id + ", second_kind_id=" + second_kind_id
+				+ ", second_kind_name=" + second_kind_name + ", third_kind_id=" + third_kind_id + ", third_kind_name="
+				+ third_kind_name + ", human_address=" + human_address + ", human_name=" + human_name
+				+ ", human_postcode=" + human_postcode + ", human_pro_designation=" + human_pro_designation
+				+ ", human_major_kind_id=" + human_major_kind_id + ", human_major_kind_name=" + human_major_kind_name
+				+ ", human_major_id=" + human_major_id + ", hunma_major_name=" + hunma_major_name + ", human_telephone="
+				+ human_telephone + ", human_mobilephone=" + human_mobilephone + ", human_account=" + human_account
+				+ ", human_bank=" + human_bank + ", human_email=" + human_email + ", human_hobby=" + human_hobby
+				+ ", human_qq=" + human_qq + ", human_speciality=" + human_speciality + ", human_sex=" + human_sex
+				+ ", human_religion=" + human_religion + ", human_party=" + human_party + ", human_nationality="
+				+ human_nationality + ", human_race=" + human_race + ", human_birthday=" + human_birthday
+				+ ", human_birthplace=" + human_birthplace + ", human_age=" + human_age + ", human_educated_degree="
+				+ human_educated_degree + ", human_educated_years=" + human_educated_years + ", human_educated_major="
+				+ human_educated_major + ", human_society_security_id=" + human_society_security_id + ", human_id_card="
+				+ human_id_card + ", salary_standard_id=" + salary_standard_id + ", salary_standard_name="
+				+ salary_standard_name + ", salary_sum=" + salary_sum + ", demand_salary_sum=" + demand_salary_sum
+				+ ", paid_salary_sum=" + paid_salary_sum + ", major_change_amount=" + major_change_amount
+				+ ", bonus_amount=" + bonus_amount + ", training_amount=" + training_amount + ", file_chang_amount="
+				+ file_chang_amount + ", human_histroy_records=" + human_histroy_records + ", human_family_membership="
+				+ human_family_membership + ", human_picture=" + human_picture + ", attachment_name=" + attachment_name
+				+ ", check_status=" + check_status + ", register=" + register + ", checker=" + checker + ", changer="
+				+ changer + ", regist_time=" + regist_time + ", check_time=" + check_time + ", change_time="
+				+ change_time + ", lastly_change_time=" + lastly_change_time + ", delete_time=" + delete_time
+				+ ", recovery_time=" + recovery_time + ", human_file_status=" + human_file_status
+				+ ", human_pro_desgination=" + human_pro_desgination + ", human_mobliephone=" + human_mobliephone
+				+ ", picUrl=" + picUrl + "]";
+	}
+	private String remark;
+	private String human_id;
 	private String first_kind_name;
 	private String first_kind_id;
 	private String second_kind_id;
@@ -554,7 +562,6 @@ public class HumanFile implements Serializable {
 	private String human_name;
 	private String human_postcode;
 	private String human_pro_designation;
-	
 	private String human_major_kind_id;
 	private String human_major_kind_name;
 	private String human_major_id;

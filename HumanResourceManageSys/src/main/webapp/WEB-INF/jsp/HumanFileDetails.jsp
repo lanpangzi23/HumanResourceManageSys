@@ -1,21 +1,18 @@
 <%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<title>无标题文档</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
-<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案变更</p><br/>
-	<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记复核</p><br/>
-<form id="check_form" enctype="multipart/form-data">
-	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
-	<input class="easyui checkHumanFile" type="button" style="margin-left:805px;; background:#CFC;" value="提交"/>&nbsp;&nbsp;
-    <input class="easyui" type="button" style="" onclick="backCheck()" value="返回"/>
+<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案查寻--人力资源档案详情</p><br/><br/>
+<input class="easyui" type="button" style="margin-left:805px;; background:#CFC;" onclick="backCheck()" value="返回"/>
+<table border="1" width="1000px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">档案编号</td>
 			<td colspan="5" ><input class="easyui" type="text" id="FileNumber" value="${humanFileCheck.human_id}" name="human_id" style="border: none;" readonly="readonly"></td>
@@ -24,7 +21,6 @@
 			
 			<center>
 			<input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/><br/>
-				 <input class="easyui" type="button"  onclick="changePhoto('${humanFileCheck.human_id}')" value="更改档案照片"/>	
 			</center>
 			
 			</td>
@@ -46,14 +42,7 @@
 			</td>
 			<td style="text-align:center" class="backcolor">职称</td>
 			<td>
-				<select name="human_pro_designation" class="easyui-combobox"  data-option="${humanFileCheck.human_pro_designation}" type="text" id="tertiaryMechanism">
-					<c:forEach items="${technicalTitles}" var="s" >
-						<c:if test="${s.attribute_name ==humanFileCheck.human_pro_designation}">
-							<option value="${s.attribute_name }" selected>${s.attribute_name }</option>
-						</c:if>
-						<option value="${s.attribute_name }">${s.attribute_name }</option>
-					</c:forEach>
-				</select>
+			<input class="easyui" type="text" id="I" name="human_pro_designation" value="${humanFileCheck.human_pro_designation}" style="border: none;" readonly="readonly"/>
 			</td>
 		</tr>
         <tr style="height:35px;">
@@ -194,11 +183,11 @@
 			<td><input name="human_bank" class="easyui" type="text" id="I"  value="${humanFileCheck.human_bank}"/></td>
 			<td style="text-align:center" class="backcolor">账号</td>
 			<td><input name="human_account" class="easyui" type="text" id="I"  value="${humanFileCheck.human_account}"/></td>
-            <td style="text-align:center" class="backcolor">变更人</td>
+            <td style="text-align:center" class="backcolor">复核人</td>
 			<td><input name="checker" class="easyui" type="text" id="I"  value="登录人"/></td>
 		</tr>
            <tr style="height:35px;">
-			<td style="text-align:center" class="backcolor">变更时间</td>
+			<td style="text-align:center" class="backcolor">复核时间</td>
 			<td><input name="check_time" class="easyui" type="text" id="I" value="<%=new Date() %>"/></td>
 			<td style="text-align:center" class="backcolor">特长</td>
 			<td>
@@ -247,13 +236,12 @@
 			
 		</tr>
 		</table>
-		</form>
-<script type="text/javascript">
+	<script type="text/javascript">
 //更改照片 
 function changePhoto(id){
 	$('#main_panel').panel('refresh',"toChangePhoto/"+id);
 }
-//档案变更
+//档案复核 
  $(function () {
             $(".checkHumanFile").click(function () {
             	 var birthday=$('input[name=human_birthday]').val();
@@ -262,10 +250,10 @@ function changePhoto(id){
                 $("#check_form").ajaxSubmit({
                     success: function (data) {
                     	if(data==1){
-                    		alert('提交成功....等待复核...')
+                    		alert('复核成功')
                     		$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReview");
                     	}else{
-                    		alert('提交失败(＞﹏＜)')
+                    		alert('复核失败')
                     	}
                     },
                     error: function (error) { alert('复核失败'); },
@@ -277,7 +265,7 @@ function changePhoto(id){
         });
 //返回  
 function backCheck(){
-	$('#main_panel').panel('refresh',"tohumanResourceFileUpdate");
+	$('#main_panel').panel('refresh',"tohumanResourceFileQueryEnd");
 }
 
 	</script>

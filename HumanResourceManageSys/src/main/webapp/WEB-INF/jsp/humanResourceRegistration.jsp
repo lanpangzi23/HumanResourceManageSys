@@ -25,28 +25,33 @@
 <form id="upload_form" enctype="multipart/form-data" action="humanResourceRegistration" method="post">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
 	<input class="easyui submit" type="button"  style="margin-left:899px; background:#CFC;" value="提交"/>
-    <input class="easyui" type="reset" style="background:#F33;"  value="删除"/>
+    <input class="easyui" type="reset" style="background:#F33;"  value="清除"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">I级机构</td>
 
 		<td>
+			<input name="first_kind_name" id="first_kind_name" type="hidden" />
 			<input name="first_kind_id" id="cc1" class="easyui-combobox"
 				data-options="   
 			        valueField: 'first_kind_id',
 		        	textField: 'first_kind_name',
 		        	url: 'findAllFirstKind',
 		        	onSelect: function(rec){
+		        		$('#first_kind_name').val(rec.first_kind_name);
 			            var url = 'findSecondKindByFirst?first_kind_id='+rec.first_kind_id;
 			            $('#cc2').combobox('reload', url);
 		        }" />
 
 		</td>
 			<td style="text-align:center" class="backcolor">II级机构</td>
-			<td><input name="second_kind_id" id="cc2" class="easyui-combobox"
+			<td>
+			<input name="second_kind_name" id="second_kind_name" type="hidden" />
+			<input name="second_kind_id" id="cc2" class="easyui-combobox"
 					data-options="
  					valueField:'second_kind_id', 
  					textField:'second_kind_name',
  		        	onSelect: function(rec){ 
+ 		        		$('#second_kind_name').val(rec.second_kind_name);
  			            var url = 'findThirdKindBySecondKindId?second_kind_id='+rec.second_kind_id;
 			            $('#cc3').combobox('reload', url); 
  				}" /> 
@@ -54,7 +59,11 @@
 			</td>
 			<td style="text-align:center" class="backcolor">III级机构</td>
 			<td>
-				<input  name="third_kind_id"  id="cc3" class="easyui-combobox" data-options="valueField:'third_kind_id',textField:'third_kind_name'" />
+			<input name="third_kind_name" id="third_kind_name" type="hidden" />
+				<input  name="third_kind_id"  id="cc3" class="easyui-combobox" data-options="valueField:'third_kind_id',textField:'third_kind_name',
+				onSelect: function(rec){ 
+ 		        		$('#third_kind_name').val(rec.third_kind_name);
+ 				}"/>
 
 			</td>
 			<td rowspan="5" colspan="2"><center>
@@ -68,22 +77,27 @@
 		<tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">职位分类</td>
 			<td>
+			<input name="human_major_kind_name" id="human_major_kind_name" type="hidden" />
 				<input name="human_major_kind_id" id="aa1" class="easyui-combobox"
 				data-options="   
 			        valueField: 'major_kind_id',
 		        	textField: 'major_kind_name',
 		        	url: 'findAllConfigMajorKind',
 		        	onSelect: function(rec){
+		        	$('#human_major_kind_name').val(rec.major_kind_name);
 			            var url = 'selectConfigMajorByKind?major_kind_id='+rec.major_kind_id;
 			            $('#aa2').combobox('reload', url);
 		        }" />
 			</td>
 			<td style="text-align:center" class="backcolor">职位名称</td>
 			<td>
+			<input name="hunma_major_name" id="human_major_name" type="hidden" />
 				<input name="human_major_id" id="aa2" class="easyui-combobox"
 					data-options="
  					valueField:'major_id', 
- 					textField:'major_name'" />
+ 					textField:'major_name',onSelect: function(rec){
+		        	$('#human_major_name').val(rec.major_name);
+		        }" />
 			</td>
 			<td style="text-align:center" class="backcolor">职称</td>
 			<td>
@@ -135,8 +149,7 @@
 			<td><input name="human_birthplace" class="easyui" type="text"></td>
 			<td style="text-align:center" class="backcolor">生日</td>
 			<td>
-			<input class="easyui" value="格式需为HHH-DD-MM" type="hidden" id="dataTiShi"  style="background-color:#FF903C;font-weight:300; border-bottom-color: red;"/>
-			<input id="human_birthday" name="human_birthday" class="easyui" onblur="todate()"/>
+			<input id="human_birthday" name="human_birthday" class="easyui-datebox" />
 			</td>
 			
           
@@ -241,7 +254,7 @@
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">个人履历</td>
 			<td colspan="7">
-			<input class="easyui-textbox" name="humanHistoryRecords" data-options="multiline:true" style="height:100px;width:930px">
+			<input class="easyui-textbox" name="human_histroy_records" data-options="multiline:true" style="height:100px;width:930px">
 			</td>
 			
 		</tr>
@@ -264,40 +277,37 @@
 //图片上传  及数据保存  
    $(function () {
             $(".submit").click(function () {
-                $("#upload_form").ajaxSubmit({
-                    success: function (data) {
-                        alert(data.url);
-                    },
-                    error: function (error) { alert(error); },
-                    url: 'humanResourceRegistration', /*设置post提交到的页面*/
-                    type: "post", /*设置表单以post方法提交*/
-                    dataType: "json" /*设置返回值类型为文本*/
-                });
+            	 var birthday=$('input[name=human_birthday]').val();
+            	 if(birthday==''){
+            		 alert('请输入生日！')
+            	 }else{
+            		 var date=new Date(birthday);
+                  	$('input[name=human_birthday]').val(date);
+            		 if($('input[name=picUrl]').val()==''){
+            			 alert('请上传头像')
+            		 }else{
+            			 $("#upload_form").ajaxSubmit({
+                             success: function (data) {
+                             	if(data==1){
+                             		alert('登记成功...请尽快审核....')
+                             	}else{
+                             		alert('登记失败 ...');
+                             	}
+                                 alert(data);
+                             },
+                             error: function (error) { alert('登记失败 ...'); },
+                             url: 'humanResourceRegistration', /*设置post提交到的页面*/
+                             type: "post", /*设置表单以post方法提交*/
+                             dataType: "text" /*设置返回值类型为文本*/
+                         });
+            		 }
+            	 }
             });
         });
-///////////////////////
-
-function todate(){
-	$('#dataTiShi').attr('type','hidden');
- 	var birthday=$('input[name=human_birthday]').val();
- 	var date=new Date(birthday)
- 	if('Invalid Date'==date){
- 		$('#dataTiShi').val('格式无效，重新输入');
- 		$('#dataTiShi').attr('type','text');
- 		$('input[name=human_birthday]').val('');
- 	}else{
- 		$('#dataTiShi').val('格式需为HHH-DD-MM');
- 		$('#dataTiShi').attr('type','hidden');
- 		$('input[name=human_birthday]').val(date);
- 	}
-	
-}
 $('#human_birthday').bind('input propertychange',function(){
 	$('#dataTiShi').attr('type','text');
 	
 })
-
-
 function change_photo(){
     PreviewImage($("input[name='picUrl']")[0], 'Img', 'Imgdiv');
 }

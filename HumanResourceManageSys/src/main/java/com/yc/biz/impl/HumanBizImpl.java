@@ -88,12 +88,6 @@ public class HumanBizImpl implements HumanBiz {
 		List<ConfigPublicChar> list=this.baseDao.findAll(new ConfigPublicChar(), "selectAllEducations");
 		return list;
 	}
-	//薪酬标准查寻
-	@Override
-	public List<SalaryStandardDetails> getAllSalarys() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	//特长查寻
 	@Override
 	public List<ConfigPublicChar> getAllStrongPoints() {
@@ -157,4 +151,23 @@ public class HumanBizImpl implements HumanBiz {
 		List<SalaryStandard> list=this.baseDao.findAll(salaryStandard, "selectSalaryStandard");
 		return list;
 	}
+
+	@Override
+	public HumanFile updateHumanFileById(HumanFile humanFile) {
+		this.baseDao.add(humanFile, "updateHumanFileById");
+		return humanFile;
+	}
+
+	@Override
+	public HumanFile updateHumanFilePictureById(HumanFile humanFile) {
+		this.baseDao.add(humanFile, "updateHumanFilePictureById");
+		return humanFile;
+	}
+
+	@Override
+	public List<HumanFile> selectHumanFileBy(HumanFile humanFile) {
+		List<HumanFile> list=this.baseDao.findAll(humanFile, "selectHumanFileBy");
+		return list;
+	}
+
 }

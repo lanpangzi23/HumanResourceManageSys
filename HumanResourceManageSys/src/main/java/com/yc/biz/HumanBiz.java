@@ -13,6 +13,12 @@ import com.yc.bean.SalaryStandardDetails;
 public interface HumanBiz {
 	//员工档案登记
 	HumanFile save(HumanFile book);
+	//人力资源档案复核（修改）
+	HumanFile updateHumanFileById(HumanFile humanFile);
+	//人力资源档案 查寻
+	public List<HumanFile> selectHumanFileBy(HumanFile humanFile);
+	//人力资源档案照片（修改）
+	HumanFile updateHumanFilePictureById(HumanFile humanFile);
 	//职位分类查寻
 	List<ConfigMajorKind> getAllConfigMajorKinds();
 	//职位名称查寻
@@ -31,8 +37,6 @@ public interface HumanBiz {
 	List<ConfigPublicChar> getAllSchooling();
 	//学历专业查寻
 	List<ConfigPublicChar> getAllEducations();
-	//薪酬标准查寻
-	List<SalaryStandardDetails> getAllSalarys();
 	//特长查寻
 	List<ConfigPublicChar> getAllStrongPoints();
 	//爱好查寻
@@ -53,4 +57,5 @@ public interface HumanBiz {
 	List<SalaryStandard> getAllSalaryStandard();
 	//职位名称查寻（根据ID）
 	public List<SalaryStandard> selectSalaryStandardById(SalaryStandard salaryStandard);
+	
 }

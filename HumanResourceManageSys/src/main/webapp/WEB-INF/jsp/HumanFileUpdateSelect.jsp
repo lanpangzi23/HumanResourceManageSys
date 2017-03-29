@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<title>无标题文档</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
-<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询</p><br/>
-	<input class="easyui" type="button" style="margin-left:761px;; background:#CFC;" value="EXCEL列表"/>
+<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案变更</p><br/>
+	<input class="easyui" type="button" style="margin-left:761px; background:#CFC;" value="EXCEL列表"/>
     <input class="easyui" type="button" id="sss" style="background:#F33;"  value="查询"/>
     <table border="1" width="900px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">
@@ -74,23 +74,13 @@ $(function () {
      var thirdKindId=$('input[name=third_kind_id]').val();
      var human_major_kind_id=$('input[name=human_major_kind_id]').val();
      var human_major_id=$('input[name=human_major_id]').val();
-     alert(mindate)
-     if(mindate!=''){
-    	 if(maxdate!=''){
-    		 if(ndate<xdate){
-    	   		$('#main_panel').panel('refresh',"selectHumanFileBy?mindate="+mindate+"&maxdate="+maxdate+"&firstKindId="+firstKindId+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&human_major_kind_id="+human_major_kind_id+"&human_major_id="+human_major_id);
-    	   	 				}else{
-    	   		 					alert('请重新选择时间...') 
-    	   	 					}
-     					}else{
-     						$('#main_panel').panel('refresh',"selectHumanFileBy?mindate="+mindate+"&maxdate="+maxdate+"&firstKindId="+firstKindId+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&human_major_kind_id="+human_major_kind_id+"&human_major_id="+human_major_id);
-     					}		
-    	 }else{
-    		 $('#main_panel').panel('refresh',"selectHumanFileBy?mindate="+mindate+"&maxdate="+maxdate+"&firstKindId="+firstKindId+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&human_major_kind_id="+human_major_kind_id+"&human_major_id="+human_major_id);
-    	 }
+   	 if(ndate<xdate){
+   		$('#main_panel').panel('refresh',"selectHumanFileUpdateBy?mindate="+mindate+"&maxdate="+maxdate+"&firstKindId="+firstKindId+"&secondKindId="+secondKindId+"&thirdKindId="+thirdKindId+"&human_major_kind_id="+human_major_kind_id+"&human_major_id="+human_major_id);
+   	 }else{
+   		 alert('请重新选择时间...') 
+   	 	 }
 	})
 });
-</script>	
+</script>
 </body>
 </html>
-
