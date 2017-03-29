@@ -16,6 +16,7 @@
 					<div id="Imgdiv">
      		  			 <img id="Img" width="200px" height="200px"  src="${humanFileCheck.human_picture}"/>
    		 			</div>
+   		 			 <input class="easyui" type="hidden" id="status" name="status" value="${status}"/>
        				 <input class="easyui-filebox" style="width:300px" data-options='onChange:change_photo' id="file_upload" name="picUrl"/>
        				 <input class="easyui" type="hidden" id="humanid" name="human_id" value="${humanFileCheck.human_id}"/>
        				 <br/><br/>
@@ -29,7 +30,15 @@ $(function () {
             success: function (data) {
             	if(data==1){
             		alert('修改成功')
-            		$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReviewEnd/"+$('#humanid').val());
+            		var status=$('input[name="status"]').val();
+            		if(status==1){
+            			//复核 
+            			$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReviewEnd/"+$('#humanid').val());
+            		}else if(status==2){
+            			//更改 
+            			$('#main_panel').panel('refresh',"tohumanResourceFileUpdate/"+$('#humanid').val());
+            		}
+            		
             	}else{
             		alert('修改失败')
             	}
@@ -44,7 +53,15 @@ $(function () {
 
 function back(){
 	var id=$('#humanid').val();
-	$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReviewEnd/"+id);
+	var status=$('input[name="status"]').val();
+	alert(status)
+	if(status==1){
+		//复核 
+		$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReviewEnd/"+$('#humanid').val());
+	}else if(status==2){
+		//更改 
+		$('#main_panel').panel('refresh',"tohumanResourceFileUpdate/"+$('#humanid').val());
+	}
 }
 function change_photo(){
     PreviewImage($("input[name='picUrl']")[0], 'Img', 'Imgdiv');

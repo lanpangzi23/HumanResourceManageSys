@@ -167,4 +167,14 @@ public class PageController {
 	public String toResumeManagement(Model model){//转到简历管理界面
 		return "ResumeManagement";
 	}
+	@RequestMapping(value="/admin/humanFileChangeReview")
+	public String tohumanFileChangeReview(Model model){//转到人力资源变更复核
+		HumanFile humanfile=new HumanFile();
+		humanfile.setCheck_status(2);
+		humanfile.setMinPage(0);
+		humanfile.setMaxPage(100000);
+		List<HumanFile> list=this.humanBiz.findtHumanFileByCheck(humanfile);
+		model.addAttribute("size",list.size());
+		return "humanFileChangeReview";
+	}
 }

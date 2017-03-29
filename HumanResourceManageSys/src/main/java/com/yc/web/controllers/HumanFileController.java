@@ -188,9 +188,11 @@ public class HumanFileController {
 	//更改用户照片
 	@RequestMapping(value="toChangePhoto/{id}")
 	public ModelAndView toChangePhoto(@PathVariable String id){//查看待复核人详情
+		String[] aray=id.split(",");
 		ModelAndView mv=new ModelAndView("changePhoto");
 		HumanFile humanFile=new HumanFile();
-		humanFile.setHuman_id(id);
+		humanFile.setHuman_id(aray[0]);
+		mv.addObject("status",aray[1]);
 		List<HumanFile> list=humanBiz.selectHumanFileById(humanFile);
 		mv.addObject("humanFileCheck", list.get(0));
 		return mv;

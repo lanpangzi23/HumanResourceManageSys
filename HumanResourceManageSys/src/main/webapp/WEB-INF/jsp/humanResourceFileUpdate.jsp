@@ -250,7 +250,7 @@
 <script type="text/javascript">
 //更改照片 
 function changePhoto(id){
-	$('#main_panel').panel('refresh',"toChangePhoto/"+id);
+	$('#main_panel').panel('refresh',"toChangePhoto/"+id+","+2);
 }
 //档案变更
  $(function () {
