@@ -92,16 +92,26 @@
 												{
 													field : 'cz',
 													title : '操作',
-													width : 100,
+													width : 200,
 													formatter : function(value, row, index) {
-														return '<a href="javascript:check('
-																+ row.human_id + ')">查看详情</a>';
+														return '<a href="javascript:selectDetails('
+																+ row.human_id + ')">查看详情</a> &nbsp;&nbsp;<a href="javascript:update('
+																+ row.human_id + ')">变更</a>&nbsp;&nbsp; <a href="javascript:deleteHumanFile('
+																+ row.human_id + ')">删除</a>';
 													}
 												} ] ]
 									});
-//复核 
-function check(id){
+//查看详情 
+function selectDetails(id){
 	$('#main_panel').panel('refresh',"tohumanFileDetails/"+id);
+}
+//变更 
+function update(id){
+	$('#main_panel').panel('refresh',"tohumanResourceFileUpdate/"+id);
+}
+//删除
+function deleteHumanFile(id){
+	$('#main_panel').panel('refresh',"deleteHumanFile/"+id);
 }
 	</script>
 </body>

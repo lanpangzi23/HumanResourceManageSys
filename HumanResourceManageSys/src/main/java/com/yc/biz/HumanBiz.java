@@ -15,7 +15,15 @@ public interface HumanBiz {
 	HumanFile save(HumanFile book);
 	//人力资源档案复核（修改）
 	HumanFile updateHumanFileById(HumanFile humanFile);
-	//人力资源档案 查寻
+	//人力资源档案更改
+	HumanFile changeHumanFileById(HumanFile humanFile);
+	//人力资源档案更改（复核）
+	HumanFile changeHumanFileStatus(HumanFile humanFile);
+	//人力资源档案删除
+	HumanFile deleteHumanFile(HumanFile humanFile);
+	//人力资源档案恢复
+	HumanFile recoveryHumanFile(HumanFile humanFile);
+	
 	public List<HumanFile> selectHumanFileBy(HumanFile humanFile);
 	//人力资源档案照片（修改）
 	HumanFile updateHumanFilePictureById(HumanFile humanFile);
@@ -44,7 +52,7 @@ public interface HumanBiz {
 	//教育年限查询
 	List<ConfigPublicChar> getAllEducationsYears();
 	//人力资源档案查寻（根据复核状态）
-	public List<HumanFile> findtHumanFileByCheck(int minPage,int maxPage);
+	public List<HumanFile> findtHumanFileByCheck(HumanFile humanFile);
 	//人力资源档案查寻（根据ID）
 	public List<HumanFile> selectHumanFileById(HumanFile humanFile);
 	//职位分类名称（根据ID）

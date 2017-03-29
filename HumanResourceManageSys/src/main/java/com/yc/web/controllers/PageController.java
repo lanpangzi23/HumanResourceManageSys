@@ -82,7 +82,11 @@ public class PageController {
 	}
 	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")
 	public String tohumanResourceFileRegistrationReviewPage(Model model){
-		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(0,100000000);
+		HumanFile humanfile=new HumanFile();
+		humanfile.setMinPage(0);
+		humanfile.setMaxPage(100000000);
+		humanfile.setCheck_status(0);
+		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(humanfile);
 		model.addAttribute("humanFileSize",humanFile.size());
 		return "humanResourceFileRegistrationReview";
 	}

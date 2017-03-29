@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -86,9 +87,15 @@ public class HumanFileController {
 	@RequestMapping(value="/findtHumanFileByCheck")
 	public @ResponseBody void findtHumanFileByCheck(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
 		response.setCharacterEncoding("utf-8");
-		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(rows*(page-1), rows);
+		HumanFile humanfile=new HumanFile();
+		humanfile.setMinPage(rows*(page-1));
+		humanfile.setMaxPage(rows);
+		humanfile.setCheck_status(0);
+		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(humanfile);
 		PrintWriter out = response.getWriter();
-		int size=humanBiz.findtHumanFileByCheck(0, 1000000).size();
+		humanfile.setMinPage(0);
+		humanfile.setMaxPage(1000000);
+		int size=humanBiz.findtHumanFileByCheck(humanfile).size();
 		Gson gson=new Gson();
 		ResponseData rd=new ResponseData();
 		rd.setRows(humanFile);
@@ -146,9 +153,13 @@ public class HumanFileController {
 		out.print( gson.toJson(list));
 	}
 	@RequestMapping(value="tohumanResourceFileRegistrationReview")
-	public ModelAndView tohumanResourceFileRegistrationReview(){//查看待复核人详情
+	public ModelAndView tohumanResourceFileRegistrationReview(){//
 		ModelAndView mv=new ModelAndView("humanResourceFileRegistrationReview");
-		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(0,100000000);
+		HumanFile humanFile1=new HumanFile();
+		humanFile1.setCheck_status(0);
+		humanFile1.setMinPage(0);
+		humanFile1.setMaxPage(100000);
+		List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(humanFile1);
 		mv.addObject("humanFileSize",humanFile.size());
 		return mv;
 	}
@@ -241,7 +252,7 @@ public class HumanFileController {
 				mv.addObject("maxdate",maxdate);
 			}else{
 				humanFile.setMaxDate(new Date());
-				mv.addObject("maxdate",new Date());
+				mv.addObject("maxdate",dateFormat.format(new Date()));
 			}
 		}
 		List<HumanFile> list=humanBiz.selectHumanFileBy(humanFile);
@@ -273,9 +284,9 @@ public class HumanFileController {
 		if(!mindate.equals("")){
 			Date minDate=dateFormat.parse(mindate);
 			humanFile.setMinDate(minDate);
-			System.out.println("-----------"+maxdate);
+			System.out.println("-----------"+maxdate.getClass().getName());
 			if(!maxdate.equals("")){
-//				if( maxdate instanceof  Date){}
+				
 				Date maxDate=dateFormat.parse(maxdate);
 				humanFile.setMaxDate(maxDate);
 			}else{
@@ -336,97 +347,7 @@ public class HumanFileController {
 		ModelAndView mv=new ModelAndView("humanResourceFileQueryEnd");
 		return mv;
 	}
-	//变更操作
-	@RequestMapping(value="/selectHumanFileUpdateBy")
-	public ModelAndView selectHumanFileUpdateBy(@RequestParam String mindate,String maxdate,String firstKindId,String secondKindId,String thirdKindId,String human_major_kind_id,String human_major_id) throws IOException, ParseException{
-		ModelAndView mv=new ModelAndView("HumanFileUpdateSelectEnd");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		HumanFile humanFile=new HumanFile();
-		if(!firstKindId.equals("")){
-			humanFile.setFirst_kind_id(firstKindId);
-			mv.addObject("firstKindId",firstKindId);
-		}
-		if(!secondKindId.equals("")){
-			humanFile.setSecond_kind_id(secondKindId);
-			mv.addObject("secondKindId", secondKindId);
-		}
-		if(!thirdKindId.equals("")){
-			humanFile.setThird_kind_id(thirdKindId);
-			mv.addObject("thirdKindId",thirdKindId);
-		}
-		if(!human_major_kind_id.equals("")){
-			humanFile.setHuman_major_kind_id(human_major_kind_id);
-			mv.addObject("human_major_kind_id", human_major_kind_id);
-		}
-		if(!human_major_id.equals("")){
-			humanFile.setHuman_major_id(human_major_id);
-			mv.addObject("human_major_id",human_major_id);
-		}
-		if(!mindate.equals("")){
-			Date minDate=dateFormat.parse(mindate);
-			humanFile.setMinDate(minDate);
-			mv.addObject("mindate", mindate);
-			if(!maxdate.equals("")){
-				Date maxDate=dateFormat.parse(maxdate);
-				humanFile.setMaxDate(maxDate);
-				mv.addObject("maxdate",maxdate);
-			}else{
-				humanFile.setMaxDate(new Date());
-				mv.addObject("maxdate",new Date());
-			}
-		}
-		List<HumanFile> list=humanBiz.selectHumanFileBy(humanFile);
-		mv.addObject("size",list.size());
-		return mv;
-	}
-	
-	//
-	@RequestMapping(value="/findtHumanFileUpdateBy")
-	public @ResponseBody void findtHumanFileUpdateBy(HttpServletResponse response,@RequestParam String mindate,String maxdate,String firstKindId,String secondKindId,String thirdKindId,String human_major_kind_id,String human_major_id,int page,int rows) throws IOException, ParseException{
-		response.setCharacterEncoding("utf-8");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		HumanFile humanFile=new HumanFile();
-		if(!firstKindId.equals("")){
-			humanFile.setFirst_kind_id(firstKindId);
-		}
-		if(!secondKindId.equals("")){
-			humanFile.setSecond_kind_id(secondKindId);
-		}
-		if(!thirdKindId.equals("")){
-			humanFile.setThird_kind_id(thirdKindId);
-		}
-		if(!human_major_kind_id.equals("")){
-			humanFile.setHuman_major_kind_id(human_major_kind_id);
-		}
-		if(!human_major_id.equals("")){
-			humanFile.setHuman_major_id(human_major_id);
-		}
-		if(!mindate.equals("")){
-			Date minDate=dateFormat.parse(mindate);
-			humanFile.setMinDate(minDate);
-			if(!maxdate.equals("")){
-				Date maxDate=dateFormat.parse(maxdate);
-				humanFile.setMaxDate(maxDate);
-			}else{
-				humanFile.setMaxDate(new Date());
-			}
-		}
-		humanFile.setMinPage(rows*(page-1));
-		humanFile.setMaxPage(rows);
-		System.out.println("==="+humanFile.toString());
-		List<HumanFile> list=humanBiz.selectHumanFileBy(humanFile);
-		System.out.println("+++++++++++++++"+list.size());
-		Gson gson=new Gson();
-		PrintWriter out = response.getWriter();
-		humanFile.setMinPage(0);
-		humanFile.setMaxPage(1000000);
-		int size=humanBiz.selectHumanFileBy(humanFile).size();
-		ResponseData rd=new ResponseData();
-		rd.setRows(list);
-		rd.setTotal(""+size);
-		out.print(gson.toJson(rd));
-	}
-	//
+	//变更
 	@RequestMapping(value="tohumanResourceFileUpdate/{id}")
 	public ModelAndView tohumanResourceFileUpdate(@PathVariable String id,Model model){//查看待复核人详情
 		ModelAndView mv=new ModelAndView("humanResourceFileUpdate");
@@ -459,10 +380,26 @@ public class HumanFileController {
 		mv.addObject("politicalStatus",politicalStatus);
 		return mv;
 	}
-//
-	@RequestMapping(value="tohumanResourceFileUpdate")
-	public ModelAndView tohumanResourceFileUpdate(){//查看待复核人详情
-		ModelAndView mv=new ModelAndView("HumanFileUpdateSelectEnd");
-		return mv;
-	}
+	//人力资源档案更改
+		@RequestMapping(value="/updateHumanFile")
+		public @ResponseBody void updateHumanFile(HttpServletResponse response,HttpServletRequest request,HumanFile humanFile) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			SalaryStandard salaryStandard=new SalaryStandard();
+			salaryStandard.setStandard_id(humanFile.getSalary_standard_id());
+			List<SalaryStandard> ss=humanBiz.selectSalaryStandardById(salaryStandard);
+			humanFile.setSalary_standard_name(ss.get(0).getStandard_name());
+			humanFile.setSalary_sum(ss.get(0).getSalary_sum());
+			
+			humanFile.setCheck_status(2);//更改待复核 
+			humanFile.setLastly_change_time(new Date());
+			try {
+				this.humanBiz.changeHumanFileById(humanFile);
+				PrintWriter out = response.getWriter();
+				out.print(1);
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				out.print(0);
+			}
+		}
+	
 }

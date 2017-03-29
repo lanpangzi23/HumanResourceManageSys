@@ -108,11 +108,8 @@ public class HumanBizImpl implements HumanBiz {
 	}
 
 	@Override
-	public List<HumanFile> findtHumanFileByCheck(int minPage, int maxPage) {
-		HumanFile ss=new HumanFile();
-		ss.setMaxPage(maxPage);
-		ss.setMinPage(minPage);
-		List<HumanFile> list=this.baseDao.findAll(ss, "selectHumanFileByCheck");
+	public List<HumanFile> findtHumanFileByCheck(HumanFile humanFile) {
+		List<HumanFile> list=this.baseDao.findAll(humanFile, "selectHumanFileByCheck");
 		return list;
 	}
 
@@ -168,6 +165,30 @@ public class HumanBizImpl implements HumanBiz {
 	public List<HumanFile> selectHumanFileBy(HumanFile humanFile) {
 		List<HumanFile> list=this.baseDao.findAll(humanFile, "selectHumanFileBy");
 		return list;
+	}
+
+	@Override
+	public HumanFile changeHumanFileById(HumanFile humanFile) {
+		this.baseDao.add(humanFile, "changeHumanFileById");
+		return humanFile;
+	}
+
+	@Override
+	public HumanFile changeHumanFileStatus(HumanFile humanFile) {
+		this.baseDao.add(humanFile, "changeHumanFileStatus");
+		return humanFile;
+	}
+
+	@Override
+	public HumanFile deleteHumanFile(HumanFile humanFile) {
+		this.baseDao.add(humanFile, "deleteHumanFile");
+		return humanFile;
+	}
+
+	@Override
+	public HumanFile recoveryHumanFile(HumanFile humanFile) {
+		this.baseDao.add(humanFile, "recoveryHumanFile");
+		return humanFile;
 	}
 
 }

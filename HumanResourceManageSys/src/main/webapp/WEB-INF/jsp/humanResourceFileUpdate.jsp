@@ -11,11 +11,10 @@
 
 <body>
 <p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案变更</p><br/>
-	<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记复核</p><br/>
-<form id="check_form" enctype="multipart/form-data">
+<form id="update_form" enctype="multipart/form-data">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
-	<input class="easyui checkHumanFile" type="button" style="margin-left:805px;; background:#CFC;" value="提交"/>&nbsp;&nbsp;
-    <input class="easyui" type="button" style="" onclick="backCheck()" value="返回"/>
+	<input class="easyui updateHumanFile" type="button" style="margin-left:890px; background:#CFC;" value="提交"/>&nbsp;&nbsp;
+    <input class="easyui" type="button" style="background:#CFC;" onclick="backCheck()" value="返回"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">档案编号</td>
 			<td colspan="5" ><input class="easyui" type="text" id="FileNumber" value="${humanFileCheck.human_id}" name="human_id" style="border: none;" readonly="readonly"></td>
@@ -195,11 +194,11 @@
 			<td style="text-align:center" class="backcolor">账号</td>
 			<td><input name="human_account" class="easyui" type="text" id="I"  value="${humanFileCheck.human_account}"/></td>
             <td style="text-align:center" class="backcolor">变更人</td>
-			<td><input name="checker" class="easyui" type="text" id="I"  value="登录人"/></td>
+			<td><input name="changer" class="easyui" type="text" id="I"  value="登录人"/></td>
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">变更时间</td>
-			<td><input name="check_time" class="easyui" type="text" id="I" value="<%=new Date() %>"/></td>
+			<td><input name="change_time" class="easyui" type="text" id="I" value="<%=new Date() %>"/></td>
 			<td style="text-align:center" class="backcolor">特长</td>
 			<td>
 				<select name="human_speciality" class="easyui-combobox" type="text" id="tertiaryMechanism" data-option="${humanFileCheck.human_speciality}">
@@ -255,21 +254,21 @@ function changePhoto(id){
 }
 //档案变更
  $(function () {
-            $(".checkHumanFile").click(function () {
+            $(".updateHumanFile").click(function () {
             	 var birthday=$('input[name=human_birthday]').val();
             	 var date=new Date(birthday);
                	 $('input[name=human_birthday]').val(date);
-                $("#check_form").ajaxSubmit({
+                $("#update_form").ajaxSubmit({
                     success: function (data) {
                     	if(data==1){
                     		alert('提交成功....等待复核...')
-                    		$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReview");
+                    		$('#main_panel').panel('refresh',"tohumanResourceFileQueryEnd");
                     	}else{
                     		alert('提交失败(＞﹏＜)')
                     	}
                     },
                     error: function (error) { alert('复核失败'); },
-                    url: 'checkHumanFile', /*设置post提交到的页面*/
+                    url: 'updateHumanFile', /*设置post提交到的页面*/
                     type: "post", /*设置表单以post方法提交*/
                     dataType: "text" /*设置返回值类型为文本*/
                 });
@@ -277,7 +276,7 @@ function changePhoto(id){
         });
 //返回  
 function backCheck(){
-	$('#main_panel').panel('refresh',"tohumanResourceFileUpdate");
+	$('#main_panel').panel('refresh',"tohumanResourceFileQueryEnd");
 }
 
 	</script>
