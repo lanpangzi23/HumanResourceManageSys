@@ -1,42 +1,31 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
+<%
+	String path=request.getContextPath();//项目名
+						//http					localhost						8080
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ page isELIgnored="false" %>
+<base href="<%=basePath%>">
+<link type="text/css" rel="stylesheet" href="css/icon.css"/>
+<link type="text/css" rel="stylesheet" href="css/easyui.css"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/jquery-form.js"></script>
     <form id="upload_form">
         <p>您正在做的业务是:人力资源--招聘管理--职位发布管理--职位发布变更</p>
-		<input class="submit" type="button" value="重新提交" /><input type="button" value="返回" />
+		<input class="submit1" type="button" value="重新提交" /><input type="button" value="返回" />
 		<table border="1" bordercolor="#CCCCCC"  cellpadding="0" cellspacing="0">
 		<tr>
 			<td style="width: 80px;">I级机构</td>
-			<td><input name="first_kind_id" id="cc1" class="easyui-combobox" style="width: 100px;"
-				data-options="   
-			        valueField: 'first_kind_id',
-		        	textField: 'first_kind_name',
-		        	url: 'findAllFirstKind',
-		        	onSelect: function(rec){
-		        		$('#first_kind_name').val(rec.first_kind_name);
-			            var url = 'findSecondKindByFirst?first_kind_id='+rec.first_kind_id;
-			            $('.cc2').combobox('reload', url);
-		        }" />
-		        <div style="display:none;"> <input name="first_kind_name" id="first_kind_name"/></div>
-		       </td>
+			<td>${engageMajor.first_kind_name } </td>
 			<td style="width: 80px;">II级机构</td>
-			<td><input name="second_kind_id" id="cc2" class="easyui-combobox cc2" style="width: 100px;"
-					data-options="
- 					valueField:'second_kind_id', 
- 					textField:'second_kind_name',
- 		        	onSelect: function(rec){ 
- 		        		$('#second_kind_name').val(rec.second_kind_name);
- 			            var url = 'findThirdKindBySecondKindId?second_kind_id='+rec.second_kind_id;
-			            $('.cc3').combobox('reload', url); 
- 				}" />
- 				<div style="display:none;"> <input name="second_kind_name" id="second_kind_name"/></div>
- 				 </td>
+			<td>${engageMajor.second_kind_name }</td>
 			<td style="width: 80px;">III级机构</td>
-			<td><input  name="third_kind_id"  style="width: 100px;" id="cc3" class="easyui-combobox cc3" data-options="valueField:'third_kind_id',textField:'third_kind_name',
-			onSelect: function(rec){ 
- 		        		$('#third_kind_name').val(rec.third_kind_name);
- 				}" />
-			<div style="display:none;"> <input name="third_kind_name" id="third_kind_name"/></div>
-			</td>
+			<td>${engageMajor.third_kind_name }</td>
 			<td style="width: 80px;">招聘类型</td>
 			<td><select id="cc" class="easyui-combobox" name="engage_type" style="width:100px;">  
 			    <option>社会招聘</option>  
@@ -45,36 +34,21 @@
 		</tr>
 		<tr>
 			<td>职位分类</td>
-			<td><input name="major_kind_id" id="aa1" class="easyui-combobox" style="width: 100px;"
-				data-options="   
-			        valueField: 'major_kind_id',
-		        	textField: 'major_kind_name',
-		        	url: 'findAllConfigMajorKind',
-		        	onSelect: function(rec){
-		        		$('#human_major_kind_name').val(rec.major_kind_name);
-			            var url = 'selectConfigMajorByKind?major_kind_id='+rec.major_kind_id;
-			            $('.aa2').combobox('reload', url);
-		        }" /><div style="display:none;"> <input name="major_kind_name" id="human_major_kind_name"/></div></td>
+			<td>${engageMajor.major_kind_name }<input value="${engageMajor.mre_id}" name="mre_id" type="hidden"/></td>
 			<td>职位名称</td>
-			<td><input name="major_id" id="aa2" class="easyui-combobox aa2" style="width: 100px;"
-					data-options="
- 					valueField:'major_id', 
- 					textField:'major_name',
- 					onSelect: function(rec){ 
- 		        		$('#human_major_name').val(rec.major_name);
- 				}" />
- 					<div style="display:none;"> <input name="major_name" id="human_major_name"/></div></td>
+			<td><input value="${engageMajor.major_name }" name="major_name" readonly="readonly"/></td>
 			<td>招聘人数</td>
-			<td><input name="human_amount" type="text" style="width: 100px;"></td>
+			<td><input name="human_amount" value="${engageMajor.human_amount }" type="text" style="width: 100px;"></td>
 			<td>截止日期</td>
-			<td><input id="dd" type="text" class="easyui-datebox" style="width: 100px;" required="required"></input>
-			<input id="deadline" type="hidden" style="width: 100px;" name="deadline"></input></td>
+			<td><input id="dd"  type="text" value="${engageMajor.deadline }" class="easyui-datebox" style="width: 100px;" required="required"/>
+			<input type="hidden" id="deadline" value="${engageMajor.deadline }" name="deadline">
+			</td>
 		</tr>
 		<tr>
-			<td>登记人</td>
-			<td><input type="text" name="register" style="width: 100px;"></td>
-			<td>登记时间</td>
-			<td><input type="text" name="regist_time" readonly="true" value="<%=new Date() %>" style="width: 100px;"></td>
+			<td>变更人</td>
+			<td><input type="text" name="changer"  style="width: 100px;"></td>
+			<td>变更时间</td>
+			<td><input type="text" name="change_time" readonly="true" value="<%=new Date() %>" style="width: 100px;"></td>
 			<td></td>
 			<td></td>
 			<td></td>
@@ -91,7 +65,15 @@
 	</table>
 	</form>  
 <script type="text/javascript">
-$(".submit").click(function() {
+$(document).ready(function(){
+	$("#dd").datebox({
+		required:true,
+		onSelect:function(date){
+			$('#deadline').val(date);
+		}
+	});
+})
+$(".submit1").click(function() {
 	$("#upload_form").ajaxSubmit({
 		success : function(data) {
 			alert(data);
@@ -99,7 +81,7 @@ $(".submit").click(function() {
 		error : function(error) {
 			alert(error);
 		},
-		url : 'addEngageMajor', /*设置post提交到的页面*/
+		url : 'updateEngageMajor', /*设置post提交到的页面*/
 		type : "post", /*设置表单以post方法提交*/
 		dataType : "text" /*设置返回值类型为文本*/
 	});

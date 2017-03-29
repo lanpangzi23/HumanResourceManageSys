@@ -163,4 +163,8 @@ public class PageController {
 	public String toPostRegistration(Model model){//转到机构设置区
 		return "postRegistration";
 	}
+	@RequestMapping(value="/admin/toResumeManagement")
+	public String toResumeManagement(Model model){//转到简历管理界面
+		return "ResumeManagement";
+	}
 }

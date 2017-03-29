@@ -21,6 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<update id="updateEngageMajorRelease" parameterType="EngageMajorRelease">
 		update engage_major_release set human_amount=#{human_amount},engage_type=#{engage_type},deadline=#{deadline},changer=#{changer},
-		change_time=#{change_time},major_describe=#{major_describe},engage_required=#{engage_required} where major_name=#{major_name}
+		change_time=#{change_time},major_describe=#{major_describe},engage_required=#{engage_required} where mre_id=#{mre_id}
 	</update>
+	<delete id="deleteEngageMajorRelease" parameterType="EngageMajorRelease">
+		delete from engage_major_release where mre_id=#{mre_id}
+	</delete>
 </mapper>

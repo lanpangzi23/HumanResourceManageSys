@@ -17,15 +17,20 @@ public class RecruitmentManagementBizImpl implements RecruitmentManagementBiz{
 	public void addEngageMajor(EngageMajorRelease emr) {
 		baseDaoMybatisImpl.add(emr, "insertEngageMajorRelease");
 	}
-	public List<EngageMajorRelease> findEngageMajor(Integer page,Integer rows,String name) {
+	public List<EngageMajorRelease> findEngageMajor(Integer page,Integer rows,Integer name) {
 		EngageMajorRelease emr=new EngageMajorRelease();
 		emr.setPage(page);
 		emr.setRows(rows);
-		emr.setMajor_name(name);
+		emr.setMre_id(name);
 		List<EngageMajorRelease> list=baseDaoMybatisImpl.findAll(emr, "selectEngageMajorRelease");
 		return list;
 	}
-	public void findEngageMajor(EngageMajorRelease emr) {
+	public void updateEngageMajor(EngageMajorRelease emr) {
 		baseDaoMybatisImpl.update(emr, "updateEngageMajorRelease");
+	}
+	public void deleteEngageMajor(int id) {
+		EngageMajorRelease emr=new EngageMajorRelease();
+		emr.setMre_id(id);
+		baseDaoMybatisImpl.delete(emr, "deleteEngageMajorRelease");
 	}
 }

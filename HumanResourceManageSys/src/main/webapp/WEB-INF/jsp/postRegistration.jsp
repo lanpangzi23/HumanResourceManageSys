@@ -3,7 +3,7 @@
 <body>
 <div id="tt" class="easyui-tabs" style="width:100%px;height:100%px;">  
     <div title="职位发布登记" style="padding:20px;display:none;" data-options="iconCls:'icon-reload'">  
-    <form id="upload_form">
+    <form id="add_form">
         <p>您正在做的业务是:人力资源--招聘管理--职位发布管理--职位发布登记</p>
 		<input class="submit" type="button" value="提交" /><input type="button" value="返回" />
 		<table border="1" bordercolor="#CCCCCC"  cellpadding="0" cellspacing="0">
@@ -94,7 +94,9 @@
 	</table>
 	</form>  
     </div>  
-    <div title="职位发布变更" data-options="iconCls:'icon-reload'" style="padding:20px;display:none;">  
+    <div title="职位发布变更" data-options="iconCls:'icon-reload'" style="padding:20px;display:none;width: 100%;height: 100%;"> 
+      	<p>您正在做的业务是:人力资源--招聘管理--职位发布管理--职位发布变更</p>
+      	<p>当前可变更的职位发布总数：<label id="total"></label>例</p>
        <table id="dg"></table>
     </div>  
     <div title="职位发布查询" data-options="iconCls:'icon-reload'" style="padding:20px;display:none;">  
@@ -102,32 +104,50 @@
     </div>  
 </div> 
 <script type="text/javascript">
-$('#dg').datagrid({   
-    url:'findEngageMajor',  
-    pagination:true,
-    pageSize:10,
-    columns:[[   
-        {field:'major_name',title:'职位名称',width:100},   
-        {field:'second_kind_name',title:'机构名称',width:100},   
-        {field:'human_amount',title:'招聘人数',width:100} ,
-        {field:'regist_time',title:'发布时间',width:100},   
-        {field:'deadline',title:'截止时间',width:150},   
-        {field:'cz1',title:'修改',width:100,
-        	formatter : function(value, row, index) {
-				return '   <a href="javascript:update(\''+ row.major_name + '\')">修改</a>';
-			}} ,
-        {field:'cz2',title:'删除',width:100,
-				formatter : function(value, row, index) {
-					return '   <a href="javascript:deleteMajorName(\''+ row.major_name + '\')">删除</a>';
-				}} 
-    ]]   
-}); 
+$('#tt').tabs({
+	onSelect:function(title,index){
+		if(index==1){
+			$('#dg').datagrid({   
+			    url:'findEngageMajor',  
+			    pagination:true,
+			    pageSize:10,
+			    onLoadSuccess:function(data){
+			    	$('#total').text(data.total);
+			    },
+			    columns:[[   
+					{field:'mre_id',title:'职位名称',width:100,hidden:true}, 
+			        {field:'major_name',title:'职位名称',width:100},   
+			        {field:'second_kind_name',title:'机构名称',width:100},   
+			        {field:'human_amount',title:'招聘人数',width:100} ,
+			        {field:'regist_time',title:'发布时间',width:100},   
+			        {field:'deadline',title:'截止时间',width:150},   
+			        {field:'cz1',title:'修改',width:100,
+			        	formatter : function(value, row, index) {
+							return '   <a href="javascript:update('+ row.mre_id + ')">修改</a>';
+						}} ,
+			        {field:'cz2',title:'删除',width:100,
+							formatter : function(value, row, index) {
+								return '   <a href="javascript:deleteMajorName('+ row.mre_id + ')">删除</a>';
+							}} 
+			    ]]   
+			}); 
+		}
+	}
+});
 function update(name){
-	var pp=$('#tt').tabs('getSelected');
-	pp.panel('options').tab.href("");
+	var tab = $('#tt').tabs('getSelected');  // get selected panel
+	$('#tt').tabs('update', {
+		tab: tab,
+		options: {
+			content : '<iframe scrolling="auto" frameborder="0"  src="findEngageMajorDetails/'+name+'" style="width:1000px;height:400px;"></iframe>',
+		}
+	});
 }
-function deleteMajorName(name){
-	alert(name);
+function deleteMajorName(id){
+	$.post("deleteEngageMajor/"+id,function(data){
+		alert(data);
+		$('#dg').datagrid("reload"); 
+	})
 }
 $(document).ready(function(){
 	$("#dd").datebox({
@@ -138,7 +158,7 @@ $(document).ready(function(){
 	});
 })
 $(".submit").click(function() {
-	$("#upload_form").ajaxSubmit({
+	$("#add_form").ajaxSubmit({
 		success : function(data) {
 			alert(data);
 		},

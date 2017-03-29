@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +35,18 @@ public class RecruitmentManagementController {
 			out.print(e.getMessage());
 		}
 	}
+	@RequestMapping(value="updateEngageMajor")
+	public @ResponseBody void updateEngageMajor(HttpServletResponse response,EngageMajorRelease emr) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		try{
+			recruitmentManagementBizImpl.updateEngageMajor(emr);
+			out.print("变更成功！！！");
+		}catch(Exception e){
+			e.printStackTrace();
+			out.print(e.getMessage());
+		}
+	}
 	@RequestMapping(value="findEngageMajor")
 	public @ResponseBody void findEngageMajor(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
 		response.setCharacterEncoding("utf-8");
@@ -46,8 +59,22 @@ public class RecruitmentManagementController {
 		rd.setTotal(""+size);
 		out.print(gson.toJson(rd));
 	}
-	@RequestMapping(value="findEngageMajorDetails/{name}")
-	public String findEngageMajorDetails(@PathVariable String name){
+	@RequestMapping(value="findEngageMajorDetails/{id}")
+	public String findEngageMajorDetails(@PathVariable int name,Model model){
+		List<EngageMajorRelease> list=recruitmentManagementBizImpl.findEngageMajor(null, null, name);
+		model.addAttribute("engageMajor", list.get(0));
 		return "jobPostingChange";
+	}
+	@RequestMapping(value="deleteEngageMajor/{id}")
+	public @ResponseBody void deleteEngageMajor(HttpServletResponse response,@PathVariable int id) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		try{
+			recruitmentManagementBizImpl.deleteEngageMajor(id);
+			out.print("删除成功！！！");
+		}catch(Exception e){
+			e.printStackTrace();
+			out.print(e.getMessage());
+		}
 	}
 }
