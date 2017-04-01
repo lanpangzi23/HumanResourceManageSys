@@ -23,6 +23,7 @@ public interface HumanBiz {
 	HumanFile deleteHumanFile(HumanFile humanFile);
 	//人力资源档案恢复
 	HumanFile recoveryHumanFile(HumanFile humanFile);
+	public List<HumanFile> selectHumanFileByCard(HumanFile humanFile);
 	
 	public List<HumanFile> selectHumanFileBy(HumanFile humanFile);
 	//人力资源档案照片（修改）

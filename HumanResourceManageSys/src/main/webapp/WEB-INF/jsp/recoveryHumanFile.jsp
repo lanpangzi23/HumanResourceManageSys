@@ -1,7 +1,7 @@
-<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@page import="java.util.Date"%>
+         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,10 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案变更</p><br/>
+<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案恢复</p><br/>
 <form id="update_form" enctype="multipart/form-data">
 	<table border="1" width="1000px" cellpadding="0" cellspacing="0">
-	<input class="easyui" onclick="changeHumanFile()" type="button" style="margin-left:870px; background:#CFC;" value="审核通过"/>&nbsp;&nbsp;
+	<input class="easyui" onclick="recoveryHumanFile()" type="button" style="margin-left:870px; background:#CFC;" value="恢复"/>&nbsp;&nbsp;
     <input class="easyui" type="button" style="background:#CFC;" onclick="backCheck()" value="返回"/>
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">档案编号</td>
@@ -23,7 +23,6 @@
 			
 			<center>
 			<input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/><br/>
-				 <input class="easyui" type="button"  onclick="changePhoto('${humanFileCheck.human_id}')" value="更改档案照片"/>	
 			</center>
 			
 			</td>
@@ -248,26 +247,28 @@
 		</table>
 		</form>
 <script type="text/javascript">
-//更改照片 
-function changePhoto(id){
-	$('#main_panel').panel('refresh',"toChangePhoto/"+id+","+2);
-}
 //档案变更
-function changeHumanFile(){
-	var humanid=$('input[name="human_id"]').val()
-	$.post('changeHumanFileEnd', {
-		humanid : humanid
-	}, function(data) {
-		if (data == 1) {
-			alert('复核成功');
-			$('#main_panel').panel('refresh',"tohumanFileChangeReview");
-		} else if (data== 0) {
-			alert('复核失败')
-		}
-	});
+//删除
+function recoveryHumanFile(){
+	var id=$('input[name="human_id"]').val();
+	$.messager.confirm('温馨提示','你确定要恢复这条记录吗?',function(r){
+	    if (r){
+	    	$.post('recoveryHumanFile', {
+	    		humanid : id
+			}, function(data) {
+				if (data == 1) {
+					alert('您已成功恢复该档案');
+					$('#main_panel').panel('refresh',"tohumanFileDelete");
+				} else if (data = 0) {
+					alert('恢复失败')
+				}
+			});
+	    }
+	})
+		
 }
 function backCheck(){
-	$('#main_panel').panel('refresh',"tohumanFileChangeReview");
+	$('#main_panel').panel('refresh',"tohumanFileDelete");
 }
 
 	</script>

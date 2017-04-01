@@ -74,7 +74,6 @@ $(function () {
      var thirdKindId=$('input[name=third_kind_id]').val();
      var human_major_kind_id=$('input[name=human_major_kind_id]').val();
      var human_major_id=$('input[name=human_major_id]').val();
-     alert(mindate)
      if(mindate!=''){
     	 if(maxdate!=''){
     		 if(ndate<xdate){

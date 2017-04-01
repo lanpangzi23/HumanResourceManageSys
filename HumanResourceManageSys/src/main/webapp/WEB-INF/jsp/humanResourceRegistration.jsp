@@ -180,7 +180,7 @@
 				</select>
 			</td>
 			<td style="text-align:center" class="backcolor">身份证号码</td>
-			<td><input name="human_id_card" class="easyui" type="text" id="I" ></td>
+			<td><input name="human_id_card" class="easyui" type="text" id="I" onblur="checkCardId()"></td>
             <td style="text-align:center" class="backcolor">社会保障号码</td>
 			<td><input name="human_society_security_id" class="easyui" type="text" id="I" ></td>
 		</tr>
@@ -227,7 +227,7 @@
 			<td style="text-align:center" class="backcolor">账号</td>
 			<td><input name="human_account" class="easyui" type="text" id="I" ></td>
             <td style="text-align:center" class="backcolor">登记人</td>
-			<td><input name="register" class="easyui" type="text" id="I" ></td>
+			<td><input name="register" class="easyui" type="text" id="I" value="${uname}" ></td>
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">建档时间</td>
@@ -274,36 +274,83 @@
 		</tr>
 </table></form>
 <script>
+$(function () {
+    $(".submit").click(function () {
+    	checkId();
+    	checkBirhtday();
+    	checkPic();
+    	checkName();
+    	if(checkId()==true&&checkBirhtday()==true&&checkPic()==true&&checkName()==true){
+    			 $("#upload_form").ajaxSubmit({
+                     success: function (data) {
+                     	if(data==1){
+                     		alert('登记成功...请尽快审核....')
+                     	}else{
+                     		alert('登记失败 ...');
+                     	}
+                         alert(data);
+                     },
+                     error: function (error) { alert('登记失败 ...'); },
+                     url: 'humanResourceRegistration', /*设置post提交到的页面*/
+                     type: "post", /*设置表单以post方法提交*/
+                     dataType: "text" /*设置返回值类型为文本*/
+                 });
+    	}else{
+    		alert('请完善信息')
+    	}
+    });
+});
+//身份证号检查 
+function checkCardId(){
+	var human_id_card=$('input[name="human_id_card"]').val();
+	if(human_id_card==''){
+		alert('身份证号不能为空！！')
+	}else{
+	$.post('checkHumanCardId',{human_id_card:human_id_card},function(data){
+		if(data==1){
+			alert('该人员档案已经存在.....请勿重复登记!!!!');
+			$('input[name="human_id_card"]').val('');
+		}
+	},'text')}
+}
 //图片上传  及数据保存  
-   $(function () {
-            $(".submit").click(function () {
-            	 var birthday=$('input[name=human_birthday]').val();
-            	 if(birthday==''){
-            		 alert('请输入生日！')
-            	 }else{
-            		 var date=new Date(birthday);
-                  	$('input[name=human_birthday]').val(date);
-            		 if($('input[name=picUrl]').val()==''){
-            			 alert('请上传头像')
-            		 }else{
-            			 $("#upload_form").ajaxSubmit({
-                             success: function (data) {
-                             	if(data==1){
-                             		alert('登记成功...请尽快审核....')
-                             	}else{
-                             		alert('登记失败 ...');
-                             	}
-                                 alert(data);
-                             },
-                             error: function (error) { alert('登记失败 ...'); },
-                             url: 'humanResourceRegistration', /*设置post提交到的页面*/
-                             type: "post", /*设置表单以post方法提交*/
-                             dataType: "text" /*设置返回值类型为文本*/
-                         });
-            		 }
-            	 }
-            });
-        });
+function checkId(){
+	var human_id_card=$('input[name="human_id_card"]').val();
+	 if(human_id_card==''){
+		 alert('身份证号不能为空....')
+		 return false;
+	 }else{
+		 return true;
+	 }
+}
+ function checkBirhtday(){
+	var birthday=$('input[name=human_birthday]').val();
+	 if(birthday==''){
+		 alert('请输入生日！');
+		 return false;
+	 }else{
+		 var date=new Date(birthday);
+		 $('input[name=human_birthday]').val(date);
+		 return true;
+	 }
+}
+	 function checkPic(){
+		 if($('input[name=picUrl]').val()==''){
+			 alert('请上传头像');
+			 return false;
+		 }else{
+			 return true;
+		 }
+	 }
+	function checkName(){
+		 if($('input[name=human_name]').val()==''){
+			 alert('姓名不能为空');
+			 return false;
+		 }else{
+			 return true;
+		 }
+	}
+
 $('#human_birthday').bind('input propertychange',function(){
 	$('#dataTiShi').attr('type','text');
 	

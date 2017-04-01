@@ -6,15 +6,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.yc.bean.ConfigFileFirstKind;
-import com.yc.bean.ConfigFileSecondKind;
-import com.yc.bean.ConfigFileThirdKind;
 import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
 import com.yc.bean.SalaryStandard;
-import com.yc.bean.SalaryStandardDetails;
 import com.yc.biz.HumanBiz;
 import com.yc.dao.BaseDao;
 @Service
@@ -151,13 +147,13 @@ public class HumanBizImpl implements HumanBiz {
 
 	@Override
 	public HumanFile updateHumanFileById(HumanFile humanFile) {
-		this.baseDao.add(humanFile, "updateHumanFileById");
+		this.baseDao.update(humanFile, "updateHumanFileById");
 		return humanFile;
 	}
 
 	@Override
 	public HumanFile updateHumanFilePictureById(HumanFile humanFile) {
-		this.baseDao.add(humanFile, "updateHumanFilePictureById");
+		this.baseDao.update(humanFile, "updateHumanFilePictureById");
 		return humanFile;
 	}
 
@@ -169,26 +165,32 @@ public class HumanBizImpl implements HumanBiz {
 
 	@Override
 	public HumanFile changeHumanFileById(HumanFile humanFile) {
-		this.baseDao.add(humanFile, "changeHumanFileById");
+		this.baseDao.update(humanFile, "changeHumanFileById");
 		return humanFile;
 	}
 
 	@Override
 	public HumanFile changeHumanFileStatus(HumanFile humanFile) {
-		this.baseDao.add(humanFile, "changeHumanFileStatus");
+		this.baseDao.update(humanFile, "changeHumanFileStatus");
 		return humanFile;
 	}
 
 	@Override
 	public HumanFile deleteHumanFile(HumanFile humanFile) {
-		this.baseDao.add(humanFile, "deleteHumanFile");
+		this.baseDao.update(humanFile, "deleteHumanFile");
 		return humanFile;
 	}
 
 	@Override
 	public HumanFile recoveryHumanFile(HumanFile humanFile) {
-		this.baseDao.add(humanFile, "recoveryHumanFile");
+		this.baseDao.update(humanFile, "recoveryHumanFile");
 		return humanFile;
+	}
+
+	@Override
+	public List<HumanFile> selectHumanFileByCard(HumanFile humanFile) {
+		List<HumanFile> list=this.baseDao.findAll(humanFile, "selectHumanFileByCard");
+		return list;
 	}
 
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.UsersMapper">
+	<select id="selectUserByName" resultType="Users" parameterType="Users">
+		select u_id,u_name,u_true_name,u_password,u_human_id,u_role from users
+		where  u_name=#{u_name}
+		<if test="u_password!=null">
+			and u_password=#{u_password}
+		</if>
+	</select>
+</mapper>
