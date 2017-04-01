@@ -56,6 +56,12 @@ public class PageController {
 //		model.addAttribute("configMajorKind",configMajorKind);
 //		List<ConfigMajor> configMajor=this.humanBiz.getAllConfigMajors();
 //		model.addAttribute("configMajor",configMajor);
+		getConfigPublicCharInfo(model);
+		List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
+		model.addAttribute("salaryStandard",salaryStandard);
+		return "humanResourceRegistration";
+	}
+	private void getConfigPublicCharInfo(Model model){
 		List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
 		model.addAttribute("technicalTitles",technicalTitles);
 		List<ConfigPublicChar> nationalitys=this.humanBiz.getAllNationalitys();
@@ -76,9 +82,6 @@ public class PageController {
 		model.addAttribute("hobbys",hobbys);
 		List<ConfigPublicChar> educationsYears=this.humanBiz.getAllEducationsYears();
 		model.addAttribute("educationsYears",educationsYears);
-		List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
-		model.addAttribute("salaryStandard",salaryStandard);
-		return "humanResourceRegistration";
 	}
 	@RequestMapping(value="/admin/humanResourceFileRegistrationReview")
 	public String tohumanResourceFileRegistrationReviewPage(Model model){
@@ -165,6 +168,7 @@ public class PageController {
 	}
 	@RequestMapping(value="/admin/toResumeManagement")
 	public String toResumeManagement(Model model){//转到简历管理界面
+		getConfigPublicCharInfo(model);
 		return "ResumeManagement";
 	}
 	@RequestMapping(value="/admin/humanFileChangeReview")
