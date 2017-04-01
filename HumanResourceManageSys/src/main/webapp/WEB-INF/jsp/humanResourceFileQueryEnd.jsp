@@ -111,7 +111,21 @@ function update(id){
 }
 //删除
 function deleteHumanFile(id){
-	$('#main_panel').panel('refresh',"deleteHumanFile/"+id);
+	$.messager.confirm('温馨提示','你确定要删除这条记录吗?',function(r){
+	    if (r){
+	    	$.post('deleteHumanFile', {
+				humanid : id
+			}, function(data) {
+				if (data == 1) {
+					alert('您已成功删除该档案');
+					$('#main_panel').panel('refresh',"tohumanFileDelete");
+				} else if (data = 0) {
+					alert('删除失败')
+				}
+			});
+	    }
+	})
+		
 }
 	</script>
 </body>

@@ -37,7 +37,6 @@ public class OrganizationController {
 	// 一级机构分页查寻
 		@RequestMapping(value = "/findFirstKindByPage")
 		public @ResponseBody void findFirstKind(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
-			
 			response.setCharacterEncoding("utf-8");
 			List<ConfigFileFirstKind> configFileFirstKinds=this.organizationBiz.findConfigFileFirstKindByPage(rows*(page-1), rows);
 			PrintWriter out = response.getWriter();

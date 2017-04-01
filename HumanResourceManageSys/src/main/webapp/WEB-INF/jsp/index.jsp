@@ -23,13 +23,12 @@
 	height:60px;
 	line-height:130px;
 	text-align:right;
-	padding-right:300px;
+	padding-right:500px;
 	font-family:"Lucida Console", Monaco, monospace;
 	margin-top:-20px;
 }
 .header{
 	height:100px;
-	
 }
 #menu>div> li{
 	list-style-type:none;}
@@ -41,12 +40,18 @@
 </style>
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north',title:'North Title',split:true" style="height:130px;">
-    	<div class="header"><p>人力资源管理中心</p></div>
+    <div data-options="region:'north',title:'North Title',split:true" style="height:135px;">
+    	<div class="header"><p>人力资源管理中心</p>
+    	
+    	<span style="float: right; margin-right: 100px;font-weight: bolder;">当前用户：<span style="font-weight: bolder;font-size:15px;color:blue;font-family:sans-serif;">${uname}</span><a href="javascript:logout()" style="margin-left: 60px;color: red;">退出登录</a></span>
+    	</div>
     </div>  
     <div data-options="region:'west',title:'West',href:'',split:true" style="width:200px;">
     	<div id="menu" class="easyui-accordion" fit="true" border="false">
         	<div title="系统管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
+        	<c:if test="${role=='系统管理员'}">
+        	<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">后台管理员添加</a></li>
+        	</c:if>
         		<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">人力资源档案管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">题库管理设置</a></li>
@@ -58,7 +63,7 @@
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileRegistrationReview" data-options="plain:true">人力资源档案登记复核</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">人力资源档案查询</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanFileChangeReview" data-options="plain:true">人力资源档案变更</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanResourceFileDelete" data-options="plain:true">人力资源档案删除</a></li>
+                <li><a class="easyui-linkbutton" href="admin/humanResourceFileDelete" data-options="plain:true">人力资源档案恢复</a></li>
             </div>
             <div title="薪酬管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
         		<li><a class="easyui-linkbutton" href="admin/StandardSalarySet" data-options="plain:true">薪酬标准登记</a></li>
@@ -100,6 +105,9 @@
 		$('#main_panel').panel('refresh',href);
 		return false;
 		});
-
+//退出都登录 
+function logout(){
+	window.location.href="logout";
+}
 </script>
 </html>

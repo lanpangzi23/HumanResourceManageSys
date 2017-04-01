@@ -11,7 +11,7 @@
 </head>
 <body>
 <p style="color:#00F">您正在做的业务是：人力资源--人力资源档案查寻--人力资源档案详情</p><br/><br/>
-<input class="easyui" type="button" style="margin-left:805px;; background:#CFC;" onclick="backCheck()" value="返回"/>
+<input class="easyui" type="button" style="margin-left:955px; background:#CFC;" onclick="backCheck()" value="返回"/>
 <table border="1" width="1000px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">
 			<td class="backcolor" style="text-align:center">档案编号</td>

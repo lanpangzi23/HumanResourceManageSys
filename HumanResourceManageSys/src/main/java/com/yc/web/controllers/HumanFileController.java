@@ -52,6 +52,22 @@ public class HumanFileController {
 	public void setHumanBiz(HumanBiz humanBiz) {
 		this.humanBiz = humanBiz;
 	}
+	//身份证号的检查
+	@RequestMapping(value="/checkHumanCardId")
+	public @ResponseBody void checkHumanCardId(HttpServletResponse response,@RequestParam String human_id_card) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		HumanFile humanfile=new HumanFile();
+		humanfile.setHuman_id_card(human_id_card);
+		List<HumanFile> humanFile=this.humanBiz.selectHumanFileByCard(humanfile);
+		if(humanFile.size()>0){
+			PrintWriter out = response.getWriter();
+			out.print(1); 
+		}else{
+			PrintWriter out = response.getWriter();
+			out.print(0);
+		}
+		
+	}
 	//人力资源档案登记 
 	@RequestMapping(value="/humanResourceRegistration")
 	public @ResponseBody void saveHumanFile(HttpServletResponse response,HttpServletRequest request,HumanFile humanFile) throws IOException{
@@ -152,6 +168,7 @@ public class HumanFileController {
 		PrintWriter out = response.getWriter();
 		out.print( gson.toJson(list));
 	}
+	//复核详情返回
 	@RequestMapping(value="tohumanResourceFileRegistrationReview")
 	public ModelAndView tohumanResourceFileRegistrationReview(){//
 		ModelAndView mv=new ModelAndView("humanResourceFileRegistrationReview");
@@ -218,7 +235,7 @@ public class HumanFileController {
 		}
 		
 	}
-	//查寻操作
+	//查寻操作（根据条件查寻、已经复核。没有被删除的）
 	@RequestMapping(value="/selectHumanFileBy")
 	public ModelAndView selectHumanFileBy(@RequestParam String mindate,String maxdate,String firstKindId,String secondKindId,String thirdKindId,String human_major_kind_id,String human_major_id) throws IOException, ParseException{
 		ModelAndView mv=new ModelAndView("humanResourceFileQueryEnd");
@@ -257,6 +274,7 @@ public class HumanFileController {
 				mv.addObject("maxdate",dateFormat.format(new Date()));
 			}
 		}
+		humanFile.setHuman_file_status(false);
 		List<HumanFile> list=humanBiz.selectHumanFileBy(humanFile);
 		mv.addObject("size",list.size());
 		return mv;
@@ -286,7 +304,6 @@ public class HumanFileController {
 		if(!mindate.equals("")){
 			Date minDate=dateFormat.parse(mindate);
 			humanFile.setMinDate(minDate);
-			System.out.println("-----------"+maxdate.getClass().getName());
 			if(!maxdate.equals("")){
 				
 				Date maxDate=dateFormat.parse(maxdate);
@@ -297,9 +314,8 @@ public class HumanFileController {
 		}
 		humanFile.setMinPage(rows*(page-1));
 		humanFile.setMaxPage(rows);
-		System.out.println("==="+humanFile.toString());
+		humanFile.setHuman_file_status(false);
 		List<HumanFile> list=humanBiz.selectHumanFileBy(humanFile);
-		System.out.println("+++++++++++++++"+list.size());
 		Gson gson=new Gson();
 		PrintWriter out = response.getWriter();
 		humanFile.setMinPage(0);
@@ -310,7 +326,7 @@ public class HumanFileController {
 		rd.setTotal(""+size);
 		out.print(gson.toJson(rd));
 	}
-	//
+	//详情
 	@RequestMapping(value="tohumanFileDetails/{id}")
 	public ModelAndView tohumanFileDetails(@PathVariable String id,Model model){//查看待复核人详情
 		ModelAndView mv=new ModelAndView("HumanFileDetails");
@@ -343,13 +359,13 @@ public class HumanFileController {
 		mv.addObject("politicalStatus",politicalStatus);
 		return mv;
 	}
-//
+//返回
 	@RequestMapping(value="tohumanResourceFileQueryEnd")
 	public ModelAndView tohumanResourceFileQueryEnd(){//查看待复核人详情
-		ModelAndView mv=new ModelAndView("humanResourceFileQueryEnd");
+		ModelAndView mv=new ModelAndView("humanResourceFileQuery");
 		return mv;
 	}
-	//变更
+	//变更（详情）
 	@RequestMapping(value="tohumanResourceFileUpdate/{id}")
 	public ModelAndView tohumanResourceFileUpdate(@PathVariable String id,Model model){//查看待复核人详情
 		ModelAndView mv=new ModelAndView("humanResourceFileUpdate");
@@ -403,5 +419,184 @@ public class HumanFileController {
 				out.print(0);
 			}
 		}
-	
+		//人力资源档案查寻（复核状态变更）
+		@RequestMapping(value="/findtHumanFileChange")
+		public @ResponseBody void findtHumanFileChange(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			HumanFile humanfile=new HumanFile();
+			humanfile.setMinPage(rows*(page-1));
+			humanfile.setMaxPage(rows);
+			humanfile.setCheck_status(2);
+			humanfile.setHuman_file_status(false);
+			List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(humanfile);
+			PrintWriter out = response.getWriter();
+			humanfile.setMinPage(0);
+			humanfile.setMaxPage(1000000);
+			int size=humanBiz.findtHumanFileByCheck(humanfile).size();
+			Gson gson=new Gson();
+			ResponseData rd=new ResponseData();
+			rd.setRows(humanFile);
+			rd.setTotal(""+size);
+			out.print(gson.toJson(rd)); 
+		}
+		//变更（复核详情）
+		@RequestMapping(value="tohumanFileChangeReviewEnd/{id}")
+		public ModelAndView tohumanFileChangeReviewEnd(@PathVariable String id,Model model){//查看待复核人详情
+			ModelAndView mv=new ModelAndView("humanFileChangeReviewEnd");
+			HumanFile humanFile=new HumanFile();
+			humanFile.setHuman_id(id);
+			List<HumanFile> list=humanBiz.selectHumanFileById(humanFile);
+			List<ConfigPublicChar> schooling=this.humanBiz.getAllSchooling();
+			List<ConfigPublicChar> educations=this.humanBiz.getAllEducations();
+			List<ConfigPublicChar> strongPoints=this.humanBiz.getAllStrongPoints();
+			List<ConfigPublicChar> hobbys=this.humanBiz.getAllHobbys();
+			List<ConfigPublicChar> educationsYears=this.humanBiz.getAllEducationsYears();
+			List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
+			List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
+			List<ConfigPublicChar> nationalitys=this.humanBiz.getAllNationalitys();
+			List<ConfigPublicChar> nations=this.humanBiz.getAllNations();
+			List<ConfigPublicChar> religiousBeliefs=this.humanBiz.getAllReligiousBeliefs();
+			List<ConfigPublicChar> politicalStatus=this.humanBiz.getAllPoliticalStatus();
+			
+			mv.addObject("humanFileCheck", list.get(0));
+			mv.addObject("salaryStandard", salaryStandard);
+			mv.addObject("educationsYears", educationsYears);
+			mv.addObject("hobbys", hobbys);
+			mv.addObject("strongPoints", strongPoints);
+			mv.addObject("educations", educations);
+			mv.addObject("schooling", schooling);
+			mv.addObject("technicalTitles",technicalTitles);
+			mv.addObject("nationalitys", nationalitys);
+			mv.addObject("nations", nations);
+			mv.addObject("religiousBeliefs", religiousBeliefs);
+			mv.addObject("politicalStatus",politicalStatus);
+			return mv;
+		}
+		@RequestMapping(value="tohumanFileChangeReview")
+		public ModelAndView tohumanFileChangeReview(){//查看待复核人详情
+			ModelAndView mv=new ModelAndView("humanFileChangeReview");
+			return mv;
+		}
+		//人力资源档案（复核状态变更）
+		@RequestMapping(value="/changeHumanFileEnd")
+		public @ResponseBody void changeHumanFileEnd(HttpServletResponse response,@RequestParam String humanid) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			HumanFile humanfile=new HumanFile();
+			humanfile.setHuman_id(humanid);
+			List<HumanFile> list=humanBiz.selectHumanFileById(humanfile);
+			if(list.get(0).getFile_chang_amount()==null){
+				humanfile.setFile_chang_amount(1);
+			}else{
+				humanfile.setFile_chang_amount(list.get(0).getFile_chang_amount()+1);
+			}
+			
+			try {
+			humanfile=this.humanBiz.changeHumanFileStatus(humanfile);
+				PrintWriter out = response.getWriter();
+				out.print(1);
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+				PrintWriter out = response.getWriter();
+				out.print(0);
+			}
+			
+			 
+		}
+		//人力资源档案删除
+		@RequestMapping(value="/deleteHumanFile")
+		public @ResponseBody void deleteHumanFile(HttpServletResponse response,@RequestParam String humanid) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			HumanFile humanfile=new HumanFile();
+			humanfile.setHuman_id(humanid);
+			humanfile.setDelete_time(new Date());
+			humanfile.setHuman_file_status(true);
+			try {
+				HumanFile humanFile=this.humanBiz.deleteHumanFile(humanfile);
+				PrintWriter out = response.getWriter();
+				out.print(1);
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				out.print(0);
+			}
+			
+			 
+		}	
+		//人力资源档案查寻（已删除的人力资源档案）
+		@RequestMapping(value="/findDeleteHumanFile")
+		public @ResponseBody void findDeleteHumanFile(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			HumanFile humanfile=new HumanFile();
+			humanfile.setMinPage(rows*(page-1));
+			humanfile.setMaxPage(rows);
+			humanfile.setHuman_file_status(true);
+			List<HumanFile> humanFile=this.humanBiz.findtHumanFileByCheck(humanfile);
+			PrintWriter out = response.getWriter();
+			humanfile.setMinPage(0);
+			humanfile.setMaxPage(1000000);
+			int size=humanBiz.findtHumanFileByCheck(humanfile).size();
+			Gson gson=new Gson();
+			ResponseData rd=new ResponseData();
+			rd.setRows(humanFile);
+			rd.setTotal(""+size);
+			out.print(gson.toJson(rd)); 
+		}
+		//要恢复档案的详情
+		@RequestMapping(value="torecoveryHumanFile/{id}")
+		public ModelAndView torecoveryHumanFile(@PathVariable String id,Model model){//查看待复核人详情
+			ModelAndView mv=new ModelAndView("recoveryHumanFile");
+			HumanFile humanFile=new HumanFile();
+			humanFile.setHuman_id(id);
+			List<HumanFile> list=humanBiz.selectHumanFileById(humanFile);
+			List<ConfigPublicChar> schooling=this.humanBiz.getAllSchooling();
+			List<ConfigPublicChar> educations=this.humanBiz.getAllEducations();
+			List<ConfigPublicChar> strongPoints=this.humanBiz.getAllStrongPoints();
+			List<ConfigPublicChar> hobbys=this.humanBiz.getAllHobbys();
+			List<ConfigPublicChar> educationsYears=this.humanBiz.getAllEducationsYears();
+			List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
+			List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
+			List<ConfigPublicChar> nationalitys=this.humanBiz.getAllNationalitys();
+			List<ConfigPublicChar> nations=this.humanBiz.getAllNations();
+			List<ConfigPublicChar> religiousBeliefs=this.humanBiz.getAllReligiousBeliefs();
+			List<ConfigPublicChar> politicalStatus=this.humanBiz.getAllPoliticalStatus();
+			
+			mv.addObject("humanFileCheck", list.get(0));
+			mv.addObject("salaryStandard", salaryStandard);
+			mv.addObject("educationsYears", educationsYears);
+			mv.addObject("hobbys", hobbys);
+			mv.addObject("strongPoints", strongPoints);
+			mv.addObject("educations", educations);
+			mv.addObject("schooling", schooling);
+			mv.addObject("technicalTitles",technicalTitles);
+			mv.addObject("nationalitys", nationalitys);
+			mv.addObject("nations", nations);
+			mv.addObject("religiousBeliefs", religiousBeliefs);
+			mv.addObject("politicalStatus",politicalStatus);
+			return mv;
+		}	
+		//人力资源档案恢复
+		@RequestMapping(value="/recoveryHumanFile")
+		public @ResponseBody void recoveryHumanFile(HttpServletResponse response,@RequestParam String humanid) throws IOException{
+			response.setCharacterEncoding("utf-8");
+			HumanFile humanfile=new HumanFile();
+			humanfile.setHuman_id(humanid);
+			humanfile.setHuman_file_status(false);
+			humanfile.setRecovery_time(new Date());
+			try {
+				HumanFile humanFile=this.humanBiz.recoveryHumanFile(humanfile);
+				PrintWriter out = response.getWriter();
+				out.print(1); 
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				out.print(0); 
+			}
+			
+		}	
+		//恢复成功 返回页面
+		@RequestMapping(value="/tohumanFileDelete")
+		public ModelAndView  tohumanFileDelete() throws IOException{
+			ModelAndView mv=new ModelAndView("humanResourceFileDelete");
+			return mv;
+		}			
+		
 }

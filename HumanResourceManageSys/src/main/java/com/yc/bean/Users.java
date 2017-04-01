@@ -14,6 +14,25 @@ public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer u_id;
 	private String u_name;
+	private String u_human_id;
+	private String u_role;
+	public String getU_human_id() {
+		return u_human_id;
+	}
+	public void setU_human_id(String u_human_id) {
+		this.u_human_id = u_human_id;
+	}
+	public String getU_role() {
+		return u_role;
+	}
+	public void setU_role(String u_role) {
+		this.u_role = u_role;
+	}
+	@Override
+	public String toString() {
+		return "Users [u_id=" + u_id + ", u_name=" + u_name + ", u_human_id=" + u_human_id + ", u_role=" + u_role
+				+ ", u_true_name=" + u_true_name + ", u_password=" + u_password + "]";
+	}
 	private String u_true_name;
 	private String u_password;
 	

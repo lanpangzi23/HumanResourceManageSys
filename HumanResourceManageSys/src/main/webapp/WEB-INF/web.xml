@@ -12,11 +12,20 @@
 			<param-value>utf-8</param-value>
 		</init-param>
 	</filter>
+    <filter>
+    	<filter-name>loginFilter</filter-name>
+    	<display-name>loginFilter</display-name>
+    	<description></description>
+    	<filter-class>com.yc.web.utils.loginFilter</filter-class>
+    </filter>
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>*</url-pattern>
 	</filter-mapping>
-  
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/toLogin.jsp</url-pattern>
+	</filter-mapping>
   <servlet>
         <servlet-name>golfing</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -31,7 +40,7 @@
         <servlet-name>golfing</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+   
     
     
   

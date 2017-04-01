@@ -195,7 +195,7 @@
 			<td style="text-align:center" class="backcolor">账号</td>
 			<td><input name="human_account" class="easyui" type="text" id="I"  value="${humanFileCheck.human_account}"/></td>
             <td style="text-align:center" class="backcolor">复核人</td>
-			<td><input name="checker" class="easyui" type="text" id="I"  value="登录人"/></td>
+			<td><input name="checker" class="easyui" type="text" id="I"  value="${uname}"/></td>
 		</tr>
            <tr style="height:35px;">
 			<td style="text-align:center" class="backcolor">复核时间</td>
