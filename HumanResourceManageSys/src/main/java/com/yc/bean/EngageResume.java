@@ -1,7 +1,11 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 /* 创建新表 "engage_resume"。                                                                      */
 /* "engage_resume" : 简历管理                                                                     */
 /* 	"res_id" : 主键，自动增长列                                                                       */
@@ -85,12 +89,12 @@ public class EngageResume implements Serializable {
 	private String human_college;
 	private String human_idcard;
 	private String human_birthplace;
-	private Double demand_salary_standard;
+	private String demand_salary_standard;
 	private String human_history_records;
 	private String remark;
 	private String recomandation;
 	private String human_picture;
-	private String attchment_name;
+	private String attachment_name;//attachment_name
 	private Integer check_status;
 	private String register;
 	private Date regist_time;
@@ -108,6 +112,60 @@ public class EngageResume implements Serializable {
 	private Integer pass_check_status;
 	private String pass_checkComment;
 	private String pass_passComment;
+	private List<MultipartFile> picUrl;
+	private Date minDate;
+	private Date maxDate;
+	private String keyword;
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
+	public Date getMinDate() {
+		return minDate;
+	}
+	public void setMinDate(Date minDate) {
+		this.minDate = minDate;
+	}
+	public Date getMaxDate() {
+		return maxDate;
+	}
+	public void setMaxDate(Date maxDate) {
+		this.maxDate = maxDate;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getDemand_salary_standard() {
+		return demand_salary_standard;
+	}
+	public void setDemand_salary_standard(String demand_salary_standard) {
+		this.demand_salary_standard = demand_salary_standard;
+	}
+	public List<MultipartFile> getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(List<MultipartFile> picUrl) {
+		this.picUrl = picUrl;
+	}
+	public String getAttachment_name() {
+		return attachment_name;
+	}
+	public void setAttachment_name(String attachment_name) {
+		this.attachment_name = attachment_name;
+	}
 	public Integer getRes_id() {
 		return res_id;
 	}
@@ -276,12 +334,6 @@ public class EngageResume implements Serializable {
 	public void setHuman_birthplace(String human_birthplace) {
 		this.human_birthplace = human_birthplace;
 	}
-	public Double getDemand_salary_standard() {
-		return demand_salary_standard;
-	}
-	public void setDemand_salary_standard(Double demand_salary_standard) {
-		this.demand_salary_standard = demand_salary_standard;
-	}
 	public String getHuman_history_records() {
 		return human_history_records;
 	}
@@ -305,12 +357,6 @@ public class EngageResume implements Serializable {
 	}
 	public void setHuman_picture(String human_picture) {
 		this.human_picture = human_picture;
-	}
-	public String getAttchment_name() {
-		return attchment_name;
-	}
-	public void setAttchment_name(String attchment_name) {
-		this.attchment_name = attchment_name;
 	}
 	public Integer getCheck_status() {
 		return check_status;
@@ -413,5 +459,39 @@ public class EngageResume implements Serializable {
 	}
 	public void setPass_passComment(String pass_passComment) {
 		this.pass_passComment = pass_passComment;
+	}
+	public List<String> getPdfsStringList(){
+		List<String> list=new ArrayList<String>();
+		if(human_picture!=null&&human_picture.length()>0){
+			String [] strs=human_picture.split(",");
+			for(String s:strs){
+				list.add(s);
+			}
+		}
+		return list;
+	}
+	public String toString() {
+		return "EngageResume [res_id=" + res_id + ", human_name=" + human_name + ", engage_type=" + engage_type
+				+ ", human_address=" + human_address + ", human_postcode=" + human_postcode + ", human_major_kind_id="
+				+ human_major_kind_id + ", human_major_kind_name=" + human_major_kind_name + ", human_major_id="
+				+ human_major_id + ", human_major_name=" + human_major_name + ", human_telephone=" + human_telephone
+				+ ", human_homephone=" + human_homephone + ", human_mobilephone=" + human_mobilephone + ", human_email="
+				+ human_email + ", human_hobby=" + human_hobby + ", human_specility=" + human_specility + ", human_sex="
+				+ human_sex + ", human_religion=" + human_religion + ", human_party=" + human_party
+				+ ", human_nationality=" + human_nationality + ", human_race=" + human_race + ", human_birthday="
+				+ human_birthday + ", human_age=" + human_age + ", human_educated_degree=" + human_educated_degree
+				+ ", human_educated_years=" + human_educated_years + ", human_educated_major=" + human_educated_major
+				+ ", human_college=" + human_college + ", human_idcard=" + human_idcard + ", human_birthplace="
+				+ human_birthplace + ", demand_salary_standard=" + demand_salary_standard + ", human_history_records="
+				+ human_history_records + ", remark=" + remark + ", recomandation=" + recomandation + ", human_picture="
+				+ human_picture + ", attachment_name=" + attachment_name + ", check_status=" + check_status
+				+ ", register=" + register + ", regist_time=" + regist_time + ", checker=" + checker + ", check_time="
+				+ check_time + ", interview_status=" + interview_status + ", total_points=" + total_points
+				+ ", test_amount=" + test_amount + ", test_checker=" + test_checker + ", test_check_time="
+				+ test_check_time + ", pass_register=" + pass_register + ", pass_regist_time=" + pass_regist_time
+				+ ", pass_checker=" + pass_checker + ", pass_check_time=" + pass_check_time + ", pass_check_status="
+				+ pass_check_status + ", pass_checkComment=" + pass_checkComment + ", pass_passComment="
+				+ pass_passComment + ", picUrl=" + picUrl + ", minDate=" + minDate + ", maxDate=" + maxDate
+				+ ", keyword=" + keyword + ", minPage=" + minPage + ", maxPage=" + maxPage + "]";
 	}
 }
