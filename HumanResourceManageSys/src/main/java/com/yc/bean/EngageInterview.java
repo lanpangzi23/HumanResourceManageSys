@@ -57,6 +57,20 @@ public class EngageInterview implements Serializable {
 	private String check_comment;
 	private Integer interview_status;
 	private Integer check_status;
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	public Integer getEin_id() {
 		return ein_id;
 	}

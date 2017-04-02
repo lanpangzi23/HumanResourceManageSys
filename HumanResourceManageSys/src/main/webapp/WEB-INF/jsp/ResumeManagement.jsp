@@ -233,31 +233,8 @@
 			</tr>
 		</table>
 	</div>
-	<div title="有效简历查询">
-		<table id="find"></table>
-	</div>
 </div>
 <script type="text/javascript">
-$('#find').datagrid({   
-    url:'findEngageResumeByPageUseful',  
-    pagination:true,
-    queryParams: {
-		op:"op"
-	},
-    columns:[[   
-		{field:'res_id',title:'档案编号',width:100,hidden:true},       
-        {field:'human_name',title:'姓名',width:100},   
-        {field:'engage_type',title:'招聘类型',width:100},   
-        {field:'human_major_kind_name',title:'职位分类名称',width:100,align:'right'}, 
-        {field:'human_major_name',title:'职位名称',width:100,align:'right'}, 
-        {field:'human_mobilephone',title:'手机号码',width:100},   
-        {field:'cz',title:'修改',width:100,
-        	formatter: function(value,row,index){
-        		return '<a href="findEngageResumeById/'+row.res_id+'">修改</a>';
-			}
-		} 
-    ]]   
-}); 
 function find(){
 	var minDate=$('#min').val();
 	var maxDate=$('#max').val();

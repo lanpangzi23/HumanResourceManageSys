@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.ConfigPublicChar;
+import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
 import com.yc.biz.HumanBiz;
@@ -40,6 +41,20 @@ public class RecruitmentManagementController {
 		PrintWriter out=response.getWriter();
 		try{
 			recruitmentManagementBizImpl.addEngageMajor(emr);
+			out.print("登记成功！！！");
+		}catch(Exception e){
+			e.printStackTrace();
+			out.print(e.getMessage());
+		}
+	}
+	@RequestMapping(value="addEngageInterview")//面试登记
+	public @ResponseBody void addEngageInterview(HttpServletResponse response,EngageInterview ei) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		ei.setInterview_amount(ei.getInterview_amount()+1);
+		try{
+			recruitmentManagementBizImpl.addEngageInterview(ei);
+			recruitmentManagementBizImpl.updateEngageResume1(ei.getResume_id());
 			out.print("登记成功！！！");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -73,6 +88,18 @@ public class RecruitmentManagementController {
 		PrintWriter out=response.getWriter();
 		try{
 			recruitmentManagementBizImpl.updateEngageMajor(emr);
+			out.print("变更成功！！！");
+		}catch(Exception e){
+			e.printStackTrace();
+			out.print(e.getMessage());
+		}
+	}
+	@RequestMapping(value="updateEngageInterview")//面试修改
+	public @ResponseBody void updateEngageInterview(HttpServletResponse response,EngageInterview ei) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		try{
+			recruitmentManagementBizImpl.updateEngageInterview(ei);
 			out.print("变更成功！！！");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -131,6 +158,18 @@ public class RecruitmentManagementController {
 		rd.setTotal(size+"");
 		out.print(gson.toJson(rd));
 	}
+	@RequestMapping(value="findEngageInterviewByPage")
+	public @ResponseBody void findEngageInterviewByPage(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		List<EngageInterview> list=recruitmentManagementBizImpl.findEngageInterview(null,rows*(page-1), rows);
+		int size=recruitmentManagementBizImpl.findEngageInterview(null, null, null).size();
+		Gson gson=new Gson();
+		ResponseData rd=new ResponseData();
+		rd.setRows(list);
+		rd.setTotal(size+"");
+		out.print(gson.toJson(rd));
+	}
 	@RequestMapping(value="findEngageResumeByPageUseful")//findEngageResumeByPageUseful查询有效的建立
 	public @ResponseBody void findEngageResumeByPageUserful(@RequestParam String op,HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
 		response.setCharacterEncoding("utf-8");
@@ -169,19 +208,39 @@ public class RecruitmentManagementController {
 		model.addAttribute("engageResume", list.get(0));
 		return "updateEngageResumeInfo";
 	}
-	@RequestMapping(value="updateEngageResume")
+	@RequestMapping(value="toInterviewRegistration/{id}")//面试登记
+	public String toInterviewRegistration(@PathVariable Integer id,Model model){
+		List<EngageResume> list=recruitmentManagementBizImpl.findEngageResume(id, null, null, null, null, null, null,null);
+		List<EngageInterview> eiList=recruitmentManagementBizImpl.findEngageInterview(id,null,null);
+		if(eiList!=null&&eiList.size()>0){
+			model.addAttribute("count", eiList.get(0).getInterview_amount());
+		}else{
+			model.addAttribute("count", 0);
+		}
+		model.addAttribute("engageResume", list.get(0));
+		return "InterviewRegistration";
+	}
+	@RequestMapping(value="toInterviewScreening/{id}")//面试筛选
+	public String toInterviewScreening(@PathVariable Integer id,Model model){
+		List<EngageResume> list=recruitmentManagementBizImpl.findEngageResume(id, null, null, null, null, null, null,null);
+		model.addAttribute("engageResume", list.get(0));
+		return "interviewScreening";
+	}
+	@RequestMapping(value="updateEngageResume")//修改简历
 	public @ResponseBody void updateEngageResume(EngageResume er,HttpServletResponse response,HttpServletRequest request) throws IOException{
-		String human_picture="";
-		//上传
-		Map<String,UploadFile> map=UploadFileUtil.uploadFile(request, er.getPicUrl(), "HumanFilePicture");
-		for(Entry<String,UploadFile> entry:map.entrySet()){
-			UploadFile uploadFile=entry.getValue();
-			human_picture+=  uploadFile.getNewFileUrl();
+		if(er.getPicUrl()!=null){
+			String human_picture="";
+			//上传
+			Map<String,UploadFile> map=UploadFileUtil.uploadFile(request, er.getPicUrl(), "HumanFilePicture");
+			for(Entry<String,UploadFile> entry:map.entrySet()){
+				UploadFile uploadFile=entry.getValue();
+				human_picture+=  uploadFile.getNewFileUrl();
+			}
+			er.setHuman_picture(human_picture);
 		}
 		if(er.getRecomandation().equals("")){
 			er.setRecomandation(null);
 		}
-		er.setHuman_picture(human_picture);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		try{

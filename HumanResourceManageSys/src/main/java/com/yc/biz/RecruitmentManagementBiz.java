@@ -1,5 +1,6 @@
 package com.yc.biz;
 import java.util.List;
+import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
 public interface RecruitmentManagementBiz {
@@ -11,4 +12,8 @@ public interface RecruitmentManagementBiz {
 	//根据条件模糊查询
 	public List<EngageResume> findEngageResume(Integer rec_id,Integer minPage,Integer maxPage,String human_major_kind_id,String keyword,String minDate,String maxDate,String op);
 	public void updateEngageResume(EngageResume er);//修改简历信息
+	public void updateEngageResume1(int id);//修改简历信息
+	public List<EngageInterview> findEngageInterview(Integer resume_id,Integer page,Integer rows);//查询面试信息
+	public void addEngageInterview(EngageInterview ei);//添加面试信息
+	public void updateEngageInterview(EngageInterview ei);//修改面试信息，进行面试筛选
 }

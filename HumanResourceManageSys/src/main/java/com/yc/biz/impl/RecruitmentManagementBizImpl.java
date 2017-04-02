@@ -1,7 +1,10 @@
 package com.yc.biz.impl;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
+
+import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
 import com.yc.biz.HumanBiz;
@@ -56,12 +59,32 @@ public class RecruitmentManagementBizImpl implements RecruitmentManagementBiz{
 		er.setRes_id(rec_id);
 		er.setMinPage(minPage);
 		er.setMaxPage(maxPage);
-		System.out.println(er);
 		List<EngageResume> list=baseDaoMybatisImpl.findAll(er, "findEngageResume");
-		System.out.println(list);
 		return list;
 	}
 	public void updateEngageResume(EngageResume er) {
 		baseDaoMybatisImpl.update(er, "updateEngageResume");
+	}
+	@Override
+	public List<EngageInterview> findEngageInterview(Integer resume_id,Integer page,Integer rows) {
+		EngageInterview ei=new EngageInterview();
+		ei.setResume_id(resume_id);
+		ei.setMinPage(page);
+		ei.setMaxPage(rows);
+		List<EngageInterview> list=baseDaoMybatisImpl.findAll(ei, "selectEngageInterview");
+		return list;
+	}
+	public void addEngageInterview(EngageInterview ei) {
+		baseDaoMybatisImpl.add(ei, "addEngageInterview");
+	}
+	public void updateEngageResume1(int id) {
+		EngageResume er=new EngageResume();
+		er.setRes_id(id);
+		baseDaoMybatisImpl.update(er, "updateEngageResume1");
+	}
+	public void updateEngageInterview(EngageInterview ei) {
+		ei.setCheck_time(new Date());
+		ei.setCheck_status(1);
+		baseDaoMybatisImpl.update(ei, "updateEngageInterview");
 	}
 }
