@@ -189,4 +189,8 @@ public class PageController {
 	public String toaddAdmin(){//转到后台管理员
 		return "addAdmin";
 	}
+	@RequestMapping(value="admin/adminUserUpdate")
+	public String toadminUserUpdate(){
+		return "adminUpdate";
+	}
 }
