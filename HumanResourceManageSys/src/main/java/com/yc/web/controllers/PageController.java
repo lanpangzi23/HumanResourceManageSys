@@ -193,4 +193,8 @@ public class PageController {
 	public String toadminUserUpdate(){
 		return "adminUpdate";
 	}
+	@RequestMapping(value="admin/adminLogin")
+	public String toadminLogin(){
+		return "adminLogin";
+	}
 }

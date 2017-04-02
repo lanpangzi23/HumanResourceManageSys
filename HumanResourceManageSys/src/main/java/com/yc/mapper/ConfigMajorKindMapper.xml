@@ -8,12 +8,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from config_major_kind   
 	</select>
 	<select id="selectAllConfigMajorKindBy" resultType="ConfigMajorKind" >
-		select major_kind_id,major_kind_name
+		select mfk_id,major_kind_id,major_kind_name
 		from config_major_kind   where 1=1
 		<if test="major_kind_id!=null">
-			and major_kind_id=#{major_kind_id}
-		</if> 
+			and mfk_id=#{major_kind_id}
+		</if>
+		<if test="major_kind_name!=null">
+			and major_kind_name=#{major_kind_name}
+		</if>
+		<if test="minPage!=null">
+			and mfk_id LIMIT #{minPage},#{maxPage}
+		</if>   
 	</select>
-	
+	<insert id="addMajorKind" parameterType="ConfigMajorKind">
+		insert into config_major_kind(major_kind_id,major_kind_name) 
+		values(#{major_kind_id},#{major_kind_name})
+	</insert>
+	<delete id="deleteMajorKind" parameterType="ConfigMajorKind">
+		delete from config_major_kind
+		where mfk_id=#{mfk_id}
+	</delete>
 
 </mapper>

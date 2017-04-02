@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.ConfigMajor;
+import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.OrganizationBiz;
@@ -204,6 +206,30 @@ public class OrganizationBizImpl implements OrganizationBiz {
 	public List<ConfigFileThirdKind> selectThirdNameById(ConfigFileThirdKind configFileThirdKind) {
 		List<ConfigFileThirdKind> list=this.baseDao.findAll(configFileThirdKind, "selectThirdKindByName");
 		return list;
+	}
+
+	@Override
+	public ConfigMajorKind saveConfigMajorKind(ConfigMajorKind configMajorKind) {
+		this.baseDao.add(configMajorKind, "addMajorKind");
+		return configMajorKind;
+	}
+
+	@Override
+	public ConfigMajor saveConfigMajor(ConfigMajor configMajor) {
+		this.baseDao.add(configMajor, "addMajor");
+		return configMajor;
+	}
+
+	@Override
+	public ConfigMajorKind deleteConfigMajorKind(ConfigMajorKind configMajorKind) {
+		this.baseDao.delete(configMajorKind, "deleteMajorKind");
+		return configMajorKind;
+	}
+
+	@Override
+	public ConfigMajor deleteConfigMajor(ConfigMajor configMajor) {
+		this.baseDao.delete(configMajor, "deleteMajor");
+		return configMajor;
 	}
 
 
