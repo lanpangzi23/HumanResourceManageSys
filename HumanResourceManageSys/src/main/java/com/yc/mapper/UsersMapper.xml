@@ -10,6 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and u_password=#{u_password}
 		</if>
 	</select>
+	<select id="selectUserByHumanId" resultType="Users" parameterType="Users">
+		select u_id,u_name,u_true_name,u_password,u_human_id,u_role from users
+		where  u_human_id=#{u_human_id}
+	</select>
 	<select id="selectUser" resultType="Users" parameterType="Users">
 		select u_id,u_name,u_true_name,u_password,u_human_id,u_role from users
 		where 1=1

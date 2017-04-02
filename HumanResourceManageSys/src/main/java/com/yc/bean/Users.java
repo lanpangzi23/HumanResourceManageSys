@@ -44,8 +44,9 @@ public class Users implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Users [u_id=" + u_id + ", u_name=" + u_name + ", u_human_id=" + u_human_id + ", u_role=" + u_role
-				+ ", u_true_name=" + u_true_name + ", u_password=" + u_password + "]";
+		return "Users [minPage=" + minPage + ", maxPage=" + maxPage + ", u_id=" + u_id + ", u_name=" + u_name
+				+ ", u_human_id=" + u_human_id + ", u_role=" + u_role + ", u_true_name=" + u_true_name + ", u_password="
+				+ u_password + "]";
 	}
 	private String u_true_name;
 	private String u_password;
