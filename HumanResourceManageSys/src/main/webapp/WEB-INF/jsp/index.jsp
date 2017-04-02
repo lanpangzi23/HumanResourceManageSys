@@ -54,7 +54,7 @@
         	</c:if>
         		<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">人力资源档案管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">题库管理设置</a></li>
+                <li><a class="easyui-linkbutton" href="admin/itemBankManagementSetting" data-options="plain:true">题库管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/humanResourceFileUpdate" data-options="plain:true">其他设置</a></li>
                  
         	</div>
@@ -83,7 +83,7 @@
         		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">职位发布管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toResumeManagement" data-options="plain:true">简历管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toInterviewManagement" data-options="plain:true">面试管理</a></li>
-        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">招聘考试题库管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toItemBankManagement" data-options="plain:true">招聘考试题库管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">招聘考试管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">录用管理</a></li>
             </div>

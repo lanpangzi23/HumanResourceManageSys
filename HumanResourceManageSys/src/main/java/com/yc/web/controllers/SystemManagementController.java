@@ -1,8 +1,11 @@
 package com.yc.web.controllers;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.yc.biz.SystemManagementBiz;
 @Controller
@@ -30,5 +33,9 @@ public class SystemManagementController {
 			return "success";
 		}
 		return "error";
+	}
+	@RequestMapping("/findConfigQuestionFirstKind")
+	public @ResponseBody void findConfigQuestionFirstKind(@RequestParam int page,@RequestParam int rows,HttpServletResponse response){
+		
 	}
 }

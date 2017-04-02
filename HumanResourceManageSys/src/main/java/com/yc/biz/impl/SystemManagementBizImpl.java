@@ -3,6 +3,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 import com.yc.bean.ConfigPublicChar;
+import com.yc.bean.ConfigQuestionFirstKind;
 import com.yc.biz.SystemManagementBiz;
 import com.yc.dao.BaseDao;
 @Repository
@@ -42,5 +43,13 @@ public class SystemManagementBizImpl implements SystemManagementBiz{
 			return false;
 		}
 		return true;
+	}
+	@Override
+	public List<ConfigQuestionFirstKind> findByPage(Integer page, Integer size) {
+		ConfigQuestionFirstKind cqfk=new ConfigQuestionFirstKind();
+		cqfk.setPage(page);
+		cqfk.setSize(size);
+		List<ConfigQuestionFirstKind> list=baseDaoMybatisImpl.findAll(cqfk, "selectConfigQuestionFirstKind");
+		return list;
 	}
 }

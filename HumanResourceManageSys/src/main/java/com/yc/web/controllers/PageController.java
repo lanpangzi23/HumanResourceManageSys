@@ -48,12 +48,16 @@ public class PageController {
 		return "index";
 	}
 	//人力资源档案登记 ss
-	@RequestMapping(value="/admin/humanResourceRegistration")
+	@RequestMapping(value="/admin/itemBankManagementSetting")
 	public String toHumanResourceRegistrationPage(Model model){
 		getConfigPublicCharInfo(model);
 		List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
 		model.addAttribute("salaryStandard",salaryStandard);
 		return "humanResourceRegistration";
+	}
+	@RequestMapping(value="/admin/humanResourceRegistration")//去题库管理设置界面
+	public String toitemBankManagementSetting(Model model){
+		return "itemBankManagementSetting";
 	}
 	private void getConfigPublicCharInfo(Model model){
 		List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
@@ -115,7 +119,10 @@ public class PageController {
 	public String toCompensationStandardRegistrationReviewPage(){
 		return "findCheckSalaryStandard";
 	}
-	
+	@RequestMapping(value="/admin/toItemBankManagement")//转到题库管理系统
+	public String toItemBankManagement(){
+		return "itemBankManagement";
+	}
 	
 	@RequestMapping(value="/admin/salarySandardQuery")
 	public String tosalarySandardQueryPage(){
