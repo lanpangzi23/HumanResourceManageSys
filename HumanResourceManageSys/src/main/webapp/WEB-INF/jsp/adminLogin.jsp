@@ -12,20 +12,20 @@
 <base href="<%=basePath%>">
 <title>Insert title here</title>
 </head>
-<body style="background-color:#EFF3FF"><br/><br/><br/>
+<body style="background-color:#EFF3FF;"><br/><br/><br/>
 <form>
 	<div style="margin-left:425px;background-color:#009AFF; width: 500px;height: 50px;">
-	<p style="font-size: x-large;font-family: fantasy;font-weight: bolder;color: white;">后&nbsp;&nbsp;&nbsp;&nbsp;台&nbsp;&nbsp;&nbsp;&nbsp;管&nbsp;&nbsp;&nbsp;&nbsp;理&nbsp;&nbsp;&nbsp;&nbsp;员&nbsp;&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录</p>
+		<center><p style="font-size: x-large;font-family: fantasy;font-weight: bolder;color: white;">后&nbsp;&nbsp;&nbsp;&nbsp;台&nbsp;&nbsp;&nbsp;&nbsp;管&nbsp;&nbsp;&nbsp;&nbsp;理&nbsp;&nbsp;&nbsp;&nbsp;员&nbsp;&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录</p></center>
 	</div>
-	<div style="margin-left:425px; background-color:#D6E3F7; width: 500px;height: 220px;margin-right: 200px;">
-	<p style="font-size: x-large;font-family: fantasy;font-weight: bolder;color: white;"></p>
-	<br/><br/><center><div style="width: 364px;height: 50px;background-color: #D6F0F7;">用户名：<input placeholder="请输入用户名....." onblur="checkname()" name="uname" type="text" style="border: none;width: 298px;height: 48px;"></div>
-	<div style="width: 364px;height: 50px;background-color:#D6E3F7; color: red;" id="checkname"></div>
-	<div style="width: 363px;height: 50px;background-color: #D6F0F7;">密  &nbsp;  码：<input type="password" name="upwd" placeholder="请输入密码....." style="border: none;width: 298px;height: 48px;"></div></center>
-	<div style="width: 304px;height: 50px;background-color:#D6E3F7; color: red; padding-left: 190px;" id="checkpwd"></div>
+	<div style="margin-left:425px; background-color:#D6E3F7; width: 500px;height: 230px;">
+		<p style="font-size: x-large;font-family: fantasy;font-weight: bolder;color: white;"></p>
+		<br/><br/><center><div style="width: 364px;height: 50px;background-color: #D6F0F7;">用户名：<input placeholder="请输入用户名....." onblur="checkname()" name="uname" type="text" style="border: none;width: 298px;height: 48px;"></div>
+		<div style="width: 364px;height: 50px;background-color:#D6E3F7; color: red;" id="checkname"></div>
+		<div style="width: 363px;height: 50px;background-color: #D6F0F7;">密  &nbsp;  码：<input type="password" name="upwd" placeholder="请输入密码....." style="border: none;width: 298px;height: 48px;"></div></center>
+		<div style="width: 304px;height: 50px;background-color:#D6E3F7; color: red; padding-left: 190px;" id="checkpwd"></div>
 	</div>
 	<div style="margin-left:425px;background-color:#009AFF; width: 500px;height: 50px;">
-	<center><input  style="margin-top: 10px;width: 60px;background-color: blue;color: white;" onclick="login()" type="button" value="登录"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="margin-top: 10px;width: 60px;background-color: blue;color: white;" type="reset" value="重置"/></center>
+		<center><input  style="margin-top: 13px;width: 60px;background-color: blue;color: white;" onclick="login()" type="button" value="登录"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="margin-top: 10px;width: 60px;background-color: blue;color: white;" type="reset" value="重置"/></center>
 	</div>
 	</form>
 <script>

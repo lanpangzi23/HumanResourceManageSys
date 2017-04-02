@@ -50,7 +50,7 @@
     	<div id="menu" class="easyui-accordion" fit="true" border="false">
         	<div title="系统管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
         	<c:if test="${role=='系统管理员'}">
-        	<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">后台管理员添加</a></li>
+        	<li><a class="easyui-linkbutton" href="admin/addAdmin" data-options="plain:true">后台管理员管理</a></li>
         	</c:if>
         		<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">人力资源档案管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>

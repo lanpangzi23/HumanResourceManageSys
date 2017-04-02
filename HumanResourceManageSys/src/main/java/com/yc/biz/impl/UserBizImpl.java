@@ -22,5 +22,25 @@ public class UserBizImpl implements UserBiz {
 		List<Users> list=this.baseDao.findAll(users, "selectUserByName");
 		return list;
 	}
+	@Override
+	public Users save(Users users) {
+		this.baseDao.add(users, "saveUser");
+		return users;
+	}
+	@Override
+	public Users updateUsers(Users users) {
+		this.baseDao.update(users, "updateUser");
+		return users;
+	}
+	@Override
+	public List<Users> getAllUsers() {
+		List<Users> list=this.baseDao.findAll(new Users(), "selectUser");
+		return list;
+	}
+	@Override
+	public Users deleteUsers(Users users) {
+		this.baseDao.delete(users, "deleteUser");
+		return users;
+	}
 
 }

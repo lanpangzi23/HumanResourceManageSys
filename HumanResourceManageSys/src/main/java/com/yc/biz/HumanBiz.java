@@ -12,7 +12,7 @@ import com.yc.bean.SalaryStandardDetails;
 
 public interface HumanBiz {
 	//员工档案登记
-	HumanFile save(HumanFile book);
+	HumanFile save(HumanFile humanFile);
 	//人力资源档案复核（修改）
 	HumanFile updateHumanFileById(HumanFile humanFile);
 	//人力资源档案更改
@@ -24,6 +24,7 @@ public interface HumanBiz {
 	//人力资源档案恢复
 	HumanFile recoveryHumanFile(HumanFile humanFile);
 	public List<HumanFile> selectHumanFileByCard(HumanFile humanFile);
+	public List<HumanFile> selectHumanFileBydesignation(HumanFile humanFile);
 	
 	public List<HumanFile> selectHumanFileBy(HumanFile humanFile);
 	//人力资源档案照片（修改）

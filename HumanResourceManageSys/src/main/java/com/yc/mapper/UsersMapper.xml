@@ -10,4 +10,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and u_password=#{u_password}
 		</if>
 	</select>
+	<select id="selectUser" resultType="Users" parameterType="Users">
+		select u_id,u_name,u_true_name,u_password,u_human_id,u_role from users
+		where 1=1
+		<if test="minPage!=null">
+			and u_id LIMIT #{minPage},#{maxPage}
+		</if>
+	</select>
+	<!-- 后台管理员的添加 -->
+	<insert id="saveUser" parameterType="Users">
+		insert into users(u_name,u_human_id,u_role,u_true_name,u_password) 
+		values(#{u_name},#{u_human_id},#{u_role},#{u_true_name},#{u_password})
+	</insert>
+	<!-- 后台管理员的修改 -->
+	<update id="updateUser" parameterType="Users">
+		update users set u_name=#{u_name},u_password=#{u_password} where u_id=#{u_id}
+	</update>
+	<!--   删除 -->
+	<delete id="deleteUser" parameterType="Users">
+		delete from users  where u_id=#{u_id}
+	</delete>
 </mapper>

@@ -50,12 +50,6 @@ public class PageController {
 	//人力资源档案登记 ss
 	@RequestMapping(value="/admin/humanResourceRegistration")
 	public String toHumanResourceRegistrationPage(Model model){
-//		List<ConfigFileFirstKind> configFileFirstKinds=this.humanBiz.getAllConfigFileFirstKinds();
-//		model.addAttribute("configFileFirstKinds",configFileFirstKinds);
-//		List<ConfigMajorKind> configMajorKind=this.humanBiz.getAllConfigMajorKinds();
-//		model.addAttribute("configMajorKind",configMajorKind);
-//		List<ConfigMajor> configMajor=this.humanBiz.getAllConfigMajors();
-//		model.addAttribute("configMajor",configMajor);
 		getConfigPublicCharInfo(model);
 		List<SalaryStandard> salaryStandard=this.humanBiz.getAllSalaryStandard();
 		model.addAttribute("salaryStandard",salaryStandard);
@@ -184,5 +178,9 @@ public class PageController {
 		List<HumanFile> list=this.humanBiz.findtHumanFileByCheck(humanfile);
 		model.addAttribute("size",list.size());
 		return "humanFileChangeReview";
+	}
+	@RequestMapping(value="admin/addAdmin")
+	public String toaddAdmin(){//转到后台管理员
+		return "addAdmin";
 	}
 }

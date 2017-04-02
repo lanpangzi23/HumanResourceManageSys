@@ -193,4 +193,10 @@ public class HumanBizImpl implements HumanBiz {
 		return list;
 	}
 
+	@Override
+	public List<HumanFile> selectHumanFileBydesignation(HumanFile humanFile) {
+		List<HumanFile> list=this.baseDao.findAll(humanFile, "selectHumanFileBydesignation");
+		return list;
+	}
+
 }

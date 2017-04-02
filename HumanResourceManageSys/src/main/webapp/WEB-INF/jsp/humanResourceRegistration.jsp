@@ -288,7 +288,6 @@ $(function () {
                      	}else{
                      		alert('登记失败 ...');
                      	}
-                         alert(data);
                      },
                      error: function (error) { alert('登记失败 ...'); },
                      url: 'humanResourceRegistration', /*设置post提交到的页面*/
