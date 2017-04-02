@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
+import com.yc.bean.EngageSubjects;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.RecruitmentManagementBiz;
 import com.yc.dao.BaseDao;
@@ -86,5 +87,30 @@ public class RecruitmentManagementBizImpl implements RecruitmentManagementBiz{
 		ei.setCheck_time(new Date());
 		ei.setCheck_status(1);
 		baseDaoMybatisImpl.update(ei, "updateEngageInterview");
+	}
+	public void addEngageSubjects(EngageSubjects es) {
+		baseDaoMybatisImpl.add(es, "addEngageSubjects");
+	}
+	public List<EngageSubjects> findByChoose(String fid, String sid, String keyword, String minDate, String maxDate,Integer page,Integer size) {
+		EngageSubjects es=new EngageSubjects();
+		if(!fid.equals("")){
+			es.setFirst_kind_id(fid);
+		}
+		if(!sid.equals("")){
+			es.setSecond_kind_id(sid);
+		}
+		if(!keyword.equals("")){
+			es.setKeyword(keyword);
+		}
+		if(!minDate.equals("")){
+			es.setMinDate(RandomNumberUtil.toDate(minDate));
+		}
+		if(!maxDate.equals("")){
+			es.setMaxDate(RandomNumberUtil.toDate(maxDate));
+		}
+		es.setPage(page);
+		es.setSize(size);
+		List<EngageSubjects> list=baseDaoMybatisImpl.findAll(es, "findEngageSubjects");
+		return list;
 	}
 }

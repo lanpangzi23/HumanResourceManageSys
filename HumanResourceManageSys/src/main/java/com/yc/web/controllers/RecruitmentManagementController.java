@@ -18,8 +18,10 @@ import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
+import com.yc.bean.EngageSubjects;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.RecruitmentManagementBiz;
+import com.yc.web.utils.RandomNumberUtil;
 import com.yc.web.utils.ResponseData;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
@@ -182,6 +184,21 @@ public class RecruitmentManagementController {
 		rd.setTotal(size+"");
 		out.print(gson.toJson(rd));
 	}
+	@RequestMapping(value="findEngageSubjectsByPage")//
+	public @ResponseBody void findEngageSubjectsByPage(@RequestParam String fid,HttpServletResponse response,@RequestParam int page,
+			@RequestParam int rows,@RequestParam String sid,@RequestParam String keyword,@RequestParam String minDate,
+			@RequestParam String maxDate) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		List<EngageSubjects> list=recruitmentManagementBizImpl.findByChoose(fid, sid, keyword, minDate, maxDate, (page-1)*rows, rows);
+		int size=recruitmentManagementBizImpl.findByChoose(fid, sid, keyword, minDate, maxDate, null, null).size();
+		Gson gson=new Gson();
+		ResponseData rd=new ResponseData();
+		System.out.println(list);
+		rd.setRows(list);
+		rd.setTotal(size+"");
+		out.print(gson.toJson(rd));
+	}
 	@RequestMapping(value="findEngageResumeById/{id}")
 	public String findEngageResumeById(@PathVariable Integer id,Model model){
 		List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
@@ -250,5 +267,19 @@ public class RecruitmentManagementController {
 			e.printStackTrace();
 			out.print(e.getMessage());
 		}
+	}
+	@RequestMapping(value="addEngageSubjects")
+	public @ResponseBody void addEngageSubjects(EngageSubjects es){
+		recruitmentManagementBizImpl.addEngageSubjects(es);
+	}
+	@RequestMapping(value="toFindByChoose")
+	public String toFindByChoose(@RequestParam String minDate,@RequestParam String maxDate,@RequestParam String keyword,@RequestParam
+			String fid,@RequestParam String sid,Model model){
+		model.addAttribute("minDate", minDate);
+		model.addAttribute("maxDate", maxDate);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("fid", fid);
+		model.addAttribute("sid", sid);
+		return "findEngageSubjectsByPage";
 	}
 }

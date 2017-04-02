@@ -44,6 +44,51 @@ public class EngageSubjects implements Serializable {
 	private String correct_key;
 	private String changer;
 	private Date change_time;
+	private Date minDate;
+	private Date maxDate;
+	private String keyword;
+	private Integer page;
+	private Integer size;
+	@Override
+	public String toString() {
+		return "EngageSubjects [sub_id=" + sub_id + ", first_kind_id=" + first_kind_id + ", first_kind_name="
+				+ first_kind_name + ", second_kind_id=" + second_kind_id + ", second_kind_name=" + second_kind_name
+				+ ", register=" + register + ", regist_time=" + regist_time + ", derivation=" + derivation
+				+ ", content=" + content + ", key_a=" + key_a + ", key_b=" + key_b + ", key_c=" + key_c + ", key_d="
+				+ key_d + ", key_e=" + key_e + ", correct_key=" + correct_key + ", changer=" + changer
+				+ ", change_time=" + change_time + ", minDate=" + minDate + ", maxDate=" + maxDate + ", keyword="
+				+ keyword + ", page=" + page + ", size=" + size + "]";
+	}
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	public Integer getSize() {
+		return size;
+	}
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public Date getMinDate() {
+		return minDate;
+	}
+	public void setMinDate(Date minDate) {
+		this.minDate = minDate;
+	}
+	public Date getMaxDate() {
+		return maxDate;
+	}
+	public void setMaxDate(Date maxDate) {
+		this.maxDate = maxDate;
+	}
 	public Integer getSub_id() {
 		return sub_id;
 	}
