@@ -63,6 +63,7 @@ public class UserController {
 		if(users1.size()>0){
 			session.setAttribute("uname", uname);
 			session.setAttribute("role", users1.get(0).getU_role());
+			session.setAttribute("uid", users1.get(0).getU_id());
 			PrintWriter out = response.getWriter();
 			out.print(1); 
 		}else{
@@ -118,7 +119,7 @@ public class UserController {
 		users.setU_human_id(humanid);
 		users.setU_name(list.get(0).getHuman_name());
 		users.setU_true_name(list.get(0).getHuman_name());
-		String str=list.get(0).getHuman_id_card().substring(list.get(0).getHuman_id_card().length()-5,list.get(0).getHuman_id_card().length());
+		String str=list.get(0).getHuman_id_card().substring(list.get(0).getHuman_id_card().length()-6,list.get(0).getHuman_id_card().length());
 		users.setU_password(str);
 		users.setU_role(list.get(0).getHuman_pro_designation());
 		try {
@@ -163,6 +164,25 @@ public class UserController {
 			PrintWriter out = response.getWriter();
 			out.print(0);
 		}
+		
+	}
+	//
+	@RequestMapping(value="/UserUpdate")
+	public @ResponseBody void UserUpdates(HttpServletResponse response,@RequestParam String uname,String upwd,HttpSession session,int uid) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		Users users=new Users();
+		users.setU_name(uname);
+		users.setU_password(upwd);
+		users.setU_id(uid);
+		try {
+			Users users1=this.userBiz.updateUsers(users);
+			PrintWriter out = response.getWriter();
+			out.print(1);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.print(0);
+		}
+		
 		
 	}
 }

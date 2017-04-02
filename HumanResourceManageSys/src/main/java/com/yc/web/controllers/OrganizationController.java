@@ -16,13 +16,22 @@ import com.google.gson.Gson;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.ConfigMajor;
+import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
+import com.yc.biz.HumanBiz;
 import com.yc.biz.OrganizationBiz;
 import com.yc.web.utils.ResponseData;
 import com.yc.web.utils.UUIDUtil;
 @Controller
 public class OrganizationController {
 	private OrganizationBiz organizationBiz;
+	private HumanBiz humanBiz;
+	@Resource(name="humanBizImpl")
+	public void setHumanBiz(HumanBiz humanBiz) {
+		this.humanBiz = humanBiz;
+	}
+
 	@Resource(name="organizationBizImpl")
 	public void setOrganizationBiz(OrganizationBiz organizationBiz) {
 		this.organizationBiz = organizationBiz;
@@ -440,4 +449,123 @@ public class OrganizationController {
 			rd.setTotal(""+size);
 			out.print(gson.toJson(rd)); 
 		}
+	//////////////
+		@RequestMapping(value = "/showMajorKind")
+		public @ResponseBody void showMajorKind(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
+			response.setCharacterEncoding("utf-8");
+			ConfigMajorKind configMajorKind=new ConfigMajorKind();
+			configMajorKind.setMinPage(rows*(page-1));
+			configMajorKind.setMaxPage(rows);
+			List<ConfigMajorKind> configMajorKind1=this.humanBiz.selectConfigMajorKindById(configMajorKind);
+			PrintWriter out = response.getWriter();
+			configMajorKind.setMinPage(0);
+			configMajorKind.setMaxPage(10000);
+			int size=humanBiz.selectConfigMajorKindById(configMajorKind).size();
+			Gson gson=new Gson();
+			ResponseData rd=new ResponseData();
+			rd.setRows(configMajorKind1);
+			rd.setTotal(""+size);
+			out.print(gson.toJson(rd)); 
+		}
+		@RequestMapping(value = "/showMajor")
+		public @ResponseBody void showMajor(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws Exception {
+			response.setCharacterEncoding("utf-8");
+			ConfigMajor configMajor=new ConfigMajor();
+			configMajor.setMinPage(rows*(page-1));
+			configMajor.setMaxPage(rows);
+			List<ConfigMajor> configMajor1=this.humanBiz.selectConfigMajorById(configMajor);
+			PrintWriter out = response.getWriter();
+			configMajor.setMinPage(0);
+			configMajor.setMaxPage(10000);
+			int size=organizationBiz.findConfigFileFirstKindByPage(0, 10000).size();
+			Gson gson=new Gson();
+			ResponseData rd=new ResponseData();
+			rd.setRows(configMajor1);
+			rd.setTotal(""+size);
+			out.print(gson.toJson(rd)); 
+		}
+		//
+		@RequestMapping(value="/deleteMajorKind")
+		public @ResponseBody void deleteMajorKind(HttpServletResponse response,@RequestParam String  mfk_id) throws IOException{
+			ConfigMajorKind configMajorKind=new ConfigMajorKind();
+			configMajorKind.setMfk_id(Integer.parseInt(mfk_id));
+			try {
+				ConfigMajorKind list=this.organizationBiz.deleteConfigMajorKind(configMajorKind);
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 1 );
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 0 );
+			}
+			
+		}
+		@RequestMapping(value="/deleteConfigMajor")
+		public @ResponseBody void deleteConfigMajor(HttpServletResponse response,@RequestParam String  mak_id) throws IOException{
+			ConfigMajor configMajor=new ConfigMajor();
+			configMajor.setMak_id(Integer.parseInt(mak_id));
+			try {
+				ConfigMajor list=this.organizationBiz.deleteConfigMajor(configMajor);
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 1 );
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 0 );
+			}
+			
+		}
+		//
+		@RequestMapping(value="/addMajorKind")
+		public @ResponseBody void addMajorKind(HttpServletResponse response,@RequestParam String  name) throws IOException{
+			ConfigMajorKind configMajorKind=new ConfigMajorKind();
+			configMajorKind.setMajor_kind_id(UUIDUtil.getASIC());
+			configMajorKind.setMajor_kind_name(name);
+			List<ConfigMajorKind> list1=this.humanBiz.selectConfigMajorKindById(configMajorKind);
+			if(list1.size()>0){
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 2 );
+			}else{
+			try {
+				ConfigMajorKind list=this.organizationBiz.saveConfigMajorKind(configMajorKind);
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 1 );
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 0 );
+			}
+			
+		}}
+		@RequestMapping(value="/addMajor")
+	                                                                               //	 : : 
+		public @ResponseBody void addMajor(HttpServletResponse response,@RequestParam String  majorKindName,String majorKindId,String majorname,String test_mount) throws IOException{
+			ConfigMajor configMajor=new ConfigMajor();
+			configMajor.setMajor_id(UUIDUtil.getASIC());
+			configMajor.setMajor_kind_id(majorKindId);
+			configMajor.setMajor_kind_name(majorKindName);
+			configMajor.setMajor_name(majorname);
+			configMajor.setTest_amount(Integer.parseInt(test_mount));
+			List<ConfigMajor> list1=this.humanBiz.selectConfigMajorById(configMajor);
+			if(list1.size()>0){
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 2 );
+			}else{
+			try {
+//				ConfigFileSecondKind list=this.organizationBiz.saveConfigFileSecondKind(configFileSecondKind);
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 1 );
+			} catch (Exception e) {
+				PrintWriter out = response.getWriter();
+				Gson gson=new Gson();
+				out.print( 0 );
+			}
+			
+		}}
 }

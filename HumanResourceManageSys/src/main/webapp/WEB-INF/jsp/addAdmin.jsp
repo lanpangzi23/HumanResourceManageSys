@@ -184,8 +184,8 @@
 											width : 100,
 											formatter : function(value, row,
 													index) {
-												return '<a href="javascript:deleteConfigPublicChar('
-														+ row.pbc_id
+												return '<a href="javascript:addBackAdmin('
+														+ row.human_id
 														+ ')">添加</a>';
 											}
 										} ] ]

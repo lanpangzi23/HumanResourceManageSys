@@ -5,6 +5,8 @@ import java.util.List;
 import com.yc.bean.ConfigFileFirstKind;
 import com.yc.bean.ConfigFileSecondKind;
 import com.yc.bean.ConfigFileThirdKind;
+import com.yc.bean.ConfigMajor;
+import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.SalaryStandard;
 public interface OrganizationBiz {
@@ -63,4 +65,11 @@ public interface OrganizationBiz {
 	public List<ConfigFileSecondKind> selectSecondNameById(ConfigFileSecondKind configFileSecondKind);
 	//三级根据Id查名字
 	public List<ConfigFileThirdKind> selectThirdNameById(ConfigFileThirdKind configFileThirdKind);
+	//职位分类添加
+	ConfigMajorKind saveConfigMajorKind(ConfigMajorKind configMajorKind);
+	//职位添加
+	ConfigMajor saveConfigMajor(ConfigMajor configMajor);
+	//
+	ConfigMajorKind deleteConfigMajorKind(ConfigMajorKind configMajorKind);
+	ConfigMajor deleteConfigMajor(ConfigMajor configMajor);
 }

@@ -4,19 +4,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.mapper.ConfigMajorMapper">
 	<select id="selectAllConfigMajors" resultType="ConfigMajor" >
-		select major_kind_id,major_kind_name,major_id,major_name,test_amount
+		select mak_id,major_kind_id,major_kind_name,major_id,major_name,test_amount
 		from config_major 
 	</select>
 	<select id="selectAllConfigMajorBy" resultType="ConfigMajor" >
-		select major_kind_id,major_kind_name,major_id,major_name,test_amount
+		select mak_id,major_kind_id,major_kind_name,major_id,major_name,test_amount
 		from config_major   where 1=1
 		<if test="major_id!=null">
 			and major_id=#{major_id}
 		</if>
 		<if test="major_kind_id!=null">
 			and major_kind_id=#{major_kind_id}
-		</if>  
+		</if>
+		<if test="major_name!=null">
+			and major_name=#{major_name}
+		</if>
+		<if test="minPage!=null">
+			and mak_id LIMIT #{minPage},#{maxPage}
+		</if>   
 	</select>
 	
+	<insert id="addMajor" parameterType="ConfigMajor">
+		insert into config_major(major_kind_id,major_kind_name,major_id,major_name,test_amount) 
+		values(#{major_kind_id},#{major_kind_name},#{major_id},#{major_name},#{test_amount})
+	</insert>
+	<delete id="deleteMajor" parameterType="ConfigMajor">
+		delete from config_major
+		where mak_id=#{mak_id}
+	</delete>
 
 </mapper>

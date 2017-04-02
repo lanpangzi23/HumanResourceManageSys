@@ -52,6 +52,7 @@
         	<c:if test="${role=='系统管理员'}">
         	<li><a class="easyui-linkbutton" href="admin/addAdmin" data-options="plain:true">后台管理员管理</a></li>
         	</c:if>
+        	
         		<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">人力资源档案管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/itemBankManagementSetting" data-options="plain:true">题库管理设置</a></li>
@@ -59,27 +60,74 @@
                  
         	</div>
             <div title="人力资源档案管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px; height:30px;">
+        	<c:if test="${role=='人事专员'||role=='系统管理员'}">
         		<li><a class="easyui-linkbutton" href="admin/humanResourceRegistration" data-options="plain:true">人力资源档案登记</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanResourceFileRegistrationReview" data-options="plain:true">人力资源档案登记复核</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">人力资源档案查询</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanFileChangeReview" data-options="plain:true">人力资源档案变更</a></li>
-                <li><a class="easyui-linkbutton" href="admin/humanResourceFileDelete" data-options="plain:true">人力资源档案恢复</a></li>
+        	</c:if>
+        	<c:if test="${role=='系统管理员'||role=='人事经理'}">
+        	    <li><a class="easyui-linkbutton" href="admin/humanResourceFileRegistrationReview" data-options="plain:true">人力资源档案登记复核</a></li>
+        	</c:if>
+        	<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}">
+        	     <li><a class="easyui-linkbutton" href="admin/humanResourceFileQuery" data-options="plain:true">人力资源档案查询</a></li>
+        	</c:if>
+        	<c:if test="${role=='系统管理员'||role=='人事经理'}">
+        	    <li><a class="easyui-linkbutton" href="admin/humanFileChangeReview" data-options="plain:true">人力资源档案变更复核</a></li>
+        	</c:if>
+        	<c:if test="${role=='系统管理员'||role=='人事经理'}">
+        	     <li><a class="easyui-linkbutton" href="admin/humanResourceFileDelete" data-options="plain:true">人力资源档案恢复</a></li>
+        	</c:if>
+        		
+            
+           
+            
+           
             </div>
             <div title="薪酬管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-        		<li><a class="easyui-linkbutton" href="admin/StandardSalarySet" data-options="plain:true">薪酬标准登记</a></li>
-                <li><a class="easyui-linkbutton" href="admin/CompensationStandardRegistrationReview" data-options="plain:true">薪酬标准登记复核</a></li>
-                <li><a class="easyui-linkbutton" href="admin/salarySandardQuery" data-options="plain:true">薪酬标准查寻</a></li>
-        		<li><a class="easyui-linkbutton" href="admin/paymentRegistrationReview" data-options="plain:true">薪酬发放登记</a></li>
+        		<c:if test="${role=='系统管理员'||role=='薪酬专员'||role=='薪酬经理'}">
+        			<li><a class="easyui-linkbutton" href="admin/StandardSalarySet" data-options="plain:true">薪酬标准登记</a></li>
+        		</c:if>
+        		<c:if test="${role=='系统管理员'||role=='薪酬经理'}">
+        			 <li><a class="easyui-linkbutton" href="admin/CompensationStandardRegistrationReview" data-options="plain:true">薪酬标准登记复核</a></li>
+        		</c:if>
+        		<c:if test="${role=='系统管理员'||role=='薪酬专员'||role=='薪酬经理'}">
+        			<li><a class="easyui-linkbutton" href="admin/salarySandardQuery" data-options="plain:true">薪酬标准查寻</a></li>
+        		</c:if>
+        		<c:if test="${role=='系统管理员'||role=='薪酬专员'||role=='薪酬经理'}">
+        			<li><a class="easyui-linkbutton" href="admin/paymentRegistrationReview" data-options="plain:true">薪酬发放登记</a></li>
+        		</c:if>
             </div>
             <div title="调动管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
-            	<li><a class="easyui-linkbutton" href="admin/transferRegistration" data-options="plain:true">调动登记</a></li>
-        		<li><a class="easyui-linkbutton" href="admin/transferAudit" data-options="plain:true">调动审核</a></li>
+            	<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}">
+            		<li><a class="easyui-linkbutton" href="admin/transferRegistration" data-options="plain:true">调动登记</a></li>
+            	</c:if>
+            	<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}">
+            		<li><a class="easyui-linkbutton" href="admin/transferAudit" data-options="plain:true">调动审核</a></li>
+            	</c:if>
+            	
+        		
             </div>
              <div title="培训管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
             </div>
              <div title="激励管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
             </div>
              <div title="招聘管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
+<%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>
+        		
+<%--         		</c:if> --%>
+<%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>
+        		
+<%--         		</c:if> --%>
+<%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>
+        		
+<%--         		</c:if> --%>
+<%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>
+        		
+<%--         		</c:if> --%>
+<%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>
+        		
+<%--         		</c:if> --%>
+<%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>
+        		
+<%--         		</c:if> --%>
         		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">职位发布管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toResumeManagement" data-options="plain:true">简历管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toInterviewManagement" data-options="plain:true">面试管理</a></li>

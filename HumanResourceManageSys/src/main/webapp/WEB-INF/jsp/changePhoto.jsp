@@ -54,7 +54,6 @@ $(function () {
 function back(){
 	var id=$('#humanid').val();
 	var status=$('input[name="status"]').val();
-	alert(status)
 	if(status==1){
 		//复核 
 		$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReviewEnd/"+$('#humanid').val());

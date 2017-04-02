@@ -80,13 +80,14 @@ public class HumanFileController {
 			UploadFile uploadFile=entry.getValue();
 			human_picture+=  uploadFile.getNewFileUrl();
 		}
+		humanFile.setHuman_picture(human_picture);
 		SalaryStandard salaryStandard=new SalaryStandard();
 		salaryStandard.setStandard_id(humanFile.getSalary_standard_id());
 		List<SalaryStandard> ss=humanBiz.selectSalaryStandardById(salaryStandard);
 		humanFile.setSalary_standard_name(ss.get(0).getStandard_name());
 		humanFile.setSalary_sum(ss.get(0).getSalary_sum());
 		
-		humanFile.setHuman_picture(human_picture);
+		
 		humanFile.setHuman_id(u.getUuidUtil());
 		humanFile.setHuman_file_status(false);
 		humanFile.setCheck_status(0);

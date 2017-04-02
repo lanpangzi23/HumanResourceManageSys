@@ -198,8 +198,199 @@
 			<br />
 			<div id="showConfigPublicChar"></div>
 		</div>
+		
+		<div title="职位分类添加" style="padding: 20px; display: none;">
+			<center>
+				<form>
+					<table id="salaryNameTable">
+							<td>职位分类名称:</td>
+							<td><input type="text" class="majorkindName"></td>
+						</tr>
+						<br />
+						<br />
+						<br />
+					</table>
+				</form>
+			</center>
+			<br /> <br /> <input type="button"
+				onclick="addMajorKind()" value="添加" style="float: right;">
+			<br /> <br />
+
+
+			<div id="showMajorKind"></div>
+		</div>
+		<div title="职位添加" style="padding: 20px; display: none;">
+			<center>
+				<form>
+					<table id="salaryNameTable">
+						<tr>
+							<td>职位分类名称:</td>
+							<td><input name="human_major_kind_name" id="human_major_kind_name" type="hidden" />
+				<input name="human_major_kind_id" id="aa1" class="easyui-combobox"
+				data-options="   
+			        valueField: 'major_kind_id',
+		        	textField: 'major_kind_name',
+		        	url: 'findAllConfigMajorKind',
+		        	onSelect: function(rec){
+		        	$('#human_major_kind_name').val(rec.major_kind_name);
+		        }" /></td>
+						</tr>
+						<tr>
+							<td>职位名称:</td>
+							<td> <input type="text" class="majorName"/></td>
+						</tr>
+						<tr>
+							<td>套题数量:</td>
+							<td><input class="easyui" type="number" id="test_amount" name="test_amount"></td>
+						</tr>
+						<br />
+						<br />
+						<br />
+					</table>
+				</form>
+			</center>
+			<br /> <br />  <input type="button"
+				onclick="addMajor()" value="添加" style="float: right;">
+			<br /> <br />
+
+
+			<div id="showMajor"></div>
+		</div>
 	</div>
 	<script type="text/javascript">
+	//
+	function addMajorKind() {
+			var name = $('.majorkindName').val();
+			$.post('addMajorKind', {
+				name : name,
+			}, function(data) {
+				if (data == 1) {
+					alert('添加成功');
+					$('.majorkindName').val('');
+					$('#showMajorKind').datagrid('reload');//刷新
+				} else if (data == 0) {
+					alert('添加失败');
+				} else if (data == 2) {
+					alert('职位分类已存在，请勿重复添加！');
+					$('.majorkindName').val('');
+				}
+			}, 'text');
+		}
+	//
+	function addMajor() {
+			var majorKindName=$('input[name="human_major_kind_name"]').val();
+			var majorKindId=$('input[name="human_major_kind_id"]').val();
+			var majorname=$('.majorName').val();
+			var test_mount=$('#test_amount').val();
+			$.post('addMajor', {
+				majorKindName : majorKindName,
+				majorKindId : majorKindId,
+				majorname:majorname,
+				test_mount:test_mount
+			}, function(data) {
+				if (data == 1) {
+					alert('添加成功');
+					$('.majorName').val('');
+					$('#test_amount').val('');
+					$('#showMajor').datagrid('reload');//刷新
+				} else if (data == 0) {
+					alert('添加失败');
+				} else if (data == 2) {
+					alert('名称已存在，请勿重复添加！');
+					$('.majorName').val('');
+					$('#test_amount').val('');
+				}
+			}, 'text');
+		}
+	function deleteMajorKind(id) {
+		$.post('deleteMajorKind', {
+			mfk_id : id
+		}, function(data) {
+			if (data == 1) {
+				alert('删除成功');
+				$('#showMajorKind').datagrid('reload');//刷新
+			} else if (data = 0) {
+				alert('删除失败')
+			}
+		});
+	}
+
+	function deleteConfigMajor(id) {
+		$.post('deleteConfigMajor', {
+			mak_id : id
+		}, function(data) {
+			if (data == 1) {
+				alert('删除成功');
+				$('#showMajor').datagrid('reload');//刷新
+			} else if (data = 0) {
+				alert('删除失败')
+			}
+		});
+	}
+	$('#showMajorKind')
+	.datagrid(
+			{
+				url : 'showMajorKind',//goodinfo.action----
+				pagination : true,//显示分页工具栏
+				pageSize : 2,
+				pageList : [ 2, 4, 6 ],
+				columns : [ [
+						{
+							field : 'mfk_id',
+							width : 0
+						},
+						{
+							field : 'major_kind_name',
+							title : '职位分类名称',
+							width : 100
+						},
+						{
+							field : 'cz',
+							title : '操作',
+							width : 100,
+							formatter : function(value, row, index) {
+								return '<a href="javascript:deleteMajorKind('
+										+ row.mfk_id + ')">删除</a>';
+							}
+						} ] ]
+			});
+	$('#showMajor')
+	.datagrid(
+			{
+				url : 'showMajor',//goodinfo.action----
+				pagination : true,//显示分页工具栏
+				pageSize : 2,
+				pageList : [ 2, 4, 6 ],
+				columns : [ [
+						{
+							field : 'mak_id',
+							width : 0
+						},
+						{
+							field : 'major_kind_name',
+							title : '职位分类名称',
+							width : 100
+						},
+						{
+							field : 'major_name',
+							title : '职位名称',
+							width : 200
+						},
+						{
+							field : 'test_amount',
+							title : '套题数量',
+							width : 200
+						},
+						{
+							field : 'cz',
+							title : '操作',
+							width : 100,
+							formatter : function(value, row, index) {
+								return '<a href="javascript:deleteConfigMajor('
+										+ row.mak_id + ')">删除</a>';
+							}
+						} ] ]
+			});
 		//搜索框 根据条件查寻 
 		function qq(value, name) {
 			if (name == 'attribute_kind') {

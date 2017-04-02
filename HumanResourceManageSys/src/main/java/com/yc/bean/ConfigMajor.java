@@ -14,6 +14,26 @@ public class ConfigMajor implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
+	@Override
+	public String toString() {
+		return "ConfigMajor [minPage=" + minPage + ", maxPage=" + maxPage + ", mak_id=" + mak_id + ", major_kind_id="
+				+ major_kind_id + ", major_kind_name=" + major_kind_name + ", major_id=" + major_id + ", major_name="
+				+ major_name + ", test_amount=" + test_amount + "]";
+	}
 	private Integer mak_id;
 	private String major_kind_id;
 	private String major_kind_name;

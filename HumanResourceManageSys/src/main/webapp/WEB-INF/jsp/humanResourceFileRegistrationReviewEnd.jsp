@@ -23,7 +23,8 @@
 			<td rowspan="6" colspan="2">
 			
 			<center>
-			<input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/><br/>
+			<input class="easyui"  width="200px" height="200px"  type="image" src="${humanFileCheck.human_picture}"/>
+			<br/>
 				 <input class="easyui" type="button"  onclick="changePhoto('${humanFileCheck.human_id}')" value="更改档案照片"/>	
 			</center>
 			
@@ -250,6 +251,7 @@
 		</form>
 <script type="text/javascript">
 //更改照片 
+
 function changePhoto(id){
 	$('#main_panel').panel('refresh',"toChangePhoto/"+id+","+1);
 }

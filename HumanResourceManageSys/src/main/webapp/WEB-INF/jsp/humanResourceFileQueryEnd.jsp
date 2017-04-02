@@ -13,7 +13,7 @@
 
 
 当前等待复核的人力资源档案总数：  ${size} 例
-
+<input class="easyui" value="${role}" name="role" type="hidden"/>
 <input class="easyui" value="${mindate}" name="mindate" type="hidden"/>
 <input class="easyui" value="${maxdate}" name="maxdate" type="hidden"/>
 <input class="easyui" value="${firstKindId}" name="firstKindId" type="hidden"/>
@@ -111,6 +111,8 @@ function update(id){
 }
 //删除
 function deleteHumanFile(id){
+	var role=$('input[name="role"]').val();
+	if(role=='人事经理'||role=='系统管理员'){
 	$.messager.confirm('温馨提示','你确定要删除这条记录吗?',function(r){
 	    if (r){
 	    	$.post('deleteHumanFile', {
@@ -125,6 +127,9 @@ function deleteHumanFile(id){
 			});
 	    }
 	})
+	}else{
+		alert('对不起，您没有操作权限');
+	}
 		
 }
 	</script>
