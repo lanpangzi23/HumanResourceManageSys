@@ -1,4 +1,8 @@
 package com.yc.web.controllers;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,7 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+import com.yc.bean.ConfigQuestionFirstKind;
 import com.yc.biz.SystemManagementBiz;
+import com.yc.web.utils.ResponseData;
 @Controller
 public class SystemManagementController {
 	private SystemManagementBiz systemManagementBizImpl;
@@ -35,7 +43,15 @@ public class SystemManagementController {
 		return "error";
 	}
 	@RequestMapping("/findConfigQuestionFirstKind")
-	public @ResponseBody void findConfigQuestionFirstKind(@RequestParam int page,@RequestParam int rows,HttpServletResponse response){
-		
+	public @ResponseBody void findConfigQuestionFirstKind(@RequestParam int page,@RequestParam int rows,HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		List<ConfigQuestionFirstKind> list=systemManagementBizImpl.findByPage(page, rows);
+		int size=systemManagementBizImpl.findByPage(null, null).size();
+		ResponseData rd=new ResponseData();
+		Gson gson=new Gson();
+		rd.setRows(list);
+		rd.setTotal(size+"");
+		out.print(gson.toJson(rd));
 	}
 }
