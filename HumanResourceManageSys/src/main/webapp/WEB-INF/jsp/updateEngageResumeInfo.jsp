@@ -40,7 +40,7 @@
 				</td>
 				<td>职位名称</td>
 				<td>
-					<input name="hunma_major_name" value="${engageResume.human_major_name }" id="human_major_name" type="hidden" />
+					<input name="human_major_name" value="${engageResume.human_major_name }" id="human_major_name" type="hidden" />
 					<input type="hidden" value="${engageResume.human_major_id }" id="human_major_id"  />
 					<input name="human_major_id" id="aa2"  class="easyui-combobox"
 						data-options="
@@ -62,6 +62,7 @@
 	     		  		 <img id="Img" src="${engageResume.human_picture}" width="200px" height="200px"/>
 	   		 		</div>
        				<input class="easyui-filebox" style="width:300px" name="pic" data-options='onChange:change_photo'  id="file_upload" />
+       				<input type="hidden" name="human_picture" value="${engageResume.human_picture}" />
 				</td>
 			</tr>
 			<tr>

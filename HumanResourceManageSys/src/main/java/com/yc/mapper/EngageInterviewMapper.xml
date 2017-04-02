@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.EngageInterviewMapper">
+<select id="selectEngageInterview" parameterType="EngageInterview" resultType="EngageInterview">
+	select * from engage_interview where 1=1
+	<if test="resume_id!=null">
+		and resume_id=#{resume_id}
+	</if>
+	<if test="minPage!=null">
+		and resume_id limit #{minPage},#{maxPage}
+	</if>
+</select>
+<insert id="addEngageInterview" parameterType="EngageInterview">
+	insert into engage_interview(human_name,interview_amount,human_major_kind_id,human_major_kind_name,human_major_id,human_major_name,
+	image_degree,native_language_degree,foreign_language_degree,response_speed_degree,EQ_degree,IQ_degree,multi_quality_degree,register,
+	registe_time,resume_id,interview_comment,interview_status) value(#{human_name},#{interview_amount},#{human_major_kind_id},
+	#{human_major_kind_name},#{human_major_id},#{human_major_name},#{image_degree},#{native_language_degree},#{foreign_language_degree},
+	#{response_speed_degree},#{EQ_degree},#{IQ_degree},#{multi_quality_degree},#{register},#{registe_time},#{resume_id},
+	#{interview_comment},#{interview_status})
+</insert>
+<update id="updateEngageInterview" parameterType="EngageInterview">
+	update engage_interview set checker=#{checker},check_time=#{check_time},result=#{result},check_comment=#{check_comment},
+	check_status=#{check_status} where resume_id=#{resume_id}
+</update>
+</mapper>

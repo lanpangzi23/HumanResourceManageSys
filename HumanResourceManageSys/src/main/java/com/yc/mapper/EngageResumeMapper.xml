@@ -51,4 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		human_history_records=#{human_history_records},remark=#{remark},recomandation=#{recomandation},human_picture=#{human_picture}
 		where res_id=#{res_id}
 	</update>
+	<update id="updateEngageResume1" parameterType="EngageResume">
+		update engage_resume set interview_status=1 where res_id=#{res_id}
+	</update>
 </mapper>
