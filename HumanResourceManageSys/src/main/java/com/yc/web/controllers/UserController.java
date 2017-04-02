@@ -106,6 +106,13 @@ public class UserController {
 		response.setCharacterEncoding("utf-8");
 		HumanFile humanFile=new HumanFile();
 		humanFile.setHuman_id(humanid);
+		Users users1=new Users();
+		users1.setU_human_id(humanid);
+		List<Users> users2=this.userBiz.selectUserByHumanId(users1);
+		if(users2.size()>0){
+			PrintWriter out = response.getWriter();
+			out.print(2);
+		}else{
 		List<HumanFile> list=humanBiz.selectHumanFileById(humanFile);
 		Users users=new Users();
 		users.setU_human_id(humanid);
@@ -122,6 +129,7 @@ public class UserController {
 			PrintWriter out = response.getWriter();
 			out.print(0);
 		}
+		}
 		
 	}
 	//
@@ -129,9 +137,18 @@ public class UserController {
 	public @ResponseBody void findtAdminUser(HttpServletResponse response,int page,int rows) throws IOException{
 		response.setCharacterEncoding("utf-8");
 		Gson gson=new Gson();
-		List<Users> users1=this.userBiz.getAllUsers();
+		Users user=new Users();
+		user.setMinPage(rows*(page-1));
+		user.setMaxPage(rows);
+		List<Users> users1=this.userBiz.getAllUsers(user);
+		user.setMinPage(0);
+		user.setMaxPage(100000);
+		int size=this.userBiz.getAllUsers(user).size();
+		ResponseData rd=new ResponseData();
+		rd.setRows(users1);
+		rd.setTotal(""+size);
 			PrintWriter out = response.getWriter();
-			out.print(gson.toJson(users1));
+			out.print(gson.toJson(rd));
 	}
 	@RequestMapping(value="/deleteAdmin")
 	public @ResponseBody void deleteAdmin(HttpServletResponse response,@RequestParam int u_id) throws IOException{

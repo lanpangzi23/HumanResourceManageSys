@@ -33,14 +33,19 @@ public class UserBizImpl implements UserBiz {
 		return users;
 	}
 	@Override
-	public List<Users> getAllUsers() {
-		List<Users> list=this.baseDao.findAll(new Users(), "selectUser");
+	public List<Users> getAllUsers(Users users) {
+		List<Users> list=this.baseDao.findAll(users, "selectUser");
 		return list;
 	}
 	@Override
 	public Users deleteUsers(Users users) {
 		this.baseDao.delete(users, "deleteUser");
 		return users;
+	}
+	@Override
+	public List<Users> selectUserByHumanId(Users users) {
+		List<Users> list=this.baseDao.findAll(users, "selectUserByHumanId");
+		return list;
 	}
 
 }

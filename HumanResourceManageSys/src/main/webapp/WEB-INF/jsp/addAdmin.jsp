@@ -213,10 +213,12 @@
 			}, function(data) {
 				if (data == 1) {
 					alert('添加成功');
-				} else if (data = 0) {
+				} else if (data == 0) {
 					alert('添加失败')
+				}else if(data==2){
+					alert('该人员已为系统管理员，请勿重复添加')
 				}
-			});
+			},'text');
 		}
 	</script>
 </body>
