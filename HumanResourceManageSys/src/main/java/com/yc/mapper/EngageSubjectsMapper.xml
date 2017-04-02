@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.EngageSubjectsMapper">
+<insert id="addEngageSubjects">
+	insert into engage_subjects(first_kind_id,first_kind_name,second_kind_id,second_kind_name,register,regist_time,derivation,content,
+	key_a,key_b,key_c,key_d,key_e,correct_key) values(#{first_kind_id},#{first_kind_name},#{second_kind_id},#{second_kind_name},
+	#{register},#{regist_time},#{derivation},#{content},#{key_a},#{key_b},#{key_c},#{key_d},#{key_e},#{correct_key})
+</insert>
+<select id="findEngageSubjects" parameterType="EngageSubjects" resultType="EngageSubjects">
+	select * from engage_subjects where 1=1
+	<if test="keyword!=null">
+		and content=#{keyword} or register=#{keyword} or derivation=#{keyword}
+	</if>
+	<if test="first_kind_id!=null">
+		and first_kind_id=#{first_kind_id}
+	</if>
+	<if test="second_kind_id!=null">
+		and second_kind_id=#{second_kind_id}
+	</if>
+	<if test="minDate!=null">
+		and regist_time between #{minDate} and #{maxDate}
+	</if>
+	<if test="page!=null">
+		and sub_id limit #{page},#{size}
+	</if>
+</select>
+</mapper>

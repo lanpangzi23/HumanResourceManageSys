@@ -18,6 +18,20 @@ public class ConfigQuestionSecondKind implements Serializable {
 	private String first_kind_name;
 	private String second_kind_id;
 	private String second_kind_name;
+	private Integer page;
+	private Integer size;
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	public Integer getSize() {
+		return size;
+	}
+	public void setSize(Integer size) {
+		this.size = size;
+	}
 	public Integer getQsk_id() {
 		return qsk_id;
 	}
