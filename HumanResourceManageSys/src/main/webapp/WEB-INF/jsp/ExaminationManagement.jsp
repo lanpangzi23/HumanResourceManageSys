@@ -9,57 +9,36 @@
 	<div title="考试答题">
 		<p>您正在做的业务是:人力资源--招聘管理--招聘考试管理--考试答题</p>
 		<form id="answareQuestion">
-			<input type="button" onClick="addInfoPost()" value="提交"><input type="button" onClick="chuTi()" value="清除">
-			<table>
-				<tr>
-					<td>姓名</td>
-					<td><input type="text" name="human_name"/></td>
-					<td>身份证号码</td>
-					<td><input type="text" name="human_idcard"/></td>
-				</tr>
-				<tr>
-					<td>职位分类</td>
-					<td>
-						<input name="human_major_kind_id" id="aa1"  class="easyui-combobox"
-							data-options="   
-				        			valueField: 'major_kind_id',
-			        				textField: 'major_kind_name',
-			        				url: 'findAllConfigMajorKind',
-			        				onSelect: function(rec){
-			        					$('#human_major_kind_name').val(rec.major_kind_name);
-				            			var url = 'selectConfigMajorByKind?major_kind_id='+rec.major_kind_id;
-				            			$('#aa2').combobox('reload', url);
-			        		}" />
-					<input name="human_major_kind_name" type="hidden"  id="human_major_kind_name"  />
-				</td>
-				<td>职位名称</td>
-				<td>
-					<input name="human_major_name" id="human_major_name" type="hidden" />
-					<input name="human_major_id" id="aa2"  class="easyui-combobox"
-						data-options="
- 							valueField:'major_id', 
- 							textField:'major_name',onSelect: function(rec){
-		        				$('#human_major_name').val(rec.major_name);
-		        		}" />
-		        </td>
-				</tr>
-			</table>
+			<table id="find1"></table>
 		</form>
 	</div>
 </div>
 <script type="text/javascript">
-function addInfoPost(){
-	var id=$('input[name="human_idcard"]').val();
-	var major_kind_id=$('input[name="human_major_kind_id"]').val();
-	var major_id=$('input[name="human_major_id"]').val();
-	var name=$('input[name="human_name"]').val();
+$('#find1').datagrid({   
+    url:'findEngageInterviewByPage',  
+    pagination:true,
+    columns:[[   
+		{field:'resume_id',title:'档案编号',width:100,hidden:true},       
+        {field:'human_name',title:'姓名',width:100},   
+        {field:'human_major_kind_name',title:'职位分类名称',width:100,align:'right'}, 
+        {field:'human_major_kind_id',title:'职位分类名称',width:100,align:'right',hidden:true}, 
+        {field:'human_major_id',title:'职位分类名称',width:100,align:'right',hidden:true}, 
+        {field:'human_major_name',title:'职位名称',width:100,align:'right',hidden:true}, 
+        {field:'cz',title:'答题',width:100,
+        	formatter: function(value,row,index){
+        		return '<a href="javascript:addInfoPost('+row.resume_id+','+row.human_major_kind_id+','+
+        			human_major_id+')">答题</a>';
+			}
+		} 
+    ]]   
+}); 
+function addInfoPost(id,fid,sid){
 	var tab = $('#tt').tabs('getSelected');  
 	$('#tt').tabs('update', {
         tab: tab,
         options: {
         	content : '<iframe scrolling="auto" frameborder="0"  src="toAnswareQuestion?id='+id+
-        					'&majorkindid='+major_kind_id+'&majorid='+major_id+
-        					'&name='+name+'" style="width:1000px;height:400px;"></iframe>',
+        					'&majorkindid='+fid+'&majorid='+sid+'" style="width:1000px;height:400px;"></iframe>',
         }
    });
 }

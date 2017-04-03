@@ -63,7 +63,8 @@ function register(firstname,secondname,countt){
 	var id=$("#idd").text();
 	var sum=$("#sum").text();
 	var count=countt+"";
-	$('#main_panel').panel('refresh',"toPayOffPage/"+firstname+"/"+secondname+"/"+id+"/"+sum+"/"+count);
+	$('#main_panel').panel('refresh',"toPayOffPage?firstname="+firstname+"&secondname="+secondname+
+			"&id="+id+"&sum="+sum+"&count="+count);
 }
 </script>
 </body>

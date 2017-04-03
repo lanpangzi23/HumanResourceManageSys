@@ -325,8 +325,9 @@ public class RecruitmentManagementController {
 		return "ExaminationManagement";
 	}
 	@RequestMapping(value="toAnswareQuestion")
-	public String toAnswareQuestion(Model model,@RequestParam String name,@RequestParam String id,@RequestParam String majorkindid,@RequestParam String majorid) throws IOException{
-		List<EngageResume> erList=recruitmentManagementBizImpl.findEngageResume(null, null, null, null, id, null, null, null);
+	public String toAnswareQuestion(Model model,@RequestParam int id,@RequestParam String majorkindid,@RequestParam String majorid) throws IOException{
+		List<EngageResume> erList=recruitmentManagementBizImpl.findEngageResume(id, null, null, null, null, null, null, null);
+		List<EngageInterview> ei=recruitmentManagementBizImpl.findEngageInterview(id, null, null);
 		List<EngageExam> eeList=recruitmentManagementBizImpl.findEngageExam(majorkindid, majorid);
 		EngageExam ee=eeList.get(new Random().nextInt(eeList.size()));//随机选题
 		List<EngageExamDetails> eedList=recruitmentManagementBizImpl.findEngageExamDetails(ee.getExam_number());
@@ -338,17 +339,9 @@ public class RecruitmentManagementController {
 			List<EngageSubjects> esList1=recruitmentManagementBizImpl.findEngageSubjectsByRandom(eed.getQuestion_amount(), eed.getFirst_kind_id(), eed.getSecond_kind_id());
 			esList.add(esList1);
 		}
-		model.addAttribute("esList", esList);
+		model.addAttribute("esList", esList.get(0));
+		model.addAttribute("esList", ei.get(0));
 		model.addAttribute("ee", ee);
-		if(erList!=null&&erList.size()>0){
-			model.addAttribute("er", erList.get(0));
-		}else{
-			EngageResume err=new EngageResume();
-			err.setHuman_name(name);
-			err.setHuman_idcard(id);
-			recruitmentManagementBizImpl.addEngageResume(err);
-			model.addAttribute("er", err);
-		}
 		model.addAttribute("examTotal", examTotal);
 		return "answareQuestion";
 	}

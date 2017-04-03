@@ -1,6 +1,7 @@
 package com.yc.web.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -118,9 +119,11 @@ public class SalaryManagementContorller {
 		rd.setTotal(size+"");
 		out.print(gson.toJson(rd));
 	}
-	@RequestMapping(value="toPayOffPage/{firstname}/{secondname}/{id}/{sum}/{count}")
-	public String findPayoff(@PathVariable String firstname,@PathVariable String secondname,@PathVariable String id,@PathVariable String sum,Model model,@PathVariable String count) {
+	@RequestMapping(value="toPayOffPage")
+	public String findPayoff(@RequestParam String firstname,@RequestParam String secondname,@RequestParam String id,@RequestParam String sum,Model model,@RequestParam String count) throws UnsupportedEncodingException {
 		Map<String,String> map=new HashMap<>();
+		firstname=new String(firstname.getBytes("ISO8859-1"), "utf-8");
+		secondname=new String(secondname.getBytes("ISO8859-1"), "utf-8");
 		map.put("firstname", firstname);
 		map.put("secondname", secondname);
 		map.put("id", id);
