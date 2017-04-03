@@ -8,7 +8,6 @@
 
 <body>
 <p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询</p><br/>
-	<input class="easyui" type="button" style="margin-left:761px;; background:#CFC;" value="EXCEL列表"/>
     <input class="easyui" type="button" id="sss" style="background:#F33;"  value="查询"/>
     <table border="1" width="900px" cellpadding="0" cellspacing="0">
 		<tr style="height:35px;">

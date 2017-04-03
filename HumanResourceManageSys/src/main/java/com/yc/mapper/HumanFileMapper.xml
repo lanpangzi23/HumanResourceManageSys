@@ -168,4 +168,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and human_id LIMIT #{minPage},#{maxPage}
 		</if>
 	</select>
+	
+	
+	<!-- xxxxxxxxxxxxxxxxxxxxxx -->
+	<select id="selectPersonInfo" resultType="HumanFile" parameterType="HumanFile">
+		select huf_id,human_id,first_kind_name,second_kind_name,third_kind_name,human_name,human_major_kind_name,hunma_major_name,salary_standard_name,regist_time from human_file 
+		 where 1=1 
+		 <if test="human_id_card!=null">
+		 	  and human_id_card=#{human_id_card} 
+		 </if>
+		 <if test="human_name!=null">
+		 	 and human_name=#{human_name}
+		 </if>
+		 
+	</select>
+	<select id="selectAllPerson" parameterType="HumanFile" resultType="HumanFile">
+		select * from human_file where 1=1
+		<if test="human_name!=null">
+			and human_name=#{human_name}
+		</if>
+		<if test="minPage!=null">
+			and huf_id LIMIT #{minPage},#{maxPage}
+		</if> 
+	</select>
+	<select id="selectTransferDetails" parameterType="HumanFile" resultType="HumanFile">
+		select * from human_file where human_id=#{human_id}
+	</select>
+	<update id="toCommit" parameterType="HumanFile">
+		update human_file set check_status=1,check_comment=#{check_comment} where standard_id=#{standard_id}
+	</update>
 </mapper>

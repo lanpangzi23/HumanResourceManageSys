@@ -27,6 +27,20 @@ public class Training implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4882180306821337618L;
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private Integer tra_id;
 	private String major_kind_id;
 	private String major_kind_name;
@@ -35,13 +49,34 @@ public class Training implements Serializable {
 	private String human_id;
 	private String human_name;
 	private String training_item;
-	private Date training_time;
+	private String training_time;
+	public String getTraining_time() {
+		return training_time;
+	}
+	public void setTraining_time(String training_time) {
+		this.training_time = training_time;
+	}
+	public String getRegist_time() {
+		return regist_time;
+	}
+	public void setRegist_time(String regist_time) {
+		this.regist_time = regist_time;
+	}
+	public String getCheck_time() {
+		return check_time;
+	}
+	public void setCheck_time(String check_time) {
+		this.check_time = check_time;
+	}
+	public Integer getCheckstatus() {
+		return checkstatus;
+	}
 	private Integer training_hour;
 	private String training_degree;
 	private String register;
 	private String checker;
-	private Date regist_time;
-	private Date check_time;
+	private String regist_time;
+	private String check_time;
 	private Integer checkstatus;
 	private String remark;
 	public Integer getTra_id() {
@@ -92,12 +127,6 @@ public class Training implements Serializable {
 	public void setTraining_item(String training_item) {
 		this.training_item = training_item;
 	}
-	public Date getTraining_time() {
-		return training_time;
-	}
-	public void setTraining_time(Date training_time) {
-		this.training_time = training_time;
-	}
 	public Integer getTraining_hour() {
 		return training_hour;
 	}
@@ -121,21 +150,6 @@ public class Training implements Serializable {
 	}
 	public void setChecker(String checker) {
 		this.checker = checker;
-	}
-	public Date getRegist_time() {
-		return regist_time;
-	}
-	public void setRegist_time(Date regist_time) {
-		this.regist_time = regist_time;
-	}
-	public Date getCheck_time() {
-		return check_time;
-	}
-	public void setCheck_time(Date check_time) {
-		this.check_time = check_time;
-	}
-	public Integer getCheckstatus() {
-		return checkstatus;
 	}
 	public void setCheckstatus(Integer checkstatus) {
 		this.checkstatus = checkstatus;

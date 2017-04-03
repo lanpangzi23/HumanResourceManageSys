@@ -226,7 +226,7 @@
 						<tr>
 							<td>职位分类名称:</td>
 							<td><input name="human_major_kind_name" id="human_major_kind_name" type="hidden" />
-				<input name="human_major_kind_id" id="aa1" class="easyui-combobox"
+				<input style="width: 150px;" name="human_major_kind_id" id="aa1" class="easyui-combobox"
 				data-options="   
 			        valueField: 'major_kind_id',
 		        	textField: 'major_kind_name',
@@ -891,12 +891,12 @@
 									},
 									{
 										field : 'attribute_kind',
-										title : '所属一级机构名称',
+										title : '属性种类',
 										width : 100
 									},
 									{
 										field : 'attribute_name',
-										title : '所属二级机构名称',
+										title : '属性名称',
 										width : 200
 									},
 									{

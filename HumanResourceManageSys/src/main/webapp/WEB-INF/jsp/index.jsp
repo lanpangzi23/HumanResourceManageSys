@@ -54,7 +54,6 @@
         	</c:if>
         	
         		<li><a class="easyui-linkbutton" href="admin/organization" data-options="plain:true">人力资源档案管理设置</a></li>
-                <li><a class="easyui-linkbutton" href="admin/salaryManagementSetting" data-options="plain:true">薪酬管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/itemBankManagementSetting" data-options="plain:true">题库管理设置</a></li>
                 <li><a class="easyui-linkbutton" href="admin/adminUserUpdate" data-options="plain:true">其他设置</a></li>
                  
@@ -97,17 +96,25 @@
             </div>
             <div title="调动管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
             	<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}">
-            		<li><a class="easyui-linkbutton" href="admin/transferRegistration" data-options="plain:true">调动登记</a></li>
+            		<li><a class="easyui-linkbutton" href="admin/transferFind" data-options="plain:true">调动登记</a></li>
             	</c:if>
             	<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}">
-            		<li><a class="easyui-linkbutton" href="admin/transferAudit" data-options="plain:true">调动审核</a></li>
+            		<li><a class="easyui-linkbutton" href="admin/transferAuditFind" data-options="plain:true">调动审核</a></li>
             	</c:if>
             	
         		
             </div>
-             <div title="培训管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
+              <div title="培训管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
+            	<li><a class="easyui-linkbutton" href="admin/addtrain" data-options="plain:true">添加培训项目</a></li>
+            	<li><a class="easyui-linkbutton" href="admin/TrainingFind" data-options="plain:true">培训安排</a></li>
+            	<li><a class="easyui-linkbutton" href="admin/TrainingAuditFind" data-options="plain:true">安排审核</a></li>
+            	
             </div>
              <div title="激励管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
+            	 <li><a class="easyui-linkbutton" href="admin/addBonus" data-options="plain:true">添加激励项目</a></li>
+            	 <li><a class="easyui-linkbutton" href="admin/bonusFind" data-options="plain:true">个人激励</a></li>
+                 <li><a class="easyui-linkbutton" href="admin/bonusAuditFind" data-options="plain:true">激励审核</a></li>
+            
             </div>
              <div title="招聘管理" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">
 <%--         		<c:if test="${role=='系统管理员'||role=='人事专员'&&role=='人事经理'}"> --%>

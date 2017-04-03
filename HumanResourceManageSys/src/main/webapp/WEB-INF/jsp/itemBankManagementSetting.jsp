@@ -5,7 +5,7 @@
 		<a id="add" href="javascript:addInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">添加</a><br>
 		<table id="questionfirstInfo"></table>
 		<div id="win1" style="display: none">
-			<br><br><label style="margin-left: 50px;">一级机构试题名字：<input type="text" name="first_kind_name"/></label><br><br>
+			<br><br><label style="margin-left: 50px;">一级机构试题名字：<input type="text" name="first_kind_name1"/></label><br><br>
 			<input style="margin-left: 150px;" type="button" onClick="addPost()" value="添加">
 		</div>
 		<div id="win2" style="display: none">
@@ -41,9 +41,8 @@
 </div>
 <script type="text/javascript">
 function addPost(){
-	var name=$('input[name="first_kind_name"]').val();
+	var name=$('input[name="first_kind_name1"]').val();
 	$.post('addFirstQuestion',{name:name},function(data){
-		alert(data);
 		$('#win1').window('close');
 		$('#questionfirstInfo').datagrid('reload');
 	})

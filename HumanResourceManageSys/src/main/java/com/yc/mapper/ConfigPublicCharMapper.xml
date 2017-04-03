@@ -77,5 +77,25 @@
 	<insert id="addConfigPublicChar" parameterType="ConfigPublicChar">
 		insert into config_public_char(attribute_kind,attribute_name) values(#{attribute_kind},#{attribute_name})
 	</insert>
+	
+	
+	<!-- 添加培训项目 -->
+	<insert id="addTraining" parameterType="ConfigPublicChar" useGeneratedKeys="true" keyProperty="pbc_id">
+	 insert into config_public_char(attribute_kind,attribute_name) values(#{attribute_kind},#{attribute_name})
+	</insert>
+	<select id="selectAllTraining" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+	select * from config_public_char where attribute_kind=#{attribute_kind}
+	</select>
+	<select id="selectDegree" parameterType="configpublicchar" resultType="configpublicchar">
+		select * from config_public_char where attribute_kind="成绩等级" 
+	</select>
+	<select id="selectAllBonus" resultType="ConfigPublicChar" parameterType="ConfigPublicChar">
+	select * from config_public_char where attribute_kind=#{attribute_kind}
+	</select>
+	<insert id="addBonus" parameterType="ConfigPublicChar" useGeneratedKeys="true" keyProperty="pbc_id">
+	 insert into config_public_char(attribute_kind,attribute_name) values(#{attribute_kind},#{attribute_name})
+	</insert>
+	
+	
 </mapper>
  

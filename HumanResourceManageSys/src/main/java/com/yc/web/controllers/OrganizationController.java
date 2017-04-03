@@ -417,10 +417,8 @@ public class OrganizationController {
 			configPublicChar.setAttribute_kind(attribute_kind);
 			List<ConfigPublicChar> list=this.organizationBiz.findConfigPublicCharsByPage(configPublicChar);
 			PrintWriter out = response.getWriter();
-			ConfigPublicChar configPublicChar1=new ConfigPublicChar();
-			configPublicChar1.setMinPage(0);
-			configPublicChar1.setMaxPage(1000000);
-			configPublicChar.setAttribute_kind(attribute_kind);
+			configPublicChar.setMinPage(0);
+			configPublicChar.setMaxPage(1000000);
 			int size=organizationBiz.findConfigPublicCharsByPage(configPublicChar).size();
 			Gson gson=new Gson();
 			ResponseData rd=new ResponseData();
@@ -477,7 +475,7 @@ public class OrganizationController {
 			PrintWriter out = response.getWriter();
 			configMajor.setMinPage(0);
 			configMajor.setMaxPage(10000);
-			int size=organizationBiz.findConfigFileFirstKindByPage(0, 10000).size();
+			int size=humanBiz.selectConfigMajorById(configMajor).size();
 			Gson gson=new Gson();
 			ResponseData rd=new ResponseData();
 			rd.setRows(configMajor1);
@@ -557,7 +555,7 @@ public class OrganizationController {
 				out.print( 2 );
 			}else{
 			try {
-//				ConfigFileSecondKind list=this.organizationBiz.saveConfigFileSecondKind(configFileSecondKind);
+				ConfigMajor list=this.organizationBiz.saveConfigMajor(configMajor);
 				PrintWriter out = response.getWriter();
 				Gson gson=new Gson();
 				out.print( 1 );
