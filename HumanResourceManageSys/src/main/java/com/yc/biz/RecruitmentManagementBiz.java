@@ -1,9 +1,12 @@
 package com.yc.biz;
 import java.util.List;
+import com.yc.bean.EngageExam;
+import com.yc.bean.EngageExamDetails;
 import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
 import com.yc.bean.EngageSubjects;
+import com.yc.view.EngageSubjectsView;
 public interface RecruitmentManagementBiz {
 	public void addEngageMajor(EngageMajorRelease emr);//职位发表登记
 	public List<EngageMajorRelease> findEngageMajor(Integer page,Integer rows,Integer name);//分页查看所有发布的职位(包含条件查询)
@@ -20,4 +23,11 @@ public interface RecruitmentManagementBiz {
 	public void addEngageSubjects(EngageSubjects es);//添加试题
 	//根据条件查询试题
 	public List<EngageSubjects> findByChoose(String fid,String sid,String keyword,String minDate,String maxDate,Integer page,Integer size);
+	public List<EngageSubjects> findByGroup();//根据一级试题分类分组查询试题
+	public List<EngageSubjects> findByGroupBySecond(String id);//根据一级试题,二级试题分类分组查询试题
+	public List<EngageExam> findEngageExamByPage(Integer page,Integer rows);//分页查询试卷表
+	public void addEngageExam(EngageSubjectsView esv,EngageExam ee);//添加套题
+	public List<EngageSubjects> findEngageSubjectsByRandom(int count,String fid,String sid);//根据题数随机出题
+	public List<EngageExam> findEngageExam(String fid,String sid);//根据职位名称查询试卷
+	public List<EngageExamDetails> findEngageExamDetails(String id);//根据考试编号查询试卷
 }

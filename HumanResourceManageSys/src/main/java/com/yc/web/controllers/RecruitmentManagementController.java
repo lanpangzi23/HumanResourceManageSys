@@ -1,9 +1,12 @@
 package com.yc.web.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,13 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.yc.bean.ConfigPublicChar;
+import com.yc.bean.EngageExam;
+import com.yc.bean.EngageExamDetails;
 import com.yc.bean.EngageInterview;
 import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.EngageResume;
 import com.yc.bean.EngageSubjects;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.RecruitmentManagementBiz;
-import com.yc.web.utils.RandomNumberUtil;
+import com.yc.view.EngageSubjectsView;
 import com.yc.web.utils.ResponseData;
 import com.yc.web.utils.UploadFileUtil;
 import com.yc.web.utils.UploadFileUtil.UploadFile;
@@ -199,6 +204,23 @@ public class RecruitmentManagementController {
 		rd.setTotal(size+"");
 		out.print(gson.toJson(rd));
 	}
+	@RequestMapping(value="findByExam")//
+	public @ResponseBody void findByExam(HttpServletResponse response,@RequestParam int page,@RequestParam int rows) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		List<EngageExam> list=recruitmentManagementBizImpl.findEngageExamByPage(rows*(page-1), rows);
+		List<EngageExam> list1=recruitmentManagementBizImpl.findEngageExamByPage(null, null);
+		int size=0;
+		if(list1!=null&&list1.size()>0){
+			size=list1.size();
+		}
+		Gson gson=new Gson();
+		ResponseData rd=new ResponseData();
+		System.out.println(list);
+		rd.setRows(list);
+		rd.setTotal(size+"");
+		out.print(gson.toJson(rd));
+	}
 	@RequestMapping(value="findEngageResumeById/{id}")
 	public String findEngageResumeById(@PathVariable Integer id,Model model){
 		List<ConfigPublicChar> technicalTitles=this.humanBiz.getAllTechnicalTitles();
@@ -245,6 +267,7 @@ public class RecruitmentManagementController {
 	}
 	@RequestMapping(value="updateEngageResume")//修改简历
 	public @ResponseBody void updateEngageResume(EngageResume er,HttpServletResponse response,HttpServletRequest request) throws IOException{
+		response.setCharacterEncoding("utf-8");
 		if(er.getPicUrl()!=null){
 			String human_picture="";
 			//上传
@@ -258,7 +281,6 @@ public class RecruitmentManagementController {
 		if(er.getRecomandation().equals("")){
 			er.setRecomandation(null);
 		}
-		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		try{
 			recruitmentManagementBizImpl.updateEngageResume(er);
@@ -272,6 +294,21 @@ public class RecruitmentManagementController {
 	public @ResponseBody void addEngageSubjects(EngageSubjects es){
 		recruitmentManagementBizImpl.addEngageSubjects(es);
 	}
+	@RequestMapping(value="toAddEngageExam")
+	public String toAddEngageExam(EngageSubjects es,Model model){
+		List<EngageSubjects> list=recruitmentManagementBizImpl.findByGroup();
+		List<EngageSubjectsView> esList=new ArrayList<>();
+		for(int i=0;i<list.size();i++){
+			EngageSubjectsView esv=new EngageSubjectsView();
+			esv.setFirst_kind_id(list.get(i).getFirst_kind_id());
+			esv.setFirst_kind_name(list.get(i).getFirst_kind_name());
+			List<EngageSubjects> esbyf=recruitmentManagementBizImpl.findByGroupBySecond(list.get(i).getFirst_kind_id());
+			esv.setEsList(esbyf);
+			esList.add(esv);
+		}
+		model.addAttribute("esList", esList);
+		return "addEngageExam";
+	}
 	@RequestMapping(value="toFindByChoose")
 	public String toFindByChoose(@RequestParam String minDate,@RequestParam String maxDate,@RequestParam String keyword,@RequestParam
 			String fid,@RequestParam String sid,Model model){
@@ -281,5 +318,38 @@ public class RecruitmentManagementController {
 		model.addAttribute("fid", fid);
 		model.addAttribute("sid", sid);
 		return "findEngageSubjectsByPage";
+	}
+	@RequestMapping(value="addEngageExam")
+	public String addEngageExam(EngageSubjectsView esv,EngageExam ee,Model model){
+		recruitmentManagementBizImpl.addEngageExam(esv, ee);
+		return "ExaminationManagement";
+	}
+	@RequestMapping(value="toAnswareQuestion")
+	public String toAnswareQuestion(Model model,@RequestParam String name,@RequestParam String id,@RequestParam String majorkindid,@RequestParam String majorid) throws IOException{
+		List<EngageResume> erList=recruitmentManagementBizImpl.findEngageResume(null, null, null, null, id, null, null, null);
+		List<EngageExam> eeList=recruitmentManagementBizImpl.findEngageExam(majorkindid, majorid);
+		EngageExam ee=eeList.get(new Random().nextInt(eeList.size()));//随机选题
+		List<EngageExamDetails> eedList=recruitmentManagementBizImpl.findEngageExamDetails(ee.getExam_number());
+		int examTotal=0;
+		List<Object> esList=new ArrayList<>();
+		for(int i=0;i<eedList.size();i++){
+			examTotal=examTotal+eedList.get(i).getQuestion_amount();
+			EngageExamDetails eed=eedList.get(i);
+			List<EngageSubjects> esList1=recruitmentManagementBizImpl.findEngageSubjectsByRandom(eed.getQuestion_amount(), eed.getFirst_kind_id(), eed.getSecond_kind_id());
+			esList.add(esList1);
+		}
+		model.addAttribute("esList", esList);
+		model.addAttribute("ee", ee);
+		if(erList!=null&&erList.size()>0){
+			model.addAttribute("er", erList.get(0));
+		}else{
+			EngageResume err=new EngageResume();
+			err.setHuman_name(name);
+			err.setHuman_idcard(id);
+			recruitmentManagementBizImpl.addEngageResume(err);
+			model.addAttribute("er", err);
+		}
+		model.addAttribute("examTotal", examTotal);
+		return "answareQuestion";
 	}
 }

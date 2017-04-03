@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.EngageExamDetailsMapper">
+	<insert id="addEngageExamDetails" parameterType="EngageExamDetails">
+		insert into engage_exam_details(exam_number,first_kind_id,first_kind_name,second_kind_id,second_kind_name,question_amount)
+		values(#{exam_number},#{first_kind_id},#{first_kind_name},#{second_kind_id},#{second_kind_name},#{question_amount})
+	</insert>
+	<select id="findEngageExamDetails" parameterType="EngageExamDetails" resultType="EngageExamDetails">
+		select * from engage_exam_details where 1=1
+		<if test="exam_number">
+			and exam_number=#{exam_number}
+		</if>
+	</select>
+</mapper>

@@ -49,6 +49,13 @@ public class EngageSubjects implements Serializable {
 	private String keyword;
 	private Integer page;
 	private Integer size;
+	private Integer total;
+	public Integer getTotal() {
+		return total;
+	}
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
 	@Override
 	public String toString() {
 		return "EngageSubjects [sub_id=" + sub_id + ", first_kind_id=" + first_kind_id + ", first_kind_name="

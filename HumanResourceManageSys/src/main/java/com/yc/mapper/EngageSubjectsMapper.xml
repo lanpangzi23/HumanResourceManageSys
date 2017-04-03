@@ -26,4 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and sub_id limit #{page},#{size}
 	</if>
 </select>
+<select id="findEngageSubjects1" parameterType="EngageSubjects" resultType="EngageSubjects">
+	select first_kind_id,first_kind_name from engage_subjects group by first_kind_id
+</select>
+<select id="findEngageSubjects2" parameterType="EngageSubjects" resultType="EngageSubjects">
+	select second_kind_id,second_kind_name,count(*) total from engage_subjects group by first_kind_id,second_kind_id having 
+	first_kind_id=#{first_kind_id}
+</select>
 </mapper>
