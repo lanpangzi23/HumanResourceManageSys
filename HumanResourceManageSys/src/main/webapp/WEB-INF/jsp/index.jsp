@@ -139,7 +139,7 @@
         		<li><a class="easyui-linkbutton" href="admin/toResumeManagement" data-options="plain:true">简历管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toInterviewManagement" data-options="plain:true">面试管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toItemBankManagement" data-options="plain:true">招聘考试题库管理</a></li>
-        		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">招聘考试管理</a></li>
+        		<li><a class="easyui-linkbutton" href="admin/toExaminationManagement" data-options="plain:true">招聘考试管理</a></li>
         		<li><a class="easyui-linkbutton" href="admin/toPostRegistration" data-options="plain:true">录用管理</a></li>
             </div>
              <div title="标准化数据报" data-options="iconCls:'icon-folder',selected:true" style="overflow:auto; padding:10px;">

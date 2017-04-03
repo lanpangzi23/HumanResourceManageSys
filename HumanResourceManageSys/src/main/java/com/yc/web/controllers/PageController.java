@@ -193,6 +193,10 @@ public class PageController {
 	public String toadminUserUpdate(){
 		return "adminUpdate";
 	}
+	@RequestMapping(value="admin/toExaminationManagement")//到考试管理系统
+	public String toExaminationManagement(){
+		return "ExaminationManagement";
+	}
 	@RequestMapping(value="admin/adminLogin")
 	public String toadminLogin(){
 		return "adminLogin";
