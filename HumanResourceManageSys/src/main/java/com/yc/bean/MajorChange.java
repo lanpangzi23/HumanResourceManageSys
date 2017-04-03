@@ -41,6 +41,20 @@ import java.util.Date;
 /* 	"regist_time" : 登记时间                                                                      */
 /* 	"check_time" : 复核时间                                                                       */ 
 public class MajorChange {
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private Integer mch_id;
 	private String first_kind_id;
 	private String first_kind_name;
@@ -75,8 +89,20 @@ public class MajorChange {
 	private Integer check_status;
 	private String register;
 	private String 	checker;
-	private Date regist_time;
-	private Date check_time;
+	private String regist_time;
+	private String check_time;
+	public String getRegist_time() {
+		return regist_time;
+	}
+	public void setRegist_time(String regist_time) {
+		this.regist_time = regist_time;
+	}
+	public String getCheck_time() {
+		return check_time;
+	}
+	public void setCheck_time(String check_time) {
+		this.check_time = check_time;
+	}
 	public Integer getMch_id() {
 		return mch_id;
 	}
@@ -280,18 +306,6 @@ public class MajorChange {
 	}
 	public void setChecker(String checker) {
 		this.checker = checker;
-	}
-	public Date getRegist_time() {
-		return regist_time;
-	}
-	public void setRegist_time(Date regist_time) {
-		this.regist_time = regist_time;
-	}
-	public Date getCheck_time() {
-		return check_time;
-	}
-	public void setCheck_time(Date check_time) {
-		this.check_time = check_time;
 	}
 	
 }

@@ -7,12 +7,15 @@ import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.HumanFileDig;
 import com.yc.bean.SalaryStandard;
 import com.yc.bean.SalaryStandardDetails;
 
 public interface HumanBiz {
 	//员工档案登记
 	HumanFile save(HumanFile humanFile);
+	//更改插入
+	HumanFileDig saveHumanFileDig(HumanFileDig humanFileDig);
 	//人力资源档案复核（修改）
 	HumanFile updateHumanFileById(HumanFile humanFile);
 	//人力资源档案更改

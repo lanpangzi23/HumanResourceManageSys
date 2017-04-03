@@ -139,14 +139,14 @@ public class PageController {
 		model.addAttribute("salaryGrant", rd);
 		return "payoffList";
 	}
-	@RequestMapping(value="/admin/transferRegistration")
-	public String totransferRegistrationPage(){
-		return "transferRegistration";
-	}
-	@RequestMapping(value="/admin/transferAudit")
-	public String totransferAuditPage(){
-		return "transferAudit";
-	}
+//	@RequestMapping(value="/admin/transferRegistration")
+//	public String totransferRegistrationPage(){
+//		return "transferRegistration";
+//	}
+//	@RequestMapping(value="/admin/transferAudit")
+//	public String totransferAuditPage1(){
+//		return "transferAudit";
+//	}
 	@RequestMapping(value="/admin/salaryManagementSetting")
 	public ModelAndView tosalaryManagementSettingPage(){//转到薪酬管理设置界面sx
 		ModelAndView mv=new ModelAndView("salaryManagementSetting");
@@ -201,4 +201,75 @@ public class PageController {
 	public String toadminLogin(){
 		return "adminLogin";
 	}
+	/////////////////////////
+	//分页
+		@RequestMapping(value="/admin/transferFind")
+		public String totransferFind(){
+			return "transferFind";
+		}
+		//分页
+		@RequestMapping(value="/admin/transferAuditFind")
+		public String totransferAuditFind(){
+				return "transferAuditFind";
+		}
+		@RequestMapping(value="/admin/transferRegistration")//转到薪酬复核界面
+		public String totransferRegistration(){
+			return "transferRegistration";
+		}
+		@RequestMapping(value="/admin/bonus")//
+		public String tobonus(){
+			return "bonus";
+		}
+		@RequestMapping(value="/admin/bonusFind")//
+		public String tobonusFind(){
+			return "bonusFind";
+		}
+		@RequestMapping(value="/admin/addBonus")//转到薪酬复核界面
+		public String toaddBonus(){
+			return "addBonus";
+		}
+		@RequestMapping(value="/admin/transferAudit")
+		public String totransferAuditPage(){
+			return "transferAudit";
+		}
+		@RequestMapping(value="/admin/bonusAuditFind")
+		public String bonusAuditFind(){
+			return "bonusAuditFind";
+		}
+		@RequestMapping(value="/admin/bonusAudit")
+		public String tobonusAudit(){
+			return "bonusAudit";
+		}
+		@RequestMapping(value="/admin/success")
+		public String tosuccess(){
+			return "success";
+		}
+		@RequestMapping(value="/admin/successs")
+		public String tosuccesss(){
+			return "successs";
+		}
+		@RequestMapping(value="/admin/error")
+		public String toerror(){
+			return "error";
+		}
+		@RequestMapping(value="/admin/addtrain")
+		public String toaddtrain(){
+			return "addtrain";
+		}
+		@RequestMapping(value="/admin/Training")
+		public String toTraining(){
+			return "Training";
+		}
+		@RequestMapping(value="/admin/TrainingFind")
+		public String toTrainingFind(){
+			return "TrainingFind";
+		}
+		@RequestMapping(value="/admin/TrainingAudit")
+		public String toTrainingAudit(){
+			return "TrainingAudit";
+		}
+		@RequestMapping(value="/admin/TrainingAuditFind")
+		public String toTrainingAuditFind(){
+			return "TrainingAuditFind";
+		}
 }

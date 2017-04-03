@@ -1,7 +1,7 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 /* 创建新表 "HumanFile_dig"。                                                                     */
 /* "human_file_dig" : 记录人力资源档案所做的任何更改                                                         */
 /* 	"hfd_id" : 主键，自动增长列                                                                       */
@@ -73,6 +73,13 @@ public class HumanFileDig implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer hfd_id;
 	private String human_id;
+	private String human_party;
+	public String getHuman_party() {
+		return human_party;
+	}
+	public void setHuman_party(String human_party) {
+		this.human_party = human_party;
+	}
 	private String first_kind_id;
 	private String first_kind_name;
 	private String second_kind_id;
@@ -92,7 +99,13 @@ public class HumanFileDig implements Serializable {
 	private String human_major_kind_id;
 	private String human_major_kind_name;
 	private String human_major_id;
-	private String human_major_name;
+	private String hunma_major_name;
+	public String getHunma_major_name() {
+		return hunma_major_name;
+	}
+	public void setHunma_major_name(String hunma_major_name) {
+		this.hunma_major_name = hunma_major_name;
+	}
 	private String human_telephone;
 	private String human_mobilephone;
 	private String human_bank;
@@ -108,6 +121,13 @@ public class HumanFileDig implements Serializable {
 		private String human_birthplace;
 	private Integer human_age;
 	private String human_educated_degree;
+	private String human_religion;
+	public String getHuman_religion() {
+		return human_religion;
+	}
+	public void setHuman_religion(String human_religion) {
+		this.human_religion = human_religion;
+	}
 	private Integer human_educated_years;
 	private String human_educated_major;
 	private String human_society_security_id;
@@ -116,16 +136,40 @@ public class HumanFileDig implements Serializable {
 	private String salary_standard_id;
 	private String salary_standard_name;
 	private Double salary_sum;
-	private Double demand_salary_sum;
+	private Double demand_salaray_sum;
+	public Double getDemand_salaray_sum() {
+		return demand_salaray_sum;
+	}
+	public void setDemand_salaray_sum(Double demand_salaray_sum) {
+		this.demand_salaray_sum = demand_salaray_sum;
+	}
 	private Double paid_salary_sum;
 	private Integer major_change_amount;
 	private Integer bonus_amount;
 	private Integer training_amount;
-	private Integer file_change_amount;
-	private String human_history_records;
+	private Integer file_chang_amount;
+	public Integer getFile_chang_amount() {
+		return file_chang_amount;
+	}
+	public void setFile_chang_amount(Integer file_chang_amount) {
+		this.file_chang_amount = file_chang_amount;
+	}
+	private String human_histroy_records;
+	public String getHuman_histroy_records() {
+		return human_histroy_records;
+	}
+	public void setHuman_histroy_records(String human_histroy_records) {
+		this.human_histroy_records = human_histroy_records;
+	}
 	private String human_family_membership;
 	private String human_picture;
-	private String attchment_name;
+	private String attachment_name;
+	public String getAttachment_name() {
+		return attachment_name;
+	}
+	public void setAttachment_name(String attachment_name) {
+		this.attachment_name = attachment_name;
+	}
 	private Integer check_status;
 	private String register;
 	private String checker;
@@ -220,12 +264,6 @@ public class HumanFileDig implements Serializable {
 	}
 	public void setHuman_major_id(String human_major_id) {
 		this.human_major_id = human_major_id;
-	}
-	public String getHuman_major_name() {
-		return human_major_name;
-	}
-	public void setHuman_major_name(String human_major_name) {
-		this.human_major_name = human_major_name;
 	}
 	public String getHuman_telephone() {
 		return human_telephone;
@@ -365,12 +403,6 @@ public class HumanFileDig implements Serializable {
 	public void setSalary_sum(Double salary_sum) {
 		this.salary_sum = salary_sum;
 	}
-	public Double getDemand_salary_sum() {
-		return demand_salary_sum;
-	}
-	public void setDemand_salary_sum(Double demand_salary_sum) {
-		this.demand_salary_sum = demand_salary_sum;
-	}
 	public Double getPaid_salary_sum() {
 		return paid_salary_sum;
 	}
@@ -395,18 +427,6 @@ public class HumanFileDig implements Serializable {
 	public void setTraining_amount(Integer training_amount) {
 		this.training_amount = training_amount;
 	}
-	public Integer getFile_change_amount() {
-		return file_change_amount;
-	}
-	public void setFile_change_amount(Integer file_change_amount) {
-		this.file_change_amount = file_change_amount;
-	}
-	public String getHuman_history_records() {
-		return human_history_records;
-	}
-	public void setHuman_history_records(String human_history_records) {
-		this.human_history_records = human_history_records;
-	}
 	public String getHuman_family_membership() {
 		return human_family_membership;
 	}
@@ -418,12 +438,6 @@ public class HumanFileDig implements Serializable {
 	}
 	public void setHuman_picture(String human_picture) {
 		this.human_picture = human_picture;
-	}
-	public String getAttchment_name() {
-		return attchment_name;
-	}
-	public void setAttchment_name(String attchment_name) {
-		this.attchment_name = attchment_name;
 	}
 	public Integer getCheck_status() {
 		return check_status;

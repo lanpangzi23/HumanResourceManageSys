@@ -32,5 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from config_major
 		where mak_id=#{mak_id}
 	</delete>
-
+	<select id="selectAllConfigMajorsById" resultType="ConfigMajor" >
+		select major_kind_id,major_kind_name,major_id,major_name,test_amount
+		from config_major where major_kind_id=${major_kind_id} 
+	</select>
 </mapper>

@@ -26,11 +26,11 @@
 
 		</div>
 		<div class="header2">
-		<img src="image/logo.png" style="margin-left: 180px; float: left;">
-		<p style="font-size: 44px;color:blue;font-weight: bolder;">源辰信息科技招聘网</p>
+		<img src="image/logo.png" style="margin-left: 180px; float: left;margin-top: 10px;">
+		<p style="font-size: 44px;color:blue;font-weight: bolder;font-family: '华文行楷';margin-top: 35px;margin-left10px;float: left;">源辰信息科技招聘网</p>
 			<div class="header2_1">
 				<p>
-					<input id="findVal" placeholder="请输入关键词..." /><a onclick="find()" href="javascript:void(0)">搜索</a>
+					<input id="findVal" placeholder="请输入关键词..." /><a href="javascript:findMaior()">搜索</a>
 				</p>
 			</div>
 		</div>
@@ -44,25 +44,38 @@
 			<!-- 隐藏块 -->
 		</div>
 		<!-- 首页广告图片 -->
-		<div class="article1_2">
-			<img id="chaPic" src="images/banner3.jpg" />
-			<div class="chaPic_span"><span></span><span></span><span></span><span></span></div> 
-		</div>
+<!-- 		<div class="article1_2"> -->
+<!-- 			<img id="chaPic" src="images/banner3.jpg" /> -->
+<!-- 			<div class="chaPic_span"><span></span><span></span><span></span><span></span></div>  -->
+<!-- 		</div> -->
 		<!-- 下方内容 -->
 		<div id="immp">
 
 			
-        <div class="_title"><span>职位招聘</span><a href="#">更多>></a></div>
+        <div class="_title"><span>职位招聘信息</span><a href="#">更多>></a></div>
         <div class="article1_3_3">
         	<div class="_long" style="">
-        	<div style="width:100%;background-image: url('image/1.jpg');height:500px; ">
-        	<div style="margin-left: 120px;padding-top: 60px;">
+        	<div style="width:100%;background-image: url('image/3.jpg');height:760px; ">
+        	<div style="padding-top: 60px;">
+        	<form id="orderform" method="post" action="">
+				<table width="918" cellspacing="0" cellpadding="0" border="0">
+                    <thead>
+                        <tr>
+                            <th class="first2" width="50" valign="middle">职位</th>
+                            <th width="40" valign="middle">招聘人数</th>
+                            <th width="100" valign="middle">发布日期</th>
+                            <th width="100" valign="middle">截止日期</th>
+                            <th width="100" valign="middle">职位描述</th>
+                            <th width="100" valign="middle">招聘要求</th>
+                            <th width="30" valign="middle"></th>
+                        </tr>
+                    </thead>
+					<tbody id="shopcar">
+					</tbody>
+				</table>
+			</form>
         			<ul id="enr">
-        				<li>
-        					<a href="#" style="font-size:30px;font-weight: 300;color: black;">11${en.major_name}</a>
-        				</li>
         			</ul>
-        			
         	</div>
         			
         	</div>
@@ -159,13 +172,68 @@
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript">
+	function findMaior(){
+		var keyword=$('#findVal').val();
+		$.post('selectEngageMajorReleaseByName',{keyword:keyword},function(data){
+			$('#shopcar').empty('');
+			var str='';
+			for(var i=0;i<data.length;i++){
+				var date=new Date(data[i].regist_time);
+				str+='<tr>'+
+				'<td style="text-align: center;" valign="middle" height="50"><a href="#">'+
+				'<span style="color: #FF0215; font-weight: bold; class="title">'+data[i].major_name+'</span></a>'+
+				'</td><td valign="middle" height="60" align="center">'+
+
+				'<span class="price">'+data[i].human_amount+'</span>'+
+				'</td><td valign="middle" height="60" align="center">'+
+				'<span class="price">'+date.getYear()+date.getMonth()+'</span></td>'+
+				'<td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" class="price">'+data[i].deadline+'</span>'+
+				'</td>'+
+				'<td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" style="font-size: 14px;font-weight: bold; class="price">'+data[i].major_describe+'</span>'+
+				'</td><td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" style="font-size: 14px;font-weight: bold; class="price">'+data[i].engage_required+'</span>'+
+				'</td><td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" style="font-size: 14px;color: #FF0215;font-weight: bold; class="price"><a style=" color:#FF0215;" href="javascript:resume('+data[i].mre_id+')">投简历</a></span>'+
+				'</td></tr>';
+			}
+			$('#shopcar').append(str);
+		},'json');
+	}
 	$(function(){
 		$.post('findMaior',function(data){
+			$('#shopcar').empty('');
+			var str='';
 			for(var i=0;i<data.length;i++){
-				$('#enr').html('<li><a href="#" style="font-size:30px;font-weight: 300;color: black;">'+data[i].major_name+'</a></li>');
+				var date=new Date(data[i].regist_time);
+				str+='<tr>'+
+				'<td style="text-align: center;" valign="middle" height="50"><a href="#">'+
+				'<span style="color: #FF0215; font-weight: bold; class="title">'+data[i].major_name+'</span></a>'+
+				'</td><td valign="middle" height="60" align="center">'+
+
+				'<span class="price">'+data[i].human_amount+'</span>'+
+				'</td><td valign="middle" height="60" align="center">'+
+				'<span class="price">'+date.getYear()+date.getMonth()+'</span></td>'+
+				'<td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" class="price">'+data[i].deadline+'</span>'+
+				'</td>'+
+				'<td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" style="font-size: 14px;font-weight: bold; class="price">'+data[i].major_describe+'</span>'+
+				'</td><td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" style="font-size: 14px;font-weight: bold; class="price">'+data[i].engage_required+'</span>'+
+				'</td><td class="last1" valign="middle" height="60" align="center">'+
+				'<span id="yprice" style="font-size: 14px; color:#FF0215;font-weight: bold; class="price"><a style=" color:#FF0215;" href="javascript:resume('+data[i].mre_id+')">投简历</a></span>'+
+				'</td></tr>';
 			}
+			$('#shopcar').append(str);
 		},'json');
 	})
+	
+	//转到投简历
+	function resume(id){
+		
+	}
 	</script>
 </body>
 </html>

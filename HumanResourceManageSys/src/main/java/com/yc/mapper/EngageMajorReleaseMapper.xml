@@ -19,6 +19,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and major_name=#{major_name}
 		</if>
 	</select>
+	<select id="selectEngageMajorReleaseBy" parameterType="EngageMajorRelease" resultType="EngageMajorRelease">
+		select * from engage_major_release where deadline > SYSDATE()
+		<if test="major_name!=null">
+			and major_name like #{major_name}
+		</if>
+		<if test="major_name!=null">
+			and major_name like #{major_name}
+		</if>
+		<if test="page!=null">
+			and mre_id limit #{page},#{rows}
+		</if>
+	</select>
 	<update id="updateEngageMajorRelease" parameterType="EngageMajorRelease">
 		update engage_major_release set human_amount=#{human_amount},engage_type=#{engage_type},deadline=#{deadline},changer=#{changer},
 		change_time=#{change_time},major_describe=#{major_describe},engage_required=#{engage_required} where mre_id=#{mre_id}

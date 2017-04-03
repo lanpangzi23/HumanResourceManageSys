@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.MajorChangeMapper">
+<!-- 
+
+ -->
+
+	<insert id="commit" parameterType="MajorChange" useGeneratedKeys="true"  keyProperty="mchid">
+		insert into major_change (first_kind_id,first_kind_name,second_kind_id,second_kind_name,third_kind_id,third_kind_name,major_kind_id,major_kind_name,major_id,major_name,new_first_kind_id,new_first_kind_name,new_second_kind_id,new_second_kind_name
+		,new_third_kind_id,new_third_kind_name,new_major_kind_id,new_major_kind_name,new_major_id,new_major_name,human_id,human_name,salary_standard_id,salary_standard_name,new_salary_standard_id,new_salary_standard_name,change_reason,check_status,register
+		,regist_time)  values(#{first_kind_id},#{first_kind_name},#{second_kind_id},#{second_kind_name},#{third_kind_id},#{third_kind_name},#{major_kind_id},#{major_kind_name},#{major_id},#{major_name},#{new_first_kind_id},#{new_first_kind_name},#{new_second_kind_id},#{new_second_kind_name}
+		,#{new_third_kind_id},#{new_third_kind_name},#{new_major_kind_id},#{new_major_kind_name},#{new_major_id},#{new_major_name},#{human_id},#{human_name},#{salary_standard_id},#{salary_standard_name},#{new_salary_standard_id},#{new_salary_standard_name},#{change_reason},#{check_status},#{register}
+		,#{regist_time})
+	</insert>
+	<select id="selectAll" parameterType="MajorChange" resultType="MajorChange">
+		select * from major_change where check_status=0
+		<if test="human_name!=null">
+			and human_name=#{human_name}
+		</if>
+		<if test="minPage!=null">
+			and mch_id LIMIT #{minPage},#{maxPage}
+		</if> 
+	</select>
+	<select id="selectChangeDetails" parameterType="MajorChange" resultType="MajorChange">
+		select * from Major_Change where human_id=#{human_id}
+	</select>
+	<update id="auditsuccess" parameterType="MajorChange">
+		update human_file set check_status=1,first_kind_id=#{new_first_kind_id},first_kind_name=#{new_first_kind_name},second_kind_id=#{new_second_kind_id},second_kind_name=#{new_second_kind_name}
+		,third_kind_id=#{new_third_kind_id},third_kind_name=#{new_third_kind_name},human_major_kind_id=#{new_major_kind_id},human_major_kind_name=#{new_major_kind_name},human_major_id=#{new_major_id}
+		,hunma_major_name=#{new_major_name},salary_standard_id=#{new_salary_standard_id},salary_standard_name=#{new_salary_standard_name},register=#{register},checker=#{checker},regist_time=#{regist_time},check_time=#{check_time} where human_id=#{human_id}
+	</update>
+	<update id="auditStatusChange" parameterType="MajorChange">
+		update major_change set check_status=1 where human_id=#{human_id}
+	</update>
+	<update id="auditFail" parameterType="MajorChange">
+		update major_change set check_status=0,check_reason=#{check_reason} where human_id=#{human_id}
+	</update>
+	<select id="selectAgain" parameterType="MajorChange" resultType="MajorChange">
+		select * from Major_Change where check_status=0
+	</select>
+	</mapper>

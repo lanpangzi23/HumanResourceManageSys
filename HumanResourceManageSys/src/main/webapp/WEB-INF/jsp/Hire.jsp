@@ -1,28 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<title>无标题文档</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
-<p style="color:#00F">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记复核</p><br/>
+<p style="color:#00F">您正在做的业务是：人力资源--招聘管理--录用管理</p><br/>
 
 
-当前等待复核的人力资源档案总数：  ${humanFileSize } 例
 <br/>
 <br/>
-<div id="HumanFileByCheck"></div>
+<div id="ShowEngage"></div>
 <script type="text/javascript">
 			//公共字段显示 
-			$('#HumanFileByCheck')
+			$('#ShowEngage')
 					.datagrid(
 							{
-								url : 'findtHumanFileByCheck',//goodinfo.action----
+								url : 'ShowEngage',//goodinfo.action----
 								pagination : true,//显示分页工具栏
 								pageSize : 2,
 								pageList : [ 2, 4, 6 ],
@@ -76,7 +72,6 @@
 function check(id){
 	$('#main_panel').panel('refresh',"tohumanResourceFileRegistrationReviewEnd/"+id);
 }
-
 	</script>
 </body>
 </html>

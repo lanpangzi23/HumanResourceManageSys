@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.yc.bean.EngageMajorRelease;
 import com.yc.bean.Users;
 import com.yc.biz.UserBiz;
 import com.yc.dao.BaseDao;
@@ -45,6 +46,11 @@ public class UserBizImpl implements UserBiz {
 	@Override
 	public List<Users> selectUserByHumanId(Users users) {
 		List<Users> list=this.baseDao.findAll(users, "selectUserByHumanId");
+		return list;
+	}
+	@Override
+	public List<EngageMajorRelease> selectEngageMajorReleaseByName(EngageMajorRelease engageMajorRelease) {
+		List<EngageMajorRelease> list=this.baseDao.findAll(engageMajorRelease, "selectEngageMajorReleaseBy");
 		return list;
 	}
 

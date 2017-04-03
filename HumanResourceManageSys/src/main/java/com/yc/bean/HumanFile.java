@@ -493,12 +493,6 @@ public class HumanFile implements Serializable {
 	public void setHuman_file_status(Boolean human_file_status) {
 		this.human_file_status = human_file_status;
 	}
-	public String getHuman_mobliephone() {
-		return human_mobliephone;
-	}
-	public void setHuman_mobliephone(String human_mobliephone) {
-		this.human_mobliephone = human_mobliephone;
-	}
 	public List<MultipartFile> getPicUrl() {
 		return picUrl;
 	}
@@ -541,8 +535,7 @@ public class HumanFile implements Serializable {
 				+ changer + ", regist_time=" + regist_time + ", check_time=" + check_time + ", change_time="
 				+ change_time + ", lastly_change_time=" + lastly_change_time + ", delete_time=" + delete_time
 				+ ", recovery_time=" + recovery_time + ", human_file_status=" + human_file_status
-				+ ", human_mobliephone=" + human_mobliephone
-				+ ", picUrl=" + picUrl + "]";
+				+  ", picUrl=" + picUrl + "]";
 	}
 	private String remark;
 	private String human_id;
@@ -605,7 +598,6 @@ public class HumanFile implements Serializable {
 	private Date delete_time;
 	private Date recovery_time;
 	private Boolean human_file_status;
-	private String human_mobliephone;
 	//标准javabean方法在页面上，可以利用  ${book.pdfsStringList}
 		public List<String> getPdfsStringList(){
 			List<String> list=new ArrayList<String>();

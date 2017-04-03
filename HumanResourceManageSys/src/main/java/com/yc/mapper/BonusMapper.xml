@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.BonusMapper">
+<!-- 
+
+ -->
+	<select id="selectAllBonus" parameterType="Bonus" resultType="Bonus">
+		select * from bonus where check_status=0
+	</select>
+	<select id="selectById" parameterType="Bonus" resultType="Bonus">
+		select * from bonus where check_status=0 and human_id=#{human_id}
+	</select>
+	<insert id="toAudit" parameterType="Bonus"  useGeneratedKeys="true" keyProperty="bon_id">
+		insert into bonus(human_id,human_name,bonus_item,bonus_degree,bonus_worth,register,regist_time,remark,check_status)  
+		  values(#{human_id},#{human_name},#{bonus_item},#{bonus_degree},#{bonus_worth},#{register},#{regist_time},#{remark},0)
+	</insert>
+	<select id="selectByPage" parameterType="Bonus" resultType="Bonus">
+		select * from Bonus where check_status=0
+		<if test="human_id!=null">
+			and human_id=#{human_id}
+		</if>
+		<if test="minPage!=null">
+			and bon_id LIMIT #{minPage},#{maxPage}
+		</if> 
+	</select>
+	<update id="bonusThey" parameterType="Bonus">
+		update Bonus set check_status=1,checker=#{checker},check_time=#{check_time} where human_id=#{human_id}
+	</update>
+	   <!-- 后台查询日奖励金额 -->
+	<select id="selectBonusCountByMDays" parameterType="Bonus" resultType="Bonus">
+		select date_format(check_time,'%Y-%m-%d') as days,count(bonus_worth) as count
+		from bonus group by days
+	</select>
+	</mapper>

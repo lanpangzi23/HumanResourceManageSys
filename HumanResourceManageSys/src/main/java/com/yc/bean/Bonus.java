@@ -21,11 +21,25 @@ import java.util.Date;
 /* 	"regist_time" : 登记时间                                                                      */
 /* 	"check_time" : 复核时间                                                                       */
 /* 	"check_status" : 复核状态                                                                     */  
-public class Bouns implements Serializable {
+public class Bonus implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -267760590295318668L;
+	private Integer minPage;
+	private Integer maxPage;
+	public Integer getMinPage() {
+		return minPage;
+	}
+	public void setMinPage(Integer minPage) {
+		this.minPage = minPage;
+	}
+	public Integer getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(Integer maxPage) {
+		this.maxPage = maxPage;
+	}
 	private Integer bon_id;
 	private String major_kind_id;
 	private String major_kind_name;
@@ -35,7 +49,7 @@ public class Bouns implements Serializable {
 	private String human_name;
 	private String bonus_item;
 	private Double bonus_worth;
-	private String bouns_degree;
+	private String bonus_degree;
 	public Integer getBon_id() {
 		return bon_id;
 	}
@@ -90,11 +104,12 @@ public class Bouns implements Serializable {
 	public void setBonus_worth(Double bonus_worth) {
 		this.bonus_worth = bonus_worth;
 	}
-	public String getBouns_degree() {
-		return bouns_degree;
+
+	public String getBonus_degree() {
+		return bonus_degree;
 	}
-	public void setBouns_degree(String bouns_degree) {
-		this.bouns_degree = bouns_degree;
+	public void setBonus_degree(String bonus_degree) {
+		this.bonus_degree = bonus_degree;
 	}
 	public String getRemark() {
 		return remark;
@@ -114,16 +129,16 @@ public class Bouns implements Serializable {
 	public void setChecker(String checker) {
 		this.checker = checker;
 	}
-	public Date getRegist_time() {
+	public String getRegist_time() {
 		return regist_time;
 	}
-	public void setRegist_time(Date regist_time) {
+	public void setRegist_time(String regist_time) {
 		this.regist_time = regist_time;
 	}
-	public Date getCheck_time() {
+	public String getCheck_time() {
 		return check_time;
 	}
-	public void setCheck_time(Date check_time) {
+	public void setCheck_time(String check_time) {
 		this.check_time = check_time;
 	}
 	public Integer getCheck_status() {
@@ -135,7 +150,7 @@ public class Bouns implements Serializable {
 	private String remark;
 	private String register;
 	private String checker;
-	private Date regist_time;
-	private Date check_time;
+	private String regist_time;
+	private String check_time;
 	private Integer check_status;
 }

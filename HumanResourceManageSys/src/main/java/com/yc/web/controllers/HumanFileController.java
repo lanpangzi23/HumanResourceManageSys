@@ -30,6 +30,7 @@ import com.yc.bean.ConfigMajor;
 import com.yc.bean.ConfigMajorKind;
 import com.yc.bean.ConfigPublicChar;
 import com.yc.bean.HumanFile;
+import com.yc.bean.HumanFileDig;
 import com.yc.bean.SalaryStandard;
 import com.yc.biz.HumanBiz;
 import com.yc.biz.OrganizationBiz;
@@ -485,6 +486,7 @@ public class HumanFileController {
 			HumanFile humanfile=new HumanFile();
 			humanfile.setHuman_id(humanid);
 			List<HumanFile> list=humanBiz.selectHumanFileById(humanfile);
+			humanfile=list.get(0);
 			if(list.get(0).getFile_chang_amount()==null){
 				humanfile.setFile_chang_amount(1);
 			}else{

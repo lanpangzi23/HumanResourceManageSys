@@ -45,6 +45,7 @@ header{
 	border-bottom:none !important;
 }
 body{
+	background:#EFF3FF;
 }
 
 article{
@@ -459,7 +460,7 @@ header{
 .header1{
 	width:100%;
 	height:25px;
-	background:#F0F0F0;
+	background:#C6D7E7;
 	border-bottom:1px solid #CCCCCC;
 }
 
@@ -586,7 +587,7 @@ header{
 footer{
 	width:100%;
 	height:155px;
-	background:#23232F;
+	background:#C6D7E7;
 	border-top:#5F5F68;
 }
 
@@ -657,10 +658,14 @@ footer{
 .zi1{
 	font-size:12px;
 	font-weight:bold;
-	color:#FFF;
+	color:black;
 }
 
 .zi2{
 	font-size:10px;
 	color:#4D4D61;
+}
+/*                */
+#tt tr td{
+	
 }
