@@ -272,4 +272,9 @@ public class PageController {
 		public String toTrainingAuditFind(){
 			return "TrainingAuditFind";
 		}
+		
+		@RequestMapping(value="/admin/Hire")
+		public String toHire(){
+			return "Hire";
+		}
 }
