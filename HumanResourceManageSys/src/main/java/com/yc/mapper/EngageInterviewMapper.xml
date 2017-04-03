@@ -8,6 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<if test="resume_id!=null">
 		and resume_id=#{resume_id}
 	</if>
+	<if test="result!=null">
+		and result=#{result}
+	</if>
 	<if test="minPage!=null">
 		and resume_id limit #{minPage},#{maxPage}
 	</if>
