@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.mapper.TrainingMapper">
+	<select id="selectTrainingPage" parameterType="Training" resultType="Training">
+		select * from Training where checkstatus=0 
+		<if test="human_id!=null">
+			and human_id=#{human_id}
+		</if>
+		<if test="minPage!=null">
+			and tra_id LIMIT #{minPage},#{maxPage}
+		</if> 
+	</select>
+	<insert id="toTraining" parameterType="Training"  useGeneratedKeys="true" keyProperty="bon_id">
+		insert into Training(human_id,human_name,training_item,training_time,training_hour,register,regist_time,remark,checkstatus)  
+		  values(#{human_id},#{human_name},#{training_item},#{training_time},#{training_hour},#{register},#{regist_time},#{remark},0)
+	</insert>
+	<select id="selectByTrainingId" parameterType="Training" resultType="Training">
+		select * from Training where checkstatus=0 and human_id=#{human_id}
+	</select>
+	<update id="trainingPass" parameterType="Training">
+		update training set checkstatus=1,checker=#{checker},check_time=#{check_time},training_degree=#{training_degree} where human_id=#{human_id}
+	</update>
+	
+	</mapper>
